@@ -1,0 +1,142 @@
+.date-picker {
+  width: 100%;
+
+  .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
+    background-color: $clr-bg;
+    color: $clr-text-primary;
+    // border-radius: 50%;
+  }
+
+  .react-datepicker__day:not([aria-disabled=true]):hover {
+    border-radius: 50%;
+    background-color: $clr-bg;
+  }
+
+  .react-datepicker {
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+    font-family: 'Airbnb Cereal', -apple-system, BlinkMacSystemFont, sans-serif;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+    background-color: $clr-bg;
+    font-size: rem(13px);
+
+    &__navigation {
+      position: absolute;
+      height: auto;
+    }
+
+    &__month-container {
+      width: 43%;
+      text-align: center;
+
+      .react-datepicker__header {
+        background-color: $clr-bg;
+        border-bottom: none;
+        padding: 1rem 0 0.5rem;
+      }
+
+      .react-datepicker__current-month {
+        color: $clr-text-primary;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-block: rem(22px);
+        line-height: 1.25rem;
+      }
+
+      .react-datepicker__day-names,
+      .react-datepicker__week {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+      }
+
+      .react-datepicker__day-names {
+        text-align: center;
+        padding-inline: 6px;
+        justify-items: center;
+
+        .react-datepicker__day-name {
+          font-size: 0.75rem;
+          font-weight: 500;
+          color: $clr-text-secondary;
+        }
+      }
+
+      .react-datepicker__month {
+
+        .react-datepicker__week {
+          .react-datepicker__day {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+
+            font-weight: 500;
+            overflow: hidden;
+
+            span {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+
+            &:hover {
+              outline: 1px solid black;
+            }
+
+            &--in-selecting-range {
+              background-color: $gray0;
+              border-radius: 0;
+            }
+
+            &--selected,
+            &--in-selecting-range:hover {
+              background-color: $clr-text-primary;
+              color: $clr-white;
+              border-radius: 50%;
+            }
+
+
+            &--in-range {
+              background-color: $gray0;
+              border-radius: 0;
+              outline: none;
+              color: $clr-text-primary;
+            }
+
+            &--range-start,
+            &--range-end {
+              background-color: $clr-text-primary;
+              color: $clr-white;
+              border-radius: 50%;
+            }
+
+            &--disabled {
+              color: $gray3;
+
+              &:hover {
+                background-color: $clr-bg;
+              }
+            }
+
+            &--keyboard-selected,
+            &--range-start {
+              background-color: $clr-text-primary;
+              color: $clr-white;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

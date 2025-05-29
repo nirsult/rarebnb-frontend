@@ -1,0 +1,158 @@
+.stay-preview {
+  position: relative;
+  max-width: 415px;
+
+  a {
+    .preview-img {
+      border-radius: rem(20px);
+      width: 100%;
+      @include aspect-ratio(1.0526, 1);
+      margin-block-end: rem(12px);
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+        border-radius: rem(20px);
+        overflow: hidden;
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          width: rem(30px);
+          height: rem(30px);
+          top: 50%;
+          right: 13px;
+          transform: translateY(50%);
+          border-radius: 50%;
+          color: $clr-text-primary;
+          background: $gray1;
+          opacity: 0;
+
+          transition: .2s;
+
+          &::after {
+            font-size: rem(10px);
+            font-weight: bold;
+          }
+        }
+
+        &:hover {
+
+          .swiper-button-next:not(.swiper-button-disabled),
+          .swiper-button-prev:not(.swiper-button-disabled) {
+            opacity: 1;
+          }
+        }
+
+        .swiper-button-disabled {
+          opacity: 0;
+          pointer-events: all;
+        }
+
+        .swiper-pagination-bullets {
+          bottom: 4px;
+        }
+
+        .swiper-pagination-bullet {
+          width: 6px;
+          height: 6px;
+          background-color: #fff;
+          opacity: 0.6;
+        }
+
+        .swiper-pagination-bullet-active {
+          opacity: 1;
+        }
+      }
+
+
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .btn-like {
+      position: absolute;
+      right: rem(16px);
+      top: rem(16px);
+      padding: 0;
+      margin: 0;
+      background-color: transparent;
+      z-index: 100;
+
+      svg.icon-like {
+        color: $clr-btn-like;
+        stroke: $clr-white;
+      }
+
+      &:active {
+        scale: 0.92;
+      }
+    }
+
+    .preview-details {
+      display: grid;
+      grid-template-columns: 1fr max-content;
+      grid-template-areas:
+        "header rating"
+        "summary summary"
+        "bed-count bed-count"
+        "price .";
+      gap: rem(2px) rem(8px);
+      margin-inline: rem(4px);
+
+      >* {
+        line-height: rem(19px);
+      }
+
+      .bold {
+        font-weight: 600;
+        color: $clr-text-primary;
+      }
+
+      .regular {
+        color: $clr-text-secondary;
+      }
+
+      h2,
+      p {
+        font-size: rem(15px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
+      }
+
+      .header {
+        grid-area: header;
+      }
+
+      .summary {
+        grid-area: summary;
+      }
+
+      .bed-count {
+        grid-area: bed-count;
+      }
+
+      .avgRating {
+        grid-area: rating;
+        transform: translate(-2px, -1px);
+
+        svg {
+          margin-inline-end: rem(4px);
+        }
+      }
+
+      .price {
+        grid-area: price;
+        margin-block-start: rem(6px);
+        pointer-events: none;
+        cursor: text;
+      }
+    }
+  }
+}

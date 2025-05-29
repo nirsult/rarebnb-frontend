@@ -1,0 +1,49 @@
+.main-nav {
+  nav {
+    display: flex;
+    gap: rem(34px);
+    margin-top: rem(14px);
+
+    @media(max-width: 744px) {
+      display: none;
+    }
+
+    a {
+      position: relative;
+      display: flex;
+      gap: rem(7px);
+      align-items: center;
+      color: $clr-text-secondary;
+      font-size: rem(14px);
+
+      &.active {
+        font-weight: 600;
+        color: $clr-text-primary;
+
+        img {
+          scale: 1.15;
+          transform: translateX(-3px);
+        }
+
+        &::after {
+          content: "";
+          width: calc(100% + rem(4px));
+          background-color: #333;
+          height: 3px;
+          position: absolute;
+          bottom: -8px;
+          left: -5px;
+        }
+      }
+
+      &:not(:first-child) {
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+    }
+
+    img {
+      width: rem(44px);
+    }
+  }
+}

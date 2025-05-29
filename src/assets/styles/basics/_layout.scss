@@ -1,0 +1,64 @@
+.main-container {
+  display: grid;
+  grid-template-columns: rem(24px) 1fr rem(24px);
+
+  >* {
+    grid-column: 2;
+
+    &.full {
+      grid-column: 1 / -1;
+    }
+  }
+
+  // @include for-narrow-layout {
+  //   grid-template-columns:
+  //     minmax(24px, 1fr) minmax(auto, $mobile-breakpoint) minmax(24px, 1fr);
+  // }
+
+  // @include for-normal-layout {
+  //   grid-template-columns:
+  //     minmax(24px, 1fr) minmax(auto, $narrow-breakpoint) minmax(24px, 1fr);
+  // }
+
+  // @include for-wide-layout {
+  //   grid-template-columns:
+  //     minmax(40px, 1fr) minmax(auto, $normal-breakpoint) minmax(40px, 1fr);
+  // }
+}
+
+.main-layout {
+  max-width: 2360px;
+  padding-inline: rem(24px);
+
+  @media (min-width: 744px) {
+    padding-inline: rem(40px);
+  }
+
+  @media (min-width: 1440px) {
+    padding-inline: rem(48px);
+    max-width: 1400px;
+  }
+
+  @media (min-width: 1920px) {
+    padding-inline: rem(48px);
+    margin-inline: rem(40px);
+    max-width: unset;
+  }
+
+  &.home-padding {
+    padding-block-start: 200px;
+  }
+
+  &.default-padding {
+    padding-block-start: 80px;
+  }
+
+  // margin-block: rem(16px) rem(82px); // Optional: applies to the whole page
+}
+
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
