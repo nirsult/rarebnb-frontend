@@ -17,11 +17,11 @@
   &.focused {
     background-color: $gray1;
 
-    button:hover {
+    >button:hover {
       background-color: $gray2;
     }
 
-    button.active:hover {
+    >button.active:hover {
       background-color: $clr-bg;
 
       input[type='text']:-webkit-autofill {

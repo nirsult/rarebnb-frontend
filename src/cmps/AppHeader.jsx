@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom'
-import { AirbnbLogoFull, AirbnbLogoIcon, MagnifyingGlassIcon, MenuIcon } from './Icons'
+import { AirbnbLogoIcon, } from './Icons'
 import { StayFilterExpanded } from '../cmps/StayFilterExpanded'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilterMinimized } from './StayFilterMinimized'
@@ -13,20 +13,8 @@ export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
-  const [isScreenWide, setIsScreenWide] = useState(window.innerWidth > 639)
-  const [activeSection, setActiveSection] = useState('')
+  const [activeSection, setActiveSection] = useState('date')
 
-
-  const [mobileSearchFilter, setMobileSearchFilter] = useState({
-    country: '',
-    checkIn: '',
-    checkOut: '',
-    adults: 0,
-    children: 0,
-    infants: 0,
-    pets: 0,
-    guestTotal: 0,
-  })
   const topRef = useRef()
   const currPage = useLocation()
 
@@ -80,7 +68,9 @@ export function AppHeader() {
     <>
       <div className="observer-top" ref={topRef}></div>
       <header
-        className={`app-header main-layout full ${(isAtTop && currPage.pathname === '/') || isHeaderExpanded ? 'header-large' : 'header-small'
+        className={`app-header main-layout full 
+          ${(isAtTop && currPage.pathname === '/')
+            || isHeaderExpanded ? 'header-large' : 'header-small'
           }`}
       >
 
@@ -93,7 +83,6 @@ export function AppHeader() {
           />
         )}
 
-        {/* Shared content: logo and user menu */}
         <section className="header-content">
           <NavLink to="/" className="logo">
             <AirbnbLogoIcon className="logo-icon" />
@@ -102,36 +91,15 @@ export function AppHeader() {
           {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
         </section>
 
-        {/* Desktop: always show expanded filter when at top or open */}
-        {isScreenWide && (isHeaderExpanded || isAtTop) && (
+        {(isHeaderExpanded || isAtTop) && (
           <StayFilterExpanded
             filterBy={filterBy}
             activeSection={activeSection}
             setActiveSection={setActiveSection}
           />
         )}
-
-        {/* Mobile: show expanded filter inside overlay modal */}
-        {!isScreenWide && isHeaderExpanded && (
-          <div className="mobile-overlay">
-            <button
-              className="btn-close-overlay"
-              onClick={() => setIsHeaderExpanded(false)}
-            >
-              ×
-            </button>
-            <StayFilterExpanded
-              filterBy={filterBy}
-              activeSection={activeSection}
-              setActiveSection={setActiveSection}
-              onClose={() => {
-                setActiveSection('')
-                setIsHeaderExpanded(false)
-              }}
-            />
-          </div>
-        )}
       </header>
+
       <div
         className={`header-backdrop ${!isAtTop && isHeaderExpanded ? 'visible' : ''
           }`}

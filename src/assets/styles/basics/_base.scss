@@ -75,3 +75,9 @@ mark {
   color: $clr1;
   background-color: transparent;
 }
+
+button:disabled {
+  cursor: not-allowed;
+  color: $gray2;
+  opacity: .5;
+}

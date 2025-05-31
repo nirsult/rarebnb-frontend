@@ -1,9 +1,10 @@
 import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 export function MyDatePicker({ onSetDates, setActiveSection, markedDates = [] }) {
   const [startDate, endDate] = markedDates
 
-  const handleChange = (update) => {
+  function handleChange(update) {
     const [start, end] = update
     onSetDates({ checkIn: start, checkOut: end })
 
