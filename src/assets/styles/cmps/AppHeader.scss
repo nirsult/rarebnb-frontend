@@ -45,6 +45,16 @@
     margin-block-end: rem(25px);
     height: rem(78px);
 
+    .menu-wrapper {
+      position: relative;
+    }
+
+    .btn-hamburger-menu {
+      @include circle-button(40px);
+      margin-block-start: rem(17px);
+      transform: translateX(4px);
+    }
+
     .btn-user {
       @include circle-button(40px);
       margin-inline-start: auto;

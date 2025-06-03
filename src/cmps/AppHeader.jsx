@@ -1,19 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink, useLocation, useSearchParams } from 'react-router-dom'
-import { AirbnbLogoIcon, } from './Icons'
+import { AirbnbLogoIcon, HamburgerIcon, } from './Icons'
 import { StayFilterExpanded } from '../cmps/StayFilterExpanded'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilterMinimized } from './StayFilterMinimized'
 import { getFilterFromSearchParams } from '../services/util.service'
 import { logout } from '../store/actions/user.actions'
 import { MainNav } from './MainNav'
+import { useToggle } from "../customHooks/useToggle"
+import { HamburgerMenu } from "./HamburgerMenu"
+import { Popover } from "./Popover"
 
 export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [activeSection, setActiveSection] = useState('date')
+
+  const [isMenuOpen, toggleMenu] = useToggle(false)
+  const menuRef = useRef()
 
   const topRef = useRef()
   const currPage = useLocation()
@@ -64,6 +70,27 @@ export function AppHeader() {
     }
   }, [currPage.pathname])
 
+  useEffect(() => {
+    function handleClickOutside(ev) {
+      if (menuRef.current && !menuRef.current.contains(ev.target)) {
+        toggleMenu(false)
+      }
+    }
+
+    if (isMenuOpen) {
+      const timeoutId = setTimeout(() => {
+        document.addEventListener('click', handleClickOutside)
+      }, 0)
+
+      return () => {
+        clearTimeout(timeoutId)
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }
+  }, [isMenuOpen])
+
+
+
   return (
     <>
       <div className="observer-top" ref={topRef}></div>
@@ -74,6 +101,29 @@ export function AppHeader() {
           }`}
       >
 
+        <section className="header-content">
+          <NavLink to="/" className="logo">
+            <AirbnbLogoIcon className="logo-icon" />
+            <img className='logo-full' src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1748125476/ChatGPT_Image_May_25_2025_01_24_19_AM_ih42tm.png" />
+          </NavLink>
+          {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
+
+          <div className="menu-wrapper">
+            <button
+              className="btn-hamburger-menu"
+              onClick={toggleMenu}
+            >
+              <HamburgerIcon />
+            </button>
+            {isMenuOpen &&
+              <Popover style={{ right: 0 }} menuRef={menuRef}>
+                <HamburgerMenu onClose={() => toggleMenu(false)} />
+              </Popover>
+            }
+          </div>
+
+        </section>
+
         {!isHeaderExpanded && (
           <StayFilterMinimized
             filterBy={filterBy}
@@ -83,14 +133,6 @@ export function AppHeader() {
           />
         )}
 
-        <section className="header-content">
-          <NavLink to="/" className="logo">
-            <AirbnbLogoIcon className="logo-icon" />
-            <img className='logo-full' src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1748125476/ChatGPT_Image_May_25_2025_01_24_19_AM_ih42tm.png" />
-          </NavLink>
-          {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
-        </section>
-
         {(isHeaderExpanded || isAtTop) && (
           <StayFilterExpanded
             filterBy={filterBy}
@@ -98,6 +140,7 @@ export function AppHeader() {
             setActiveSection={setActiveSection}
           />
         )}
+
       </header>
 
       <div
