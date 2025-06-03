@@ -12,7 +12,7 @@ import { useToggle } from "../customHooks/useToggle"
 import { HamburgerMenu } from "./HamburgerMenu"
 import { Popover } from "./Popover"
 
-export function AppHeader() {
+export function AppHeader({ onLoginClick }) {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
@@ -89,8 +89,6 @@ export function AppHeader() {
     }
   }, [isMenuOpen])
 
-
-
   return (
     <>
       <div className="observer-top" ref={topRef}></div>
@@ -102,10 +100,12 @@ export function AppHeader() {
       >
 
         <section className="header-content">
-          <NavLink to="/" className="logo">
-            <AirbnbLogoIcon className="logo-icon" />
-            <img className='logo-full' src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1748125476/ChatGPT_Image_May_25_2025_01_24_19_AM_ih42tm.png" />
-          </NavLink>
+          <h1>
+            <NavLink to="/" className="logo">
+              <AirbnbLogoIcon className="logo-icon" />
+              <img className='logo-full' src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1748125476/ChatGPT_Image_May_25_2025_01_24_19_AM_ih42tm.png" />
+            </NavLink>
+          </h1>
           {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
 
           <div className="menu-wrapper">
@@ -117,11 +117,13 @@ export function AppHeader() {
             </button>
             {isMenuOpen &&
               <Popover style={{ right: 0 }} menuRef={menuRef}>
-                <HamburgerMenu onClose={() => toggleMenu(false)} />
+                <HamburgerMenu
+                  onClose={() => toggleMenu(false)}
+                  onLoginClick={onLoginClick}
+                />
               </Popover>
             }
           </div>
-
         </section>
 
         {!isHeaderExpanded && (

@@ -1,0 +1,23 @@
+.login-signup {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 50%;
+
+  .modal-content {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 50px;
+    border: 2px solid black;
+    border-radius: 1rem;
+    width: 100%;
+
+    background-color: $clr-bg;
+    z-index: 1000;
+
+  }
+}

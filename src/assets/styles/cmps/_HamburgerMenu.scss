@@ -1,38 +1,38 @@
 .hamburger-menu {
-    background-color: $clr-bg;
-    border-radius: rem(12px);
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
-    width: 265px;
-    padding: rem(12px) rem(24px);
+  background-color: $clr-bg;
+  border-radius: rem(12px);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  width: 265px;
+  padding: rem(12px) rem(24px);
 
-    ul {
-        margin: 0;
-        border-block-end: 1px solid $gray2;
+  ul {
+    margin: 0;
+    border-block-end: 1px solid $gray2;
 
-        li {
-            font-weight: 500;
-            line-height: em(18px);
-            font-size: rem(14px);
-            padding-block: rem(9px);
+    li {
+      font-weight: 500;
+      line-height: em(18px);
+      font-size: rem(14px);
+      padding-block: rem(9px);
 
-            &:last-child {
-                margin-block-end: rem(8px);
-            }
-        }
+      &:last-child {
+        margin-block-end: rem(8px);
+      }
     }
+  }
 
-    .btn-menu-auth {
-        font-size: rem(14px);
-        line-height: em(18px);
-        padding: rem(9px) 0;
-        display: block;
-        width: 100%;
-        text-align: start;
-        border: none;
-        background: none;
+  .btn-menu-auth {
+    font-size: rem(14px);
+    line-height: em(18px);
+    padding: rem(9px) 0;
+    display: block;
+    width: 100%;
+    text-align: start;
+    border: none;
+    background: none;
 
-        &.logout {
-            margin-block-start: rem(8px);
-        }
+    &.logout {
+      margin-block-start: rem(8px);
     }
+  }
 }
