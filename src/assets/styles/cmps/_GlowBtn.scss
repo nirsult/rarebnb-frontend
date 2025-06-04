@@ -1,0 +1,17 @@
+.glow-btn {
+  position: relative;
+  width: 100%;
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: rem(8px);
+  color: $clr-white;
+  background: $clr-brand-main;
+
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 1;
+  overflow: hidden;
+}

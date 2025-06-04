@@ -21,6 +21,10 @@ body {
     flex-grow: 1;
     max-width: 100vw;
   }
+
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 h1,

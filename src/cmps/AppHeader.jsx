@@ -11,8 +11,9 @@ import { MainNav } from './MainNav'
 import { useToggle } from "../customHooks/useToggle"
 import { HamburgerMenu } from "./HamburgerMenu"
 import { Popover } from "./Popover"
+import { LoginSignup } from "./LoginSignup"
 
-export function AppHeader({ onLoginClick }) {
+export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
@@ -20,6 +21,8 @@ export function AppHeader({ onLoginClick }) {
 
   const [isMenuOpen, toggleMenu] = useToggle(false)
   const menuRef = useRef()
+  const [isLoginModalOpen, toggleLoginModal] = useToggle(false)
+  const loginModalRef = useRef()
 
   const topRef = useRef()
   const currPage = useLocation()
@@ -51,13 +54,12 @@ export function AppHeader({ onLoginClick }) {
       setIsHeaderExpanded(false)
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsAtTop(entry.isIntersecting)
-        if (entry.isIntersecting) {
-          setIsHeaderExpanded(false)
-        }
-      },
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsAtTop(entry.isIntersecting)
+      if (entry.isIntersecting) {
+        setIsHeaderExpanded(false)
+      }
+    },
       { root: null, threshold: 0 }
     )
 
@@ -89,6 +91,26 @@ export function AppHeader({ onLoginClick }) {
     }
   }, [isMenuOpen])
 
+  useEffect(() => {
+    function handleClickOutside(ev) {
+      if (loginModalRef.current && !loginModalRef.current.contains(ev.target)) {
+        toggleLoginModal(false)
+      }
+    }
+
+    if (isLoginModalOpen) {
+      const timeoutId = setTimeout(() => {
+        document.addEventListener('click', handleClickOutside)
+      }, 0)
+
+      return () => {
+        clearTimeout(timeoutId)
+        document.removeEventListener('click', handleClickOutside)
+      }
+    }
+  }, [isLoginModalOpen])
+
+
   return (
     <>
       <div className="observer-top" ref={topRef}></div>
@@ -119,12 +141,19 @@ export function AppHeader({ onLoginClick }) {
               <Popover style={{ right: 0 }} menuRef={menuRef}>
                 <HamburgerMenu
                   onClose={() => toggleMenu(false)}
-                  onLoginClick={onLoginClick}
+                  onLoginClick={() => toggleLoginModal(true)}
                 />
               </Popover>
             }
           </div>
         </section>
+
+        {isLoginModalOpen &&
+          <LoginSignup
+            onClose={() => toggleLoginModal(false)}
+            loginModalRef={loginModalRef}
+          />}
+
 
         {!isHeaderExpanded && (
           <StayFilterMinimized
