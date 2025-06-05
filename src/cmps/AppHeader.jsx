@@ -131,6 +131,11 @@ export function AppHeader() {
           {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
 
           <div className="menu-wrapper">
+            {loggedInUser &&
+              <div className="user-img">
+                <img src={loggedInUser.imgUrl} />
+              </div>
+            }
             <button
               className="btn-hamburger-menu"
               onClick={toggleMenu}

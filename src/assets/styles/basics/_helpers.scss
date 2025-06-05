@@ -72,8 +72,14 @@
 }
 
 //Buttons
-
-.btn-reset{
+.btn-reset {
   border: none;
   background-color: transparent;
+}
+
+// Positioning
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }

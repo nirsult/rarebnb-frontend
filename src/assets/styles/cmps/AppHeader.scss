@@ -47,30 +47,24 @@
 
     .menu-wrapper {
       position: relative;
-    }
+      display: flex;
+      align-items: flex-end;
 
-    .btn-hamburger-menu {
-      @include circle-button(40px);
-      margin-block-start: rem(17px);
-      transform: translateX(4px);
-    }
-
-    .btn-user {
-      @include circle-button(40px);
-      margin-inline-start: auto;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .btn-hamburger-menu {
+        @include circle-button(40px);
+        transform: translateX(4px);
       }
-    }
 
-    .btn-menu {
-      @include circle-button(40px);
-      color: $clr-text-primary;
-      background-color: $clr-btn-menu;
-      margin-inline-start: rem(12px);
+      .user-img {
+        @include circle-button(40px);
+        margin-inline-start: auto;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
     }
 
     .logo {

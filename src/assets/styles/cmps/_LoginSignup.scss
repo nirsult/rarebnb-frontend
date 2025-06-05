@@ -5,7 +5,7 @@
   transform: translate(-50%, 35%);
   width: 50%;
   max-width: 568px;
-  
+
   border-radius: 1rem;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
 
@@ -65,8 +65,9 @@
       text-align: center;
 
       .btn-toggle-signup {
-        color: blue;
+        color: $clr-brand-main;
         font-size: inherit;
+        font-weight: 500;
       }
     }
   }

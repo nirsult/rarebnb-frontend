@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { logout } from "../store/actions/user.actions";
 
 
 export function HamburgerMenu({ onClose, onLoginClick }) {
@@ -20,12 +21,10 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
             <li><NavLink onClick={onClose} to="/dashboard" >Dashboard</NavLink></li>
             <li><NavLink onClick={onClose} to="/reservations" >Reservation</NavLink></li>
           </ul>
-          <button className="btn-menu-auth logout" onClick={onClose}>Log out</button>
+          <button className="btn-menu-auth logout" onClick={() => { onClose(); logout() }}>Log out</button>
         </>
         : <button className="btn-menu-auth login" onClick={handleLoginClick}>Log in or sign up</button>
       }
-
-
     </nav>
   )
 }

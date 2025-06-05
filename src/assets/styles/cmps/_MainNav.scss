@@ -2,7 +2,6 @@
   nav {
     display: flex;
     gap: rem(34px);
-    margin-top: rem(14px);
 
     @media(max-width: 744px) {
       display: none;
