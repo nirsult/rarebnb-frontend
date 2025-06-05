@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logout } from "../store/actions/user.actions";
+import { showSuccessMsg } from "../services/event-bus.service";
 
 
 export function HamburgerMenu({ onClose, onLoginClick }) {
@@ -9,6 +10,16 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
   function handleLoginClick() {
     onClose()
     onLoginClick()
+  }
+
+  async function handleLogout() {
+    onClose()
+    try {
+      await logout()
+      showSuccessMsg
+    } catch {
+
+    }
   }
 
   return (
@@ -21,7 +32,7 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
             <li><NavLink onClick={onClose} to="/dashboard" >Dashboard</NavLink></li>
             <li><NavLink onClick={onClose} to="/reservations" >Reservation</NavLink></li>
           </ul>
-          <button className="btn-menu-auth logout" onClick={() => { onClose(); logout() }}>Log out</button>
+          <button className="btn-menu-auth logout" onClick={handleLogout}>Log out</button>
         </>
         : <button className="btn-menu-auth login" onClick={handleLoginClick}>Log in or sign up</button>
       }

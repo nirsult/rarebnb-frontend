@@ -31,13 +31,12 @@ export function LoginSignup({ onClose, loginModalRef }) {
     setCredentials(prevCredentials => ({ ...prevCredentials, [field]: value }))
   }
 
-  function handleSubmit(ev) {
+  async function handleSubmit(ev) {
     ev.preventDefault()
 
     try {
-      isSignup
-        ? signup(credentials)
-        : login(credentials)
+      const action = isSignup ? signup : login
+      await action(credentials)
       showSuccessMsg('Logged in successfully')
       onClose()
     } catch (err) {
