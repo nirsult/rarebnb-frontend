@@ -117,6 +117,36 @@
       position: absolute;
       right: rem(12px);
       top: rem(8px);
+      display: flex;
+      gap: 6px;
+
+      max-width: rem(48px);
+      max-height: rem(48px);
+      transition: max-width .4s ease, border-radius .4s;
+
+      font-size: 1rem;
+      overflow: hidden;
+
+      .search-label {
+        opacity: 0;
+        visibility: hidden;
+        transition: .4s;
+      }
+
+      &:hover,
+      &.expanded {
+        background: $theme-linear-gradient;
+      }
+
+      &.expanded {
+        border-radius: 200px;
+        max-width: rem(120px);
+
+        .search-label {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
     }
 
     input[type='text'] {

@@ -1,6 +1,6 @@
 // button {
 //   border: 0;
-//   background-color: $clr1;
+//   background-color: $clr-brand-main;
 //   color: whitesmoke;
 //   padding: 5px 10px;
 //   margin: 5px;
@@ -21,9 +21,9 @@ form>* {
 }
 
 .btn-link:hover {
-  background-color: $clr1;
+  background-color: $clr-brand-main;
 }
 
-input:focus{
+input:focus {
   outline: none;
 }

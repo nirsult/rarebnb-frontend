@@ -14,7 +14,6 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
   const locationInputRef = useRef()
   const [searchParams, setSearchParams] = useSearchParams()
 
-
   useEffect(() => {
     function handleClickOutside(ev) {
       if (filterBarRef.current && !filterBarRef.current.contains(ev.target)) {
@@ -125,7 +124,13 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
             {totalGuests > 0 ? `${totalGuests} guests` : 'Add guests'}
           </span>
         </div>
-        <span className="search-icon" onClick={handleSearch}><MagnifyingGlassIcon /></span>
+        <button
+          className={`search-icon ${isFocused ? 'expanded' : ''}`}
+          onClick={handleSearch}>
+          <MagnifyingGlassIcon />
+          {/* {isFocused ? 'Search' : ''} */}
+          <span className="search-label">Search</span>
+        </button>
       </button>
 
       {
