@@ -127,7 +127,7 @@
               height: 100%;
             }
 
-            &:hover:not(.react-datepicker__day--disabled) {
+            &:hover:not(.react-datepicker__day--disabled):not(.react-datepicker__day--in-range) {
               outline: 1px solid black;
             }
 
@@ -165,14 +165,29 @@
               }
             }
 
-            &--keyboard-selected,
+            &--keyboard-selected {
+              background-color: unset;
+            }
+
+            &--range-end,
             &--range-start {
               background-color: $clr-text-primary;
               color: $clr-white;
               border-radius: 50%;
             }
+
           }
         }
+      }
+    }
+  }
+
+  &.wide {
+    .react-datepicker {
+      box-shadow: none;
+
+      &__month-container {
+        width: 100%;
       }
     }
   }

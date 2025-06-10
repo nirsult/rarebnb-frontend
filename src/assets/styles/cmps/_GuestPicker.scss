@@ -3,7 +3,16 @@
   padding: 1rem 2rem;
   border-radius: rem(32px);
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.14));
-  width: rem(425px);
+  width: 100%;
+
+  &.flat {
+    filter: none;
+    padding-inline: 0;
+
+    .guest-row {
+      padding-inline: 0;
+    }
+  }
 
   .guest-row {
     display: flex;
@@ -27,7 +36,6 @@
         font-size: rem(14px);
         color: $clr-text-secondary;
       }
-
     }
 
     &:last-child .guest-desc {
@@ -47,6 +55,7 @@
         padding: rem(9px);
         height: auto;
         border: 1px solid $gray-4;
+        border-radius: 50%;
 
         &:hover {
           color: $clr-text-primary;

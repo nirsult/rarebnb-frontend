@@ -1,25 +1,25 @@
 import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"
 
-export function MyDatePicker({ onSetDates, setActiveSection, markedDates = [] }) {
+export function MyDatePicker({ onSetDates, setActiveSection, markedDates = [], monthsShown = 2, className = '', isMobile = false }) {
   const [startDate, endDate] = markedDates
 
   function handleChange(update) {
     const [start, end] = update
     onSetDates({ checkIn: start, checkOut: end })
 
-    if (start && !end) setActiveSection('check-out')
+    if (!isMobile && start && !end) setActiveSection('check-out')
   }
 
   return (
-    <section className="date-picker">
+    <section className={`date-picker ${className}`}>
       <DatePicker
         selected={startDate}
         onChange={handleChange}
         startDate={startDate}
         endDate={endDate}
         selectsRange
-        monthsShown={2}
+        monthsShown={monthsShown}
         inline
         formatWeekDay={(nameOfDay) => nameOfDay.charAt(0)}
         minDate={new Date()}

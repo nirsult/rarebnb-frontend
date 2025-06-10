@@ -2,7 +2,7 @@ import { useState } from "react"
 import { MinusIcon, PlusIcon } from "./Icons"
 
 
-export function GuestPicker({ guests, onSetGuests }) {
+export function GuestPicker({ guests, onSetGuests, className = '' }) {
 
   function updateCount(type, diff) {
     const updatedGuests = {
@@ -13,7 +13,7 @@ export function GuestPicker({ guests, onSetGuests }) {
   }
 
   return (
-    <section className="guest-picker">
+    <section className={`guest-picker ${className}`}>
       {[
         { key: 'adults', label: 'Adults', desc: 'Ages 13 or above' },
         { key: 'children', label: 'Children', desc: 'Ages 2 - 12' },

@@ -12,9 +12,12 @@ import { useToggle } from "../customHooks/useToggle"
 import { HamburgerMenu } from "./HamburgerMenu"
 import { Popover } from "./Popover"
 import { LoginSignup } from "./LoginSignup"
+import { StayFilterMobile } from "./StayFilterMobile"
+import { useMediaQuery } from "../customHooks/useMediaQuery"
 
 export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
+  const isMobile = useMediaQuery('(max-width: 743px)')
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [activeSection, setActiveSection] = useState('date')
@@ -116,8 +119,8 @@ export function AppHeader() {
       <div className="observer-top" ref={topRef}></div>
       <header
         className={`app-header main-layout full 
-          ${(isAtTop && currPage.pathname === '/')
-            || isHeaderExpanded ? 'header-large' : 'header-small'
+          ${!isMobile && ((isAtTop && currPage.pathname === '/')
+            || isHeaderExpanded) ? 'header-large' : 'header-small'
           }`}
       >
 
@@ -129,6 +132,13 @@ export function AppHeader() {
             </NavLink>
           </h1>
           {((isAtTop && currPage.pathname === '/') || isHeaderExpanded) && <MainNav />}
+
+          {isMobile &&
+            <StayFilterMobile
+              searchParams={searchParams}
+              filterBy={filterBy}
+              setSearchParams={setSearchParams}
+            />}
 
           <div className="menu-wrapper">
             {loggedInUser &&
@@ -169,13 +179,14 @@ export function AppHeader() {
           />
         )}
 
-        {(isHeaderExpanded || isAtTop) && (
-          <StayFilterExpanded
-            filterBy={filterBy}
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-          />
-        )}
+        {!isMobile &&
+          (isHeaderExpanded || isAtTop) && (
+            <StayFilterExpanded
+              filterBy={filterBy}
+              activeSection={activeSection}
+              setActiveSection={setActiveSection}
+            />
+          )}
 
       </header>
 

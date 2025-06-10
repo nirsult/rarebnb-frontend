@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom"
 
 
 export function MainNav() {
 
   return (
-    <section className="main-nav center">
+    <section className="main-nav center-inline">
       <nav>
         <NavLink to="/">
           <img src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1748084185/4aae4ed7-5939-4e76-b100-e69440ebeae4.png_im_w_240_1_pqzuzd_c_crop_w_150_h_150_ar_1_1_qjc2ne.avif" alt="" />

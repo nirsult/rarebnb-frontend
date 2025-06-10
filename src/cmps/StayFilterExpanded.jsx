@@ -84,7 +84,7 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
         onClick={() => setActiveSection('location')}
       >
         <div className="btn-content">
-          <label htmlFor="country" className="btn-label">Where </label>
+          <label htmlFor="country" className="btn-label">Where</label>
           <input value={country} onChange={handleChange} ref={locationInputRef}
             type="text" placeholder="Search destinations" id="country" name="country"
             onKeyDown={(ev) => {
@@ -146,7 +146,7 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
       }
 
       {activeSection === 'guests' && (
-        <Popover style={{ right: 0 }}>
+        <Popover style={{ right: 0, width: '26.625rem' }}>
           <GuestPicker
             onSetGuests={onSetGuests}
             guests={{ adults, children, infants, pets }}

@@ -1,0 +1,120 @@
+.stay-filter-mobile {
+  flex: 1;
+
+  .btn-search {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+
+    width: 90%;
+    padding: rem(18px);
+    margin: auto;
+
+    background-color: $clr-bg;
+    border-radius: 100px;
+    font-size: rem(14px);
+    font-weight: 500;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .accordion-filter {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    width: 100vw;
+    height: 100vh;
+    padding-inline: rem(12px);
+    padding-block: rem(80px);
+
+    background-color: $gray0;
+    z-index: 1;
+
+    .accordion-section {
+      background-color: $clr-bg;
+      padding: rem(19px);
+      line-height: rem(18px);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.03);
+      border-radius: rem(16px);
+      cursor: pointer;
+
+      &:not(.active) {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &.active {
+        &:not(.guests) {
+          flex: 1;
+        }
+
+        box-shadow: 0 0 0 1px rgb(0 0 0/4%),
+        0 6px 20px rgb(0 0 0/20%);
+      }
+
+      .input-search {
+        width: 100%;
+        border-radius: rem(8px);
+        font-size: rem(14px);
+        font-weight: 500;
+        margin-top: 1rem;
+        border: 1px solid $gray-4;
+        padding: 1rem;
+        line-height: rem(20px);
+      }
+
+      span {
+        font-size: rem(14px);
+        font-weight: 500;
+
+        &:first-of-type {
+          color: $clr-text-secondary;
+        }
+      }
+    }
+
+    .btn-accordion-close {
+      position: absolute;
+      top: rem(24px);
+      right: rem(24px);
+      @include circle-button;
+      background-color: $clr-bg;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent, 0 2px 4px rgba(0, 0, 0, 0.18);
+
+      &:hover {
+        scale: 1.04;
+        box-shadow: 0 0 0 1px transparent, 0 0 0 4px transparent, 0 6px 16px rgba(0, 0, 0, 0.12);
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      display: flex;
+      justify-content: space-between;
+
+      width: 100%;
+      padding: rem(12px) rem(24px);
+
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: rem(10px);
+        width: auto;
+
+        &.btn-clear {
+          font-size: 1rem;
+          text-decoration: underline;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay'
 import { HeartIcon, StarIcon } from './Icons'
-import { formatRating } from '../services/util.service';
+import { formatRating } from '../services/util.service'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'

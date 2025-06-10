@@ -16,7 +16,7 @@ function getEmptyStay() {
 
 function getDefaultFilter() {
   return {
-    city: '',
+    // city: '',
     country: '',
     checkIn: '',
     checkOut: '',

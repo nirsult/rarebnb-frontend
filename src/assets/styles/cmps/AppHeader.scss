@@ -10,7 +10,7 @@
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 999;
+  z-index: 1000;
   background: linear-gradient(180deg, $clr-white 39.9%, $gray-3 100%);
   height: rem(200px);
   border-block-end: 1px solid #ebebeb;
@@ -24,9 +24,8 @@
 
   @media (min-width: 1440px) {
     padding-inline: rem(48px);
-    max-width: 1824px;
+    max-width: unset;
   }
-
 
   &.header-small {
     height: rem(80px);
@@ -75,7 +74,7 @@
       .logo-full {
         width: rem(98px);
         transform: translateX(-2px);
-        visibility: hidden;
+        display: none;
         pointer-events: none;
         cursor: default;
       }
@@ -89,7 +88,7 @@
       // Show full logo on wide screens
       @media (min-width: 950px) {
         .logo-full {
-          visibility: visible;
+          display: block;
         }
       }
     }
