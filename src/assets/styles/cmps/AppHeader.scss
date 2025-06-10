@@ -18,12 +18,12 @@
 
   transition: height .2s;
 
-  // @media(min-width: 744px) {
-  //   padding-inline: rem(32px)
-  // }
+  @media(min-width: 744px) {
+    // padding-inline: rem(32px)
+  }
 
   @media (min-width: 1440px) {
-    padding-inline: rem(48px);
+    // padding-inline: rem(48px);
     max-width: unset;
   }
 

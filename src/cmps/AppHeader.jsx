@@ -118,13 +118,13 @@ export function AppHeader() {
     <>
       <div className="observer-top" ref={topRef}></div>
       <header
-        className={`app-header main-layout full 
+        className={`app-header full main-layout
           ${!isMobile && ((isAtTop && currPage.pathname === '/')
             || isHeaderExpanded) ? 'header-large' : 'header-small'
           }`}
       >
 
-        <section className="header-content">
+        <section className="header-content main-layout">
           <h1>
             <NavLink to="/" className="logo">
               <AirbnbLogoIcon className="logo-icon" />

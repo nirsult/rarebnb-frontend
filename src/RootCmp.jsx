@@ -6,6 +6,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { SOCKET_EVENT_ORDER_ADDED, SOCKET_EVENT_ORDER_UPDATED, socketService } from './services/socket.service.js'
 import { showSuccessMsg } from './services/event-bus.service.js'
+import { StayDetails } from "./pages/StayDetails.jsx"
 
 
 export function RootCmp() {
@@ -37,6 +38,7 @@ export function RootCmp() {
       <main className={`main-layout ${isIndexPage ? 'home-padding' : 'default-padding'}`}>
         <Routes>
           <Route path="/" element={<StayIndex />} />
+          <Route path="/stay/:stayId" element={<StayDetails />} />
         </Routes>
       </main>
     </>

@@ -24,7 +24,7 @@ export function StayIndex() {
   }
 
   return (
-    <section className="stay-index main-layout">
+    <section className="stay-index">
       {isFirstLoad && (
         <div className="stay-filter-icon-skeleton">
         </div>

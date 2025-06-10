@@ -68,6 +68,7 @@ export async function addOrderMsg(orderId, txt) {
 }
 
 export function setEmptyOrderToSave(stay) {
+  console.log('stayFromOrderActions:',stay)
   try {
     const emptyOrder = orderService.getEmptyOrder(stay)
     store.dispatch(getCmdSetEmptyOrderToSave(emptyOrder))

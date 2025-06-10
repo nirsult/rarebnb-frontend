@@ -20,8 +20,6 @@ export function StayPreview({ stay }) {
       }}>
 
         <section className="preview-img">
-          {/* <img src={stay.imgUrls[0]} alt={stay.name} />
-           */}
           <Swiper
             modules={[Navigation, Pagination]}
             navigation

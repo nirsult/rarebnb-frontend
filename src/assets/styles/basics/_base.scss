@@ -16,8 +16,12 @@ body {
   font-size: rem(18px);
   overflow-y: scroll;
 
-  main,
-  main.main-layout {
+  // main,
+  // main.main-layout {
+  //   flex-grow: 1;
+  //   max-width: 100vw;
+  // }
+  main {
     flex-grow: 1;
     max-width: 100vw;
   }
