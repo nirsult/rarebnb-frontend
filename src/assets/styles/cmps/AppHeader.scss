@@ -18,9 +18,9 @@
 
   transition: height .2s;
 
-  @media(min-width: 744px) {
-    padding-inline: rem(32px)
-  }
+  // @media(min-width: 744px) {
+  //   padding-inline: rem(32px)
+  // }
 
   @media (min-width: 1440px) {
     padding-inline: rem(48px);
@@ -51,7 +51,6 @@
 
       .btn-hamburger-menu {
         @include circle-button(40px);
-        transform: translateX(4px);
       }
 
       .user-img {
