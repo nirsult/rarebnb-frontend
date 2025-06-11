@@ -1,0 +1,33 @@
+import { DotsGrid, LeftArrow } from "./Icons"
+
+
+export function StayDetailsGallery({ imgUrls, isGalleryExpanded, setIsGalleryExpanded }) {
+  const galleryPreview = imgUrls.slice(0, 5)
+
+  return (
+    <section className="stay-details-gallery">
+
+      {!isGalleryExpanded && (
+        <div className={`gallery-preview-container count-${galleryPreview.length}`} >
+          {galleryPreview.map(imgUrl => (
+            <img
+              key={imgUrl}
+              src={imgUrl}
+              onClick={() => setIsGalleryExpanded(true)}
+            />))}
+          <button className="btn-show-all" onClick={() => setIsGalleryExpanded(true)}>{<DotsGrid />}Show all photos</button>
+        </div>
+      )}
+
+      {isGalleryExpanded && (
+        <>
+          <button className="btn-back flex" onClick={() => setIsGalleryExpanded(false)}>{<LeftArrow size="16px" />}</button>
+          <div className="gallery-full-container">
+            {imgUrls.map(imgUrl => <img key={imgUrl} src={imgUrl}></img>)}
+          </div>
+        </>
+      )}
+
+    </section>
+  )
+}

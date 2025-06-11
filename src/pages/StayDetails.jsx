@@ -2,12 +2,15 @@ import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
 import { setEmptyOrderToSave, updateOrderToSave } from "../store/actions/order.actions"
 import { stayService } from "../services/stay"
+import { StayDetailsGallery } from "../cmps/StayDetailsGallery"
 
 
 export function StayDetails() {
   const { stayId } = useParams()
   const [stay, setStay] = useState(null)
   const [searchParams, setSearchParams] = useSearchParams()
+  const [isGalleryExpanded, setIsGalleryExpanded] = useState(false)
+
 
 
   const checkIn = searchParams.get('checkIn')
@@ -49,10 +52,20 @@ export function StayDetails() {
 
   if (!stay) return
 
+  if (isGalleryExpanded) return <StayDetailsGallery
+    imgUrls={stay.imgUrls}
+    isGalleryExpanded={isGalleryExpanded}
+    setIsGalleryExpanded={setIsGalleryExpanded}
+  />
+
   return (
     <section className="stay-details">
       <h2>{stay.name}</h2>
-      {/* <Gallery/> */}
+      <StayDetailsGallery
+        imgUrls={stay.imgUrls}
+        isGalleryExpanded={isGalleryExpanded}
+        setIsGalleryExpanded={setIsGalleryExpanded}
+      />
 
     </section>
   )

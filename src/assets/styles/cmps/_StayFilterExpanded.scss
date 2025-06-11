@@ -1,12 +1,12 @@
 .filter-bar {
   position: relative;
+  place-self: start center;
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
   align-items: center;
 
   width: 100%;
   max-width: 850px;
-  margin: auto;
   height: rem(66px);
 
   background-color: $clr-bg;

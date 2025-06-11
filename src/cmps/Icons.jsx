@@ -18,8 +18,8 @@ export function MinusIcon({ className }) {
   return (<svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" className={className} style={{ display: 'block', height: '12px', width: '12px', fill: 'currentColor', }} > <path d="M.75 6.75h10.5v-1.5H.75z" /> </svg>)
 }
 
-export function LeftArrow() {
-  return (<svg fill="currentColor" width="32px" height="32px" viewBox="-78.5 0 512 512" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <path d="M257 64L291 98 128 262 291 426 257 460 61 262 257 64Z" /> </svg>)
+export function LeftArrow({ size = "32px" }) {
+  return (<svg fill="currentColor" width={size} height={size} viewBox="-78.5 0 512 512" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <path d="M257 64L291 98 128 262 291 426 257 460 61 262 257 64Z" /> </svg>)
 }
 
 export function RightArrow() {
@@ -36,4 +36,8 @@ export function HamburgerIcon() {
 
 export function XIcon() {
   return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentColor', strokeWidth: 3, overflow: 'visible', }} > <path d="M6 6 L26 26" /> <path d="M26 6 L6 26" /> </svg>)
+}
+
+export function DotsGrid() {
+  return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '16px', width: '16px', fill: 'currentColor', }}><path fillRule="evenodd" d="M3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" /></svg>)
 }

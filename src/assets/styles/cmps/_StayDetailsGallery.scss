@@ -1,0 +1,123 @@
+body:has(.gallery-full-container) header {
+  display: none;
+}
+
+.stay-details-gallery {
+
+  img {
+    transition: filter .2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(85%);
+
+    }
+  }
+
+  .gallery-preview-container {
+    position: relative;
+    display: grid;
+    gap: .5rem;
+
+    aspect-ratio: 2/1;
+    border-radius: 20px;
+    overflow: clip;
+
+    .btn-show-all {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: em(7px);
+      bottom: rem(24px);
+      right: rem(24px);
+
+      background-color: $clr-bg;
+      padding: rem(7px) rem(15px);
+      border: 1px solid $clr-text-primary;
+      border-radius: .5rem;
+      font-size: rem(14px);
+      font-weight: 500;
+      z-index: 2;
+
+      &:active {
+        border-color: $clr-black;
+        background-color: $gray0;
+        scale: .96;
+      }
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.count-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.count-3 {
+      grid-template-areas:
+        "a b"
+        "a c";
+    }
+
+    &.count-4 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    &.count-5 {
+      grid-template-areas:
+        "a a b c"
+        "a a d e";
+
+      $areas: a b c d e;
+
+      @for $i from 1 through length($areas) {
+        img:nth-child(#{$i}) {
+          grid-area: #{nth($areas, $i)};
+        }
+      }
+    }
+  }
+
+  .btn-back {
+    position: absolute;
+    top: rem(24px);
+    left: rem(24px);
+
+    border-radius: 50%;
+    border: none;
+    background-color: transparent;
+    padding: .5rem;
+
+    &:hover {
+      background-color: $gray0;
+    }
+  }
+
+  .gallery-full-container {
+    display: grid;
+    gap: .5rem;
+    grid-template-columns: 1fr 1fr;
+    width: 66.66%;
+    margin: auto;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+
+    img:nth-child(3n+1) {
+      grid-column: 1/-1;
+    }
+
+    img:nth-child(3n+2) {
+      grid-column: 1;
+    }
+
+    img:nth-child(3n+3) {
+      grid-column: 2;
+    }
+  }
+}

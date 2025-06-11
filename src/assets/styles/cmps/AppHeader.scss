@@ -7,15 +7,17 @@
 }
 
 .app-header {
+  grid-template-rows: 1fr 1fr;
+
   position: fixed;
-  width: 100%;
   top: 0;
-  z-index: 1000;
-  background: linear-gradient(180deg, $clr-white 39.9%, $gray-3 100%);
+  width: 100%;
   height: rem(200px);
-  border-block-end: 1px solid #ebebeb;
   margin-inline: 0;
 
+  background: linear-gradient(180deg, $clr-white 39.9%, $gray-3 100%);
+  border-block-end: 1px solid #ebebeb;
+  z-index: 1000;
   transition: height .2s;
 
   @media(min-width: 744px) {
