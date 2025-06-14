@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom"
 import { setEmptyOrderToSave, updateOrderToSave } from "../store/actions/order.actions"
 import { stayService } from "../services/stay"
 import { StayDetailsGallery } from "../cmps/StayDetailsGallery"
+import { StayDetailsSummary } from "../cmps/StayDetailsSummary"
 
 
 export function StayDetails() {
@@ -66,6 +67,9 @@ export function StayDetails() {
         isGalleryExpanded={isGalleryExpanded}
         setIsGalleryExpanded={setIsGalleryExpanded}
       />
+      <section className="scroll-section">
+        <StayDetailsSummary stay={stay} />
+      </section>
 
     </section>
   )

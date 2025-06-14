@@ -1,0 +1,80 @@
+.stay-details-summary {
+
+  >* {
+    border-block-end: 1px solid $gray2;
+  }
+
+  header {
+    padding-block-end: rem(32px);
+
+    h3 {
+      font-size: rem(22px);
+      line-height: rem(26px);
+      font-weight: 500;
+      margin-block-end: rem(4px);
+    }
+
+    .summary-listing-facts {
+      margin: 0;
+      margin-block-end: rem(8px);
+      font-size: 1rem;
+      line-height: rem(20px);
+
+
+      span:not(:last-of-type)::after {
+        content: " · ";
+      }
+    }
+
+    .summary-reviews {
+      display: flex;
+      gap: rem(4px);
+      align-items: center;
+      font-size: rem(17px);
+      font-weight: 500;
+      line-height: rem(20px);
+
+      .review-count {
+        text-decoration: underline;
+      }
+
+      span:first-of-type::after {
+        content: " · ";
+      }
+    }
+  }
+
+  .summary-host-info {
+    display: grid;
+    grid-template-areas:
+      "a b"
+      "a c";
+    grid-template-columns: max-content 1fr;
+    column-gap: rem(24px);
+    padding-block: rem(24px);
+
+    img {
+      grid-area: a;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      object-fit: cover;
+      width: rem(40px);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    h4 {
+      font-size: 1rem;
+      line-height: rem(20px);
+      font-weight: 500;
+    }
+
+    p:first-of-type {
+      font-size: rem(14px);
+      color: $gray5;
+      line-height: rem(18px);
+    }
+  }
+}

@@ -12,6 +12,7 @@
 
 // pages
 @import "pages/StayIndex";
+@import "pages/StayDetails";
 
 // Components
 @import "cmps/RootCmp.scss";
@@ -24,8 +25,11 @@
 @import "cmps/HamburgerMenu";
 @import "cmps/LoginSignup";
 @import "cmps/GlowBtn";
+@import "cmps/ExpandableText";
 
 @import "cmps/StayDetailsGallery";
+@import "cmps/StayDetailsSummary";
+@import "cmps/StayDetailsAmenitiesHighlights";
 
 @import "cmps/Popover";
 @import "cmps/StayFilterExpanded";

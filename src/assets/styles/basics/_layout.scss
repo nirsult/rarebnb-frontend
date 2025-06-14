@@ -100,10 +100,9 @@ body:has(.stay-details) .main-layout {
   // }
 
   &.default-padding {
-    padding-block-start: 80px;
+    padding-block: 80px;
   }
 }
-
 
 .card-grid {
   display: grid;

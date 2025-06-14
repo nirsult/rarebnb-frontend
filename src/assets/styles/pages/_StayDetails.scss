@@ -1,0 +1,23 @@
+.stay-details {
+  padding-block-start: rem(24px);
+
+  h2 {
+    margin-block-end: rem(24px);
+    font-size: rem(26px);
+    line-height: rem(30px);
+    font-weight: 500;
+  }
+
+  .scroll-section {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+
+    *> {
+      grid-column: 1;
+    }
+
+    .reservation-widget {
+      grid-column: 2;
+    }
+  }
+}

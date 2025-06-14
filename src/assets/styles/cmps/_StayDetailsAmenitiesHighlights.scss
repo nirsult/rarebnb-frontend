@@ -1,0 +1,43 @@
+.amenities-highlights {
+  ul {
+    margin: 0;
+    padding-block: rem(32px);
+  }
+
+  li {
+    display: grid;
+    grid-template-areas:
+      "icon h"
+      "icon p";
+    grid-template-columns: max-content 1fr;
+    column-gap: rem(24px);
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-block-end: rem(24px);
+    }
+
+    svg {
+      width: rem(24px);
+      height: rem(24px);
+    }
+  }
+
+  .highlights-icon {
+    grid-area: icon;
+    padding-inline-start: rem(6px);
+  }
+
+  h4 {
+    grid-area: h;
+    font-size: rem(14px);
+    font-weight: 500;
+    line-height: rem(20px);
+  }
+
+  p {
+    grid-area: p;
+    font-size: rem(14px);
+    line-height: rem(20px);
+  }
+}

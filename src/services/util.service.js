@@ -1,10 +1,8 @@
-import { stayService } from "./stay"
-
 export function makeId(length = 6) {
   var txt = ''
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-  for (var i = 0; i < length; i++) {
+  for (var i = 0;i < length;i++) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
   }
 
@@ -89,4 +87,9 @@ export function getFilterFromSearchParams(searchParams) {
     infants: +searchParams.get('infants') || 0,
     pets: +searchParams.get('pets') || 0,
   }
+}
+
+export function truncateText(text, limit) {
+  if (text.length > limit) return text.substring(0, limit - 3) + '...'
+  return text
 }

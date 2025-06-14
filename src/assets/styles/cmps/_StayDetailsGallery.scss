@@ -3,6 +3,7 @@ body:has(.gallery-full-container) header {
 }
 
 .stay-details-gallery {
+  margin-block-end: rem(32px);
 
   img {
     transition: filter .2s;
@@ -82,7 +83,7 @@ body:has(.gallery-full-container) header {
   }
 
   .btn-back {
-    position: absolute;
+    position: fixed;
     top: rem(24px);
     left: rem(24px);
 
