@@ -68,7 +68,6 @@ export async function addOrderMsg(orderId, txt) {
 }
 
 export function setEmptyOrderToSave(stay) {
-  console.log('stayFromOrderActions:',stay)
   try {
     const emptyOrder = orderService.getEmptyOrder(stay)
     store.dispatch(getCmdSetEmptyOrderToSave(emptyOrder))
@@ -79,14 +78,23 @@ export function setEmptyOrderToSave(stay) {
   }
 }
 
-export function updateOrderToSave(field, value) {
+export function updateOrderToSave(updatedOrder) {
   try {
-    store.dispatch(getCmdUpdateOrderToSave({ field, value }))
+    store.dispatch(getCmdUpdateOrderToSave(updatedOrder))
   } catch (err) {
     console.log('Cannot save order', err)
     throw err
   }
 }
+
+// export function updateOrderToSave(field, value) {
+//   try {
+//     store.dispatch(getCmdUpdateOrderToSave({ field, value }))
+//   } catch (err) {
+//     console.log('Cannot save order', err)
+//     throw err
+//   }
+// }
 
 export function clearOrderToSave() {
   try {
@@ -104,13 +112,19 @@ function getCmdSetEmptyOrderToSave(order) {
     order
   }
 }
-function getCmdUpdateOrderToSave({ field, value }) {
+function getCmdUpdateOrderToSave(updatedOrder) {
   return {
     type: UPDATE_ORDER_TO_SAVE,
-    field,
-    value
+    updatedOrder
   }
 }
+// function getCmdUpdateOrderToSave({ field, value }) {
+//   return {
+//     type: UPDATE_ORDER_TO_SAVE,
+//     field,
+//     value
+//   }
+// }
 function getCmdClearOrderToSave() {
   return {
     type: CLEAR_ORDER_TO_SAVE,

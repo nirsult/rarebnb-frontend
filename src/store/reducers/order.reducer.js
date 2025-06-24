@@ -29,8 +29,11 @@ export function orderReducer(state = initialState, action) {
       newState = { ...state, orderToSave: action.order }
       break
     case UPDATE_ORDER_TO_SAVE:
-      newState = { ...state, orderToSave: { ...state.orderToSave, [action.field]: action.value } }
+      newState = { ...state, orderToSave: { ...state.orderToSave, ...action.updatedOrder } }
       break
+    // case UPDATE_ORDER_TO_SAVE:
+    //   newState = { ...state, orderToSave: { ...state.orderToSave, [action.field]: action.value } }
+    //   break
     case CLEAR_ORDER_TO_SAVE:
       newState = { ...state, orderToSave: null }
       break

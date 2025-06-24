@@ -89,6 +89,25 @@ export function getFilterFromSearchParams(searchParams) {
   }
 }
 
+export function getOrderDetailsFromSearchParams(searchParams) {
+  return {
+    startDate: searchParams.get('checkIn') ? new Date(searchParams.get('checkIn')) : null,
+    endDate: searchParams.get('checkOut') ? new Date(searchParams.get('checkOut')) : null,
+    guestCountMap: {
+      adults: +searchParams.get('adults') || 1,
+      children: +searchParams.get('children') || 0,
+      infants: +searchParams.get('infants') || 0,
+      pets: +searchParams.get('pets') || 0,
+    },
+    // pricePerNight: +searchParams.get('pricePerNight') || 0,
+    // subTotal: +searchParams.get('subTotal') || 0,
+    // serviceFee: +searchParams.get('serviceFee') || 0,
+    // cleaningFee: +searchParams.get('cleaningFee') || 0,
+    // totalPrice: +searchParams.get('totalPrice') || 0,
+    // numOfNights: +searchParams.get('numOfNights') || 0,
+  }
+}
+
 export function truncateText(text, limit) {
   if (text.length > limit) return text.substring(0, limit - 3) + '...'
   return text

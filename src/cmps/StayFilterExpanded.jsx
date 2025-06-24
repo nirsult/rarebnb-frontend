@@ -128,7 +128,6 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
           className={`search-icon ${isFocused ? 'expanded' : ''}`}
           onClick={handleSearch}>
           <MagnifyingGlassIcon />
-          {/* {isFocused ? 'Search' : ''} */}
           <span className="search-label">Search</span>
         </button>
       </button>

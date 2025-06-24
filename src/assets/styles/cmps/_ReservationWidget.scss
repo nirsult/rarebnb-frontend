@@ -1,0 +1,84 @@
+.reservation-widget {
+  padding-block-end: rem(48px);
+  width: 100%;
+  max-width: 370px;
+  min-width: 215px;
+
+  .card-content {
+    background-color: $clr-bg;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    border-radius: rem(12px);
+    border: 1px solid $gray2;
+    padding: rem(24px);
+
+    h3 {
+      font-size: rem(22px);
+      font-weight: 400;
+      line-height: rem(26px);
+      margin-block-end: rem(24px);
+    }
+
+    form {
+      display: grid;
+      grid-template-areas:
+        "a b"
+        "c c";
+      margin-block-end: 1rem;
+      border-radius: rem(8px);
+      outline: 1px solid $gray-4;
+      cursor: pointer;
+
+      .input-cell {
+        position: relative;
+        margin: 0;
+        padding: rem(26px) rem(12px) rem(10px);
+
+        &:first-of-type {
+          grid-area: a;
+          border-inline-end: 1px solid $gray-4;
+        }
+
+        &:nth-of-type(2) {
+          grid-area: b;
+        }
+
+        &:last-of-type {
+          grid-area: c;
+          border-block-start: 1px solid $gray-4;
+        }
+
+        .label {
+          position: absolute;
+          top: rem(12px);
+          left: rem(12px);
+          font-size: rem(10px);
+          font-weight: 700;
+          text-transform: uppercase;
+        }
+
+        .value {
+          font-size: rem(14px);
+        }
+      }
+    }
+
+    .glow-btn {
+      border-radius: 200px;
+    }
+  }
+
+  .report {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-block-start: rem(24px);
+    color: $gray5;
+
+    .text {
+      font-weight: 500;
+      font-size: rem(14px);
+      text-decoration: underline;
+    }
+  }
+}

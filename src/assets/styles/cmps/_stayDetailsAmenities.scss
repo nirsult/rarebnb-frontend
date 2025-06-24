@@ -1,0 +1,46 @@
+.stay-details-amenities {
+  padding-block: rem(48px);
+
+  h3 {
+    margin-block-end: rem(24px);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    li {
+      display: flex;
+      gap: rem(24px);
+      align-items: center;
+      margin-block-end: rem(24px);
+
+      .amenity-icon {
+        display: flex;
+
+        svg {
+          width: rem(21px);
+          height: rem(21px);
+        }
+      }
+    }
+  }
+
+  .modal-container {
+    padding-block-start: rem(72px);
+
+    .btn-close-modal {
+      top: rem(11px);
+      left: rem(11px);
+    }
+
+    ul {
+      display: block;
+
+      li {
+        padding-block: rem(24px);
+        border-block-end: 1px solid $gray2;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ export function MyDatePicker({ onSetDates, setActiveSection, markedDates = [], m
     const [start, end] = update
     onSetDates({ checkIn: start, checkOut: end })
 
-    if (!isMobile && start && !end) setActiveSection('check-out')
+    if (!isMobile && start && !end && setActiveSection) setActiveSection('check-out')
   }
 
   return (

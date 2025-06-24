@@ -1,7 +1,5 @@
 const { DEV, VITE_LOCAL } = import.meta.env
 
-import { getRandomIntInclusive, makeId } from '../util.service'
-
 import { orderService as local } from './order.service.local'
 import { orderService as remote } from './order.service.remote'
 
@@ -16,11 +14,11 @@ function getEmptyOrder(stay) {
     endDate: '',
     guestCountMap: { adults: 1, children: 0, infants: 0, pets: 0 },
     pricePerNight: stay.price,
-    subTotal: 0,
-    serviceFee: 0,
+    subTotal: null,
+    serviceFee: null,
     cleaningFee: CLEANING_FEE,
-    totalPrice: 0,
-    numOfNights: 0,
+    totalPrice: null,
+    numOfNights: null,
   }
 }
 

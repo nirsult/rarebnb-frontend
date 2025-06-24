@@ -1,0 +1,41 @@
+body:has(.modal) {
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: $clr-bg-darkened;
+  z-index: 1000;
+}
+
+.modal-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  width: 100%;
+  max-width: 780px;
+  height: 100%;
+  max-height: 90vh;
+
+  margin: auto;
+  background-color: $clr-bg;
+  border-radius: rem(32px);
+  overflow: hidden;
+
+  .btn-close-modal {
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    @include circle-button;
+    background-color: $clr-bg;
+  }
+
+  .modal-body {
+    padding: rem(24px);
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+}

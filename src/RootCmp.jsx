@@ -7,6 +7,7 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { SOCKET_EVENT_ORDER_ADDED, SOCKET_EVENT_ORDER_UPDATED, socketService } from './services/socket.service.js'
 import { showSuccessMsg } from './services/event-bus.service.js'
 import { StayDetails } from "./pages/StayDetails.jsx"
+import { BookingCheckout } from "./pages/BookingCheckout.jsx"
 
 
 export function RootCmp() {
@@ -39,6 +40,7 @@ export function RootCmp() {
         <Routes>
           <Route path="/" element={<StayIndex />} />
           <Route path="/stay/:stayId" element={<StayDetails />} />
+          <Route path="/stay/:stayId/checkout" element={<BookingCheckout />} />
         </Routes>
       </main>
     </>

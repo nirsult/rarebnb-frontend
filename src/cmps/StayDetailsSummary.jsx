@@ -16,8 +16,8 @@ export function StayDetailsSummary({ stay }) {
       <header>
         <h3>{type} in {`${city}, ${country}`}</h3>
         <p className="summary-listing-facts">
-          <span>{`${capacity} guest${capacity > 1 ? 's' : ''}`}</span>
-          <span>{` ${bedCount} bed${bedCount > 1 ? 's' : ''}`}</span>
+          <span>{`${capacity} guest${capacity !== 1 ? 's' : ''}`}</span>
+          <span>{` ${bedCount} bed${bedCount !== 1 ? 's' : ''}`}</span>
           {/* //TODO - add labels to the data */}
           {/* <span>{labels[0] && ` ${labels[0]}`}</span>
           <span> {labels[1] && ` ${labels[1]}`}</span> */}

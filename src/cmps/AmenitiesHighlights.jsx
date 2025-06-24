@@ -3,8 +3,6 @@ import { amenityIcons } from "../services/StayDetails/amenity-icons"
 
 export function AmenitiesHighlights({ highlights }) {
 
-  console.log('highlights:', highlights)
-
   return (
     <section className="amenities-highlights">
       <ul>

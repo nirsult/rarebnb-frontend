@@ -153,7 +153,7 @@ export function AppHeader() {
               <HamburgerIcon />
             </button>
             {isMenuOpen &&
-              <Popover style={{ right: 0 }} menuRef={menuRef}>
+              <Popover style={{ right: 0 }} reference={menuRef}>
                 <HamburgerMenu
                   onClose={() => toggleMenu(false)}
                   onLoginClick={() => toggleLoginModal(true)}

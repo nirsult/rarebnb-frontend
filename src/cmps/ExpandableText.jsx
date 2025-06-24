@@ -16,7 +16,7 @@ export function ExpandableText({ text, limit = 100, className = '' }) {
       {displayText}
       {shouldTruncate && (
         <button
-          className="btn-toggle-text"
+          className="btn-toggle-text btn-secondary"
           onClick={toggleIsExpanded}
         >
           {isExpanded ? 'Show less' : 'Show more'}

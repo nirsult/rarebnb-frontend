@@ -7,19 +7,11 @@
   header {
     padding-block-end: rem(32px);
 
-    h3 {
-      font-size: rem(22px);
-      line-height: rem(26px);
-      font-weight: 500;
-      margin-block-end: rem(4px);
-    }
-
     .summary-listing-facts {
       margin: 0;
       margin-block-end: rem(8px);
       font-size: 1rem;
       line-height: rem(20px);
-
 
       span:not(:last-of-type)::after {
         content: " · ";
@@ -75,6 +67,14 @@
       font-size: rem(14px);
       color: $gray5;
       line-height: rem(18px);
+    }
+  }
+
+  .summary-about {
+    .expandable-text {
+      font-size: 1rem;
+      line-height: rem(22px);
+      padding-block: rem(24px);
     }
   }
 }
