@@ -8,6 +8,7 @@ import { SOCKET_EVENT_ORDER_ADDED, SOCKET_EVENT_ORDER_UPDATED, socketService } f
 import { showSuccessMsg } from './services/event-bus.service.js'
 import { StayDetails } from "./pages/StayDetails.jsx"
 import { BookingCheckout } from "./pages/BookingCheckout.jsx"
+import { Reservations } from "./pages/Reservations.jsx"
 
 
 export function RootCmp() {
@@ -41,6 +42,7 @@ export function RootCmp() {
           <Route path="/" element={<StayIndex />} />
           <Route path="/stay/:stayId" element={<StayDetails />} />
           <Route path="/stay/:stayId/checkout" element={<BookingCheckout />} />
+          <Route path="/reservations" element={<Reservations />} />
         </Routes>
       </main>
     </>

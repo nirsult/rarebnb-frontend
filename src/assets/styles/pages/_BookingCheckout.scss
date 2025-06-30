@@ -1,0 +1,136 @@
+.booking-checkout {
+  display: grid;
+  grid-template-columns: minmax(386px, 1fr) minmax(332px, 372px);
+  grid-auto-rows: min-content;
+  column-gap: rem(80px);
+  row-gap: rem(24px);
+
+  position: relative;
+  max-width: 976px;
+  margin-inline: auto;
+  padding-block: rem(32px) rem(64px);
+
+  h2 {
+    grid-column: 1/-1;
+    font-size: rem(31px);
+    line-height: rem(34px);
+    font-weight: 600;
+  }
+
+  .btn-back {
+    position: absolute;
+    right: calc(100% + rem(24px));
+    @include circle-button(rem(44px));
+    background-color: $gray0;
+    margin-top: 2rem;
+  }
+
+  >.confirm-actions-panel>section {
+    border-radius: rem(24px);
+    padding: rem(24px);
+
+    h3 {
+      font-size: rem(18px);
+      line-height: rem(24px);
+      font-weight: 500;
+      margin-block-end: 1rem;
+    }
+  }
+
+  .confirm-actions-panel {
+    >section {
+      box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.02), 0px 2px 6px 0px rgba(0, 0, 0, 0.04), 0px 4px 8px 0px rgba(0, 0, 0, 0.10);
+      margin-block-end: rem(24px);
+    }
+
+    .payment-method {
+      display: grid;
+      grid-template-rows: 1fr auto;
+
+      h3 {
+        margin-block-end: rem(2px);
+      }
+
+      p {
+        grid-column: 1;
+        display: flex;
+        gap: rem(8px);
+        align-items: center;
+
+        color: $clr-text-secondary;
+        font-size: rem(14px);
+        line-height: rem(18px);
+      }
+
+      button {
+        grid-column: 2;
+        grid-row: 1/-1;
+        place-self: center end;
+        height: max-content;
+        width: max-content;
+        color: $clr-text-primary;
+        border-radius: rem(8px);
+        padding: rem(8px) rem(16px);
+        border: 1px solid $gray2;
+        font-weight: 500;
+        font-size: rem(12px);
+      }
+    }
+
+    .msg-host {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        color: $clr-text-secondary;
+        font-size: rem(14px);
+        line-height: rem(18px);
+        margin-block: .5rem 1rem;
+      }
+
+      textarea {
+        width: 100%;
+        border-radius: rem(8px);
+        padding: rem(8px);
+        font-size: 1rem;
+        font-family: 'Airbnb Cereal', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      button {
+        width: max-content;
+        margin-block-start: 1rem;
+        align-self: flex-end;
+        background-color: $clr-text-primary;
+        color: $clr-white;
+        padding: rem(14px) rem(38px);
+        border-radius: rem(12px);
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+      }
+    }
+  }
+
+  .review-request {
+    p {
+      color: $clr-text-secondary;
+      font-size: rem(14px);
+      line-height: rem(18px);
+    }
+  }
+
+  .checkout-booking-details {
+    border: 1px solid $gray2;
+  }
+
+  .terms-note {
+    margin-block: rem(8px);
+    font-size: rem(13px);
+    letter-spacing: em(-0.4px);
+
+    a {
+      text-decoration: underline;
+      font-weight: 500;
+    }
+  }
+}

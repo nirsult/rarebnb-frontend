@@ -22,6 +22,22 @@ function getEmptyOrder(stay) {
   }
 }
 
+function getPriceBreakdown(stay, nightCount) {
+  const perNight = stay.price
+  const nightsTotal = stay.price * nightCount
+  const serviceFee = stay.price * nightCount * SERVICE_FEE || 30
+  const totalPrice = perNight * nightCount + CLEANING_FEE + serviceFee
+
+  return {
+    perNight,
+    nightsTotal,
+    cleaningFee: CLEANING_FEE,
+    serviceFee,
+    totalPrice
+  }
+}
+
+
 function calculateOrderFees(pricePerNight, numOfNights) {
   const subTotal = pricePerNight * numOfNights
   const serviceFee = subTotal * SERVICE_FEE
@@ -34,7 +50,7 @@ function getNightCount(startDate, endDate) {
 }
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const orderService = { getEmptyOrder, calculateOrderFees, getNightCount, ...service }
+export const orderService = { getEmptyOrder, calculateOrderFees, getNightCount, getPriceBreakdown, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

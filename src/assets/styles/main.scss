@@ -13,6 +13,7 @@
 // pages
 @import "pages/StayIndex";
 @import "pages/StayDetails";
+@import "pages/BookingCheckout";
 
 // Components
 @import "cmps/RootCmp.scss";
@@ -31,6 +32,8 @@
 @import "cmps/StayDetailsAmenitiesHighlights";
 @import "cmps/StayDetailsAmenities";
 @import "cmps/ReservationWidget";
+
+@import "cmps/CheckoutBookingDetails";
 
 @import "cmps/Popover";
 @import "cmps/Modal";

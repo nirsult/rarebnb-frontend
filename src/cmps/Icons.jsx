@@ -2,8 +2,8 @@ export function HeartIcon({ className }) {
   return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" className={className} style={{ display: 'inline-block', fill: 'currentColor', height: '24px', width: '24px', strokeWidth: 2, overflow: 'visible', }} > <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z" /> </svg>)
 }
 
-export function StarIcon() {
-  return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'inline-block', height: '9.3px', width: '9.3px', fill: 'currentColor', }} > <path fillRule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" /> </svg>)
+export function StarIcon({ size = "9.3px" }) {
+  return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'inline-block', height: size, width: size, fill: 'currentColor', }} > <path fillRule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z" /> </svg>)
 }
 
 export function AirbnbLogoIcon({ className }) {
@@ -20,6 +20,9 @@ export function MinusIcon({ className }) {
 
 export function LeftArrow({ size = "32px" }) {
   return (<svg fill="currentColor" width={size} height={size} viewBox="-78.5 0 512 512" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <path d="M257 64L291 98 128 262 291 426 257 460 61 262 257 64Z" /> </svg>)
+}
+export function FullLeftArrow({ size = "16px" }) {
+  return (<svg fill="none" stroke="currentColor" strokeWidth="4" width={size} height={size} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <g fill="none"> <path d="M4 16h26M15 28 3.7 16.7a1 1 0 0 1 0-1.4L15 4" /> </g> </svg>)
 }
 
 export function RightArrow() {
@@ -44,6 +47,10 @@ export function DotsGrid() {
 
 export function ReportFlag() {
   return (<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', height: '16px', width: '16px', fill: 'currentColor', }} > <path d="m7.5011 1c.5272 0 .9591.40794.99725.92537l.00275.07463v1h5.5c.31265 0 .5435.281645.4935.581075l-.01275.056285-.96125 3.36264.96125 3.36265c.08055.2818-.0967.5625-.36775.62465l-.0554.00945-.0576.00325h-5.5c-.5272 0-.9591-.40795-.99725-.92535l-.00275-.07465v-1h-5v6h-1v-14zm1 3h-1v4h1z" /> </svg>)
+}
+
+export function VISAicon() {
+  return (<svg viewBox="0 0 29 9" width="26" height="26" fontSize="18px" xmlns="http://www.w3.org/2000/svg" > <path d="M20.839 6.026c.006-1.375-1.133-1.973-2.044-2.45-.611-.322-1.119-.589-1.111-1 .007-.313.305-.646.955-.73a4.249 4.249 0 0 1 2.221.387l.396-1.846A6.051 6.051 0 0 0 19.149 0c-2.226 0-3.792 1.183-3.807 2.877-.014 1.253 1.119 1.953 1.972 2.37.878.426 1.172.7 1.169 1.082 0 .585-.701.841-1.348.852-1.099.016-1.75-.288-2.267-.529l-.046-.021-.407 1.907c.526.241 1.498.452 2.504.462 2.367 0 3.914-1.169 3.922-2.978l-.002.004zM11.51.163L7.861 8.869H5.48L3.684 1.92c-.11-.428-.204-.584-.536-.765C2.608.861 1.714.586.926.415L.979.155h3.833a1.048 1.048 0 0 1 1.032.888l.948 5.032L9.135.151l2.375.012zM28.8 8.86h-2.082l-.272-1.294h-2.889l-.47 1.301h-2.365L24.101.8a1.03 1.03 0 0 1 .959-.645h1.922L28.8 8.86zm-4.594-3.084l1.186-3.268.676 3.276-1.862-.008zM12.869 8.861L14.731.155h-2.255L10.613 8.86h2.256z" fill="#122D98" fillRule="evenodd" /> </svg>)
 }
 
 
