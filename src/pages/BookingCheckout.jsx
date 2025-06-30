@@ -7,10 +7,12 @@ import { Link } from "react-router-dom"
 import { CheckoutBookingDetails } from "../cmps/CheckoutBookingDetails"
 import { GlowBtn } from "../cmps/GlowBtn"
 import { placeOrder } from "../store/actions/order.actions"
+import { showErrorMsg } from "../services/event-bus.service"
 
 
 export function BookingCheckout() {
   const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave)
+  const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
   const { stayId } = useParams()
   const [stay, setStay] = useState(null)
   const [msgHost, setMsgHost] = useState('')
@@ -80,7 +82,10 @@ export function BookingCheckout() {
 
         <GlowBtn
           text='Request to book'
-          onClick={onConfirmOrder}
+          onClick={loggedInUser
+            ? onConfirmOrder
+            :()=>showErrorMsg('You must be logged in to make a reservation.')
+        }
         />
       </section>
 
