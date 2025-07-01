@@ -3,8 +3,9 @@ import { MagnifyingGlassIcon, XIcon } from "./Icons"
 import { GuestPicker } from "./GuestPicker"
 import { GlowBtn } from "./GlowBtn"
 import { MyDatePicker } from "./MyDatePicker"
-import { formatDate } from "../services/util.service"
+import { formatDate, getPluralSuffix } from "../services/util.service"
 import { stayService } from "../services/stay"
+import { orderService } from "../services/order"
 
 
 export function StayFilterMobile({ filterBy, setSearchParams }) {
@@ -25,7 +26,7 @@ export function StayFilterMobile({ filterBy, setSearchParams }) {
   }, [filterByToEdit])
 
   function onSetGuests(guests) {
-    const total = Object.values(guests).reduce((acc, count) => acc + count, 0)
+    const total = orderService.getGuestTotal(guests)
     setFilterByToEdit(prev => ({ ...prev, ...guests, guestTotal: total }))
   }
 
@@ -146,7 +147,7 @@ export function StayFilterMobile({ filterBy, setSearchParams }) {
               : <>
                 <span>Who</span>
                 <span>{totalGuests
-                  ? `${totalGuests} guest${totalGuests > 1 ? 's' : ''}` : 'Add guests'}
+                  ? `${totalGuests} guest${getPluralSuffix(totalGuests)}` : 'Add guests'}
                 </span>
               </>
             }

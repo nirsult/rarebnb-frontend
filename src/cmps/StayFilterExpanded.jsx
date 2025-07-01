@@ -3,8 +3,9 @@ import { GuestPicker } from "./GuestPicker"
 import { Popover } from "./Popover"
 import { MagnifyingGlassIcon } from "./Icons"
 import { MyDatePicker } from "./MyDatePicker"
-import { formatDate } from "../services/util.service"
+import { formatDate, getPluralSuffix } from "../services/util.service"
 import { useSearchParams } from "react-router-dom"
+import { orderService } from "../services/order"
 
 
 export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }) {
@@ -56,7 +57,7 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
   }
 
   function onSetGuests(guests) {
-    const total = Object.values(guests).reduce((acc, count) => acc + count, 0)
+    const total = orderService.getGuestTotal(guests)
     setFilterByToEdit(prev => ({ ...prev, ...guests, guestTotal: total }))
   }
 
@@ -121,7 +122,7 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
         <div className="btn-content">
           <span className="btn-label">Who</span>
           <span className="btn-value">
-            {totalGuests > 0 ? `${totalGuests} guests` : 'Add guests'}
+            {totalGuests > 0 ? `${totalGuests} guest${getPluralSuffix(totalGuests)}` : 'Add guests'}
           </span>
         </div>
         <button

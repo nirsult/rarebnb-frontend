@@ -30,7 +30,7 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
             <li><NavLink onClick={onClose} to="/whishlist" >Whishlists</NavLink></li>
             <li><NavLink onClick={onClose} to="/trips" >Trips</NavLink></li>
             <li><NavLink onClick={onClose} to="/dashboard" >Dashboard</NavLink></li>
-            <li><NavLink onClick={onClose} to="/reservations" >Reservation</NavLink></li>
+            <li><NavLink onClick={onClose} to="/reservations" >Reservations</NavLink></li>
           </ul>
           <button className="btn-menu-auth logout" onClick={handleLogout}>Log out</button>
         </>

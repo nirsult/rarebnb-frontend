@@ -36,8 +36,9 @@ export function getRandomIntInclusive(min, max) {
 
 export function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', {
+    day: 'numeric',
     month: 'short',
-    day: 'numeric'
+    year: 'numeric',
   })
 }
 
@@ -111,4 +112,16 @@ export function getOrderDetailsFromSearchParams(searchParams) {
 export function truncateText(text, limit) {
   if (text.length > limit) return text.substring(0, limit - 3) + '...'
   return text
+}
+
+export function getPluralSuffix(itemCount) {
+  if (itemCount !== 1) return 's'
+  return ''
+}
+
+export function formatPrice(price) {
+  return price.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
 }

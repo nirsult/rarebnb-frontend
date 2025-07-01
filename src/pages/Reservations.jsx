@@ -1,30 +1,37 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { orderService } from '../services/order'
 import { getCmdAddOrder, loadOrders, updateOrder } from '../store/actions/order.actions'
 import { showErrorMsg } from '../services/event-bus.service'
-import { SOCKET_EVENT_ORDER_ADDED, SOCKET_EVENT_ORDER_UPDATED, socketService } from '../services/socket.service'
+import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.service'
+import { formatDate } from "../services/util.service"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const orders = useSelector(storeState => storeState.orderModule.orders)
   const filterBy = { hostId: loggedInUser._id, sortField: '_id', sortDir: -1 }
+  const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    loadOrders(filterBy)
+    async function fetchOrders() {
+      setIsLoading(true)
+      try {
+        await loadOrders(filterBy)
+      } catch (err) {
+        console.log('Failed to load orders', err)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchOrders()
 
     socketService.on(SOCKET_EVENT_ORDER_ADDED, order => {
       dispatch(getCmdAddOrder(order))
     })
 
-    // socketService.on(SOCKET_EVENT_ORDER_UPDATED, () => {
-    //   loadOrders(filterBy)
-    // })
-
     return () => {
       socketService.off(SOCKET_EVENT_ORDER_ADDED)
-      // socketService.off(SOCKET_EVENT_ORDER_UPDATED)
     }
   }, [loggedInUser])
 
@@ -41,11 +48,7 @@ export function Reservations() {
     }
   }
 
-  function formatDate(dateStr) {
-    if (!dateStr) return
-    const date = new Date(dateStr)
-    return new Intl.DateTimeFormat('en-GB').format(date)
-  }
+  if (isLoading) return <h2>Loading...</h2>
 
   return (
     <section className="reservations">

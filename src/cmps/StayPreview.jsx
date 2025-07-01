@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 import { stayService } from '../services/stay'
 import { HeartIcon, StarIcon } from './Icons'
-import { formatRating } from '../services/util.service'
+import { formatRating, getPluralSuffix } from '../services/util.service'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
@@ -43,7 +43,7 @@ export function StayPreview({ stay }) {
           <h2 className='header bold'>{stayService.getStayAddressStr(stay)}</h2>
           <p className='avgRating'>{<StarIcon />}{formatRating(stay.avgRating)}</p>
           <p className='summary regular'>{stay.summary}</p>
-          <p className='bed-count regular'>{stay.bedCount} bed{stay.bedCount === 1 ? '' : 's'}</p>
+          <p className='bed-count regular'>{stay.bedCount} bed{getPluralSuffix(stay.bedCount)}</p>
           <p className='price regular'><span className='bold'>${stay.price.toLocaleString()}</span> night</p>
         </section>
 

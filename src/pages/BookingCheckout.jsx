@@ -38,7 +38,7 @@ export function BookingCheckout() {
 
   function onConfirmOrder() {
     placeOrder(orderToSave)
-    navigate('/reservations')
+    navigate('/trips')
   }
 
   if (!stay) return <h2>Loading...</h2>

@@ -37,6 +37,10 @@ function getPriceBreakdown(stay, nightCount) {
   }
 }
 
+function getGuestTotal(guestCountMap) {
+  if (typeof guestCountMap !== 'object') return
+  return Object.values(guestCountMap).reduce((sum, val) => sum + val, 0)
+}
 
 function calculateOrderFees(pricePerNight, numOfNights) {
   const subTotal = pricePerNight * numOfNights
@@ -50,7 +54,7 @@ function getNightCount(startDate, endDate) {
 }
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const orderService = { getEmptyOrder, calculateOrderFees, getNightCount, getPriceBreakdown, ...service }
+export const orderService = { getEmptyOrder, calculateOrderFees, getNightCount, getPriceBreakdown, getGuestTotal, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

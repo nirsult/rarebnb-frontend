@@ -6,6 +6,7 @@ import { GlowBtn } from "./GlowBtn"
 import { orderService } from "../services/order"
 import { ReportFlag } from "./Icons"
 import { useSelector } from "react-redux"
+import { formatPrice } from "../services/util.service"
 
 
 export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve }) {
@@ -82,7 +83,7 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
             <div className="price-breakdown">
               <p className="price-row">
-                <span className="label">${stay.price} x {orderService.getNightCount(checkIn, checkOut)} night</span>
+                <span className="label">${formatPrice(stay.price)} x {orderService.getNightCount(checkIn, checkOut)} night</span>
                 <span className="amount"></span>
               </p>
             </div>

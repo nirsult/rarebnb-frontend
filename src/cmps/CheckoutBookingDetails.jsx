@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { StarIcon } from "./Icons"
-import { getDateTxt } from "../services/util.service"
+import { getDateTxt, getPluralSuffix } from "../services/util.service"
 import { orderService } from "../services/order"
 
 
@@ -9,7 +9,7 @@ export function CheckoutBookingDetails({ stay, order }) {
   const { startDate, endDate, guestCountMap, numOfNights } = order
   console.log('orderService:', orderService.getPriceBreakdown)
 
-  const totalGuests = Object.values(guestCountMap).reduce((sum, val) => sum + val, 0)
+  const totalGuests = orderService.getGuestTotal(guestCountMap)
   const { perNight, nightsTotal, cleaningFee, serviceFee, totalPrice } = orderService.getPriceBreakdown(stay, numOfNights)
 
 
@@ -29,12 +29,12 @@ export function CheckoutBookingDetails({ stay, order }) {
       <section className="trip-details">
         <h4>Trip details</h4>
         <p>{getDateTxt(startDate, endDate)}</p>
-        <p>{totalGuests} guest{totalGuests === 1 ? '' : 's'}</p>
+        <p>{totalGuests} guest{getPluralSuffix(totalGuests)}</p>
       </section>
 
       <section className="price-details">
         <h4>Price details</h4>
-        <span className="label">${`${perNight.toFixed(2)} x ${numOfNights} night${numOfNights === 1 ? '' : 's'}`}</span>
+        <span className="label">${`${perNight.toFixed(2)} x ${numOfNights} night${getPluralSuffix(numOfNights)}`}</span>
         <span className="amount">${`${nightsTotal}`}</span>
 
         <span className="label">Cleaning fee</span>
