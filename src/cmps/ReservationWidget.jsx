@@ -14,8 +14,6 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
   const guestTotal = adults + children + infants + pets
   const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave)
 
-  console.log('orderToSave - widget:', orderToSave)
-
   const datePickerRef = useRef()
   const guestPickerRef = useRef()
   const guestButtonRef = useRef()

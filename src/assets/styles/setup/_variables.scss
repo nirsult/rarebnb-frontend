@@ -35,14 +35,21 @@ $gray15: #8c8c8c;
 
 $theme-linear-gradient: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
 
-$approve-reservation: #2e7d32;
-$reject-reservation: #c62828;
-$pending-reservation: #f2994a;
+$res-approved-bg: #b9f8cf;
+$res-pending-bg: #fdc162;
+$res-rejected-bg: #ffc9c9;
+$res-cancelled-bg: #ededed;
+
+$res-approved-txt: #016630;
+$res-pending-txt: #563f21;
+$res-rejected-txt: #82181a;
+$res-cancelled-txt: #6a6a6a;
+
 
 // Breakpoints
 // $mobile-breakpoint: 550px; //1 columns
-$mobile-breakpoint: 502px; //1 columns
+$mobile-breakpoint: 550px; //1 columns
 // $narrow-breakpoint: 744px; //2 columns
-$narrow-breakpoint: 696px; //2 columns
+$narrow-breakpoint: 743px; //2 columns
 $normal-breakpoint: 950px; //3 columns
 $wide-breakpoint: 1128px; //4 columns

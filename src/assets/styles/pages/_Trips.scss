@@ -1,0 +1,115 @@
+.trips {
+  max-width: 1020px;
+  margin-inline: auto;
+  padding-block-start: 1rem;
+
+  h2{
+    margin-block-end: 1rem;
+    font-size: rem(26px);
+    line-height: rem(30px);
+  }
+
+  .trip-card {
+    display: grid;
+    gap: rem(4px);
+    border: 1px solid $gray2;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-block-end: 1rem;
+
+    img {
+      align-self: stretch;
+      object-fit: cover;
+    }
+
+    .card-content {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) minmax(90px, max-content);
+      gap: rem(12px);
+      padding: rem(10px);
+      font-size: rem(16px);
+
+      >*:not(.trip-status, button) {
+        grid-column: 1;
+      }
+
+      header {
+        h3 {
+          font-size: rem(22px);
+        }
+
+        h3,
+        .location {
+          line-height: 1.4;
+        }
+
+        .location {
+          color: $clr-text-secondary;
+        }
+      }
+
+      .trip-status {
+        display: flex;
+        align-items: center;
+        justify-self: end;
+
+        width: max-content;
+        height: max-content;
+        padding: rem(2px) rem(10px);
+        margin-block-start: rem(3px);
+
+        border-radius: 10rem;
+        font-size: rem(14px);
+        font-weight: 500;
+
+        &.approved {
+          color: $res-approved-txt;
+          background-color: $res-approved-bg;
+        }
+
+        &.pending {
+          color: $res-pending-txt;
+          background-color: $res-pending-bg;
+        }
+
+        &.rejected {
+          color: $res-rejected-txt;
+          background-color: $res-rejected-bg;
+        }
+
+        &.cancelled {
+          color: $res-cancelled-txt;
+          background-color: $res-cancelled-bg;
+        }
+      }
+
+      .trip-details {
+        align-self: center;
+        display: flex;
+        gap: rem(22px);
+        margin: 0;
+      }
+
+      .price {
+        align-self: end;
+        font-size: rem(18px);
+        font-weight: 500;
+      }
+
+      .btn-cancel {
+        justify-self: end;
+        padding: rem(4px) rem(10px);
+        border: 1px solid $gray5;
+        border-radius: rem(8px);
+      }
+    }
+  }
+}
+
+@media (min-width: $narrow-breakpoint) {
+  .trips {
+    .trip-card {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+}

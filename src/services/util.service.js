@@ -34,12 +34,20 @@ export function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
 }
 
-export function formatDate(date) {
-  return new Date(date).toLocaleDateString('en-US', {
+export function formatDate(dateStr) {
+  const date = new Date(dateStr)
+  const now = new Date()
+
+  const options = {
     day: 'numeric',
     month: 'short',
-    year: 'numeric',
-  })
+  }
+
+  if (date.getFullYear() !== now.getFullYear()) {
+    options.year = 'numeric'
+  }
+
+  return date.toLocaleDateString('en-US', options)
 }
 
 export function formatRating(rating) {

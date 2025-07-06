@@ -4,6 +4,7 @@
   left: 50%;
   transform: translateX(-50%);
   grid-column: unset;
+  min-width: 376px;
 
   align-items: center;
   padding-block: rem(10px);
@@ -72,7 +73,7 @@
   }
 }
 
-@media (max-width: 743px){
+@media (max-width: $narrow-breakpoint) {
   .filter-minimized {
     display: none;
   }

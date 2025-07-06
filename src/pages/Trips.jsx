@@ -63,22 +63,30 @@ export function Trips() {
         return (
           <article key={idx} className="trip-card">
             <img src={imgUrl} alt="" />
-            <h3>{name}</h3>
-            <p className={`trip-status ${status}`}>{status}</p>
-            <p className="location">{`${location.city}, ${location.country}`}</p>
-            <section className="trip-details">
-              <div className="dates">
-                {`${formatDate(startDate)} - ${formatDate(endDate)}`}
-              </div>
-              <div className="guests">{`${guestTotal} guest${getPluralSuffix(guestTotal)}`}</div>
-            </section>
-            <p className="price">${formatPrice(totalPrice)}</p>
 
-            {status === 'pending' &&
-              <button
-                onClick={() => updateStatus(order._id, 'cancelled')} >
-                Cancel reservation
-              </button>}
+            <div className="card-content">
+              <header>
+                <h3>{name}</h3>
+                <p className="location">{`${location.city}, ${location.country}`}</p>
+              </header>
+              <p className={`trip-status ${status}`}>{status}</p>
+
+              <ul className="trip-details">
+                <li className="dates">
+                  {`${formatDate(startDate)} - ${formatDate(endDate)}`}
+                </li>
+                <li className="guests">{`${guestTotal} guest${getPluralSuffix(guestTotal)}`}</li>
+              </ul>
+
+              <p className="price">${formatPrice(totalPrice)}</p>
+              {status === 'pending' &&
+                <button
+                  className="btn-reset btn-cancel"
+                  onClick={() => updateStatus(order._id, 'cancelled')} >
+                  Cancel reservation
+                </button>}
+            </div>
+
           </article>
         )
       })}

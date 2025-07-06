@@ -21,10 +21,6 @@ export function StayFilterMobile({ filterBy, setSearchParams }) {
     }
   }, [isOpen])
 
-  useEffect(() => {
-    console.log(filterByToEdit)
-  }, [filterByToEdit])
-
   function onSetGuests(guests) {
     const total = orderService.getGuestTotal(guests)
     setFilterByToEdit(prev => ({ ...prev, ...guests, guestTotal: total }))
@@ -42,7 +38,6 @@ export function StayFilterMobile({ filterBy, setSearchParams }) {
   }
 
   function handleDateChange({ checkIn, checkOut }) {
-    console.log(checkIn)
     setFilterByToEdit(prev => ({
       ...prev,
       checkIn,

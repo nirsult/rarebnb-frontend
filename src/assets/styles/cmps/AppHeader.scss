@@ -88,7 +88,7 @@ body:has(.stay-index) {
         cursor: default;
       }
 
-      @media (min-width: 550px) and (max-width: 743px) {
+      @media (min-width: $mobile-breakpoint) and (max-width: $narrow-breakpoint) {
         .logo-icon {
           display: block;
         }

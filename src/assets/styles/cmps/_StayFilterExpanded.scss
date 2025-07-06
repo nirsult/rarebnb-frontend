@@ -181,7 +181,7 @@
 }
 
 // MOBILE 
-@media (max-width: 743px) {
+@media (max-width: $narrow-breakpoint) {
   .mobile-search-modal {
     padding: 1.5rem;
     background: $clr-white;
