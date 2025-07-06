@@ -112,42 +112,7 @@
       }
     }
 
-    .search-icon {
-      @include search-icon;
-      position: absolute;
-      right: rem(12px);
-      top: rem(8px);
-      display: flex;
-      gap: 6px;
 
-      max-width: rem(48px);
-      max-height: rem(48px);
-      transition: max-width .4s ease, border-radius .4s;
-
-      font-size: 1rem;
-      overflow: hidden;
-
-      .search-label {
-        opacity: 0;
-        visibility: hidden;
-        transition: .4s;
-      }
-
-      &:hover,
-      &.expanded {
-        background: $theme-linear-gradient;
-      }
-
-      &.expanded {
-        border-radius: 200px;
-        max-width: rem(120px);
-
-        .search-label {
-          opacity: 1;
-          visibility: visible;
-        }
-      }
-    }
 
     input[type='text'] {
       background-color: transparent;
@@ -176,6 +141,43 @@
       width: 1px;
       height: 50%;
       background-color: $gray2;
+    }
+  }
+
+  .search-icon {
+    @include search-icon;
+    position: absolute;
+    right: rem(12px);
+    top: rem(8px);
+    display: flex;
+    gap: 6px;
+
+    max-width: rem(48px);
+    max-height: rem(48px);
+    transition: max-width .4s ease, border-radius .4s;
+
+    font-size: 1rem;
+    overflow: hidden;
+
+    .search-label {
+      opacity: 0;
+      visibility: hidden;
+      transition: .4s;
+    }
+
+    &:hover,
+    &.expanded {
+      background: $theme-linear-gradient;
+    }
+
+    &.expanded {
+      border-radius: 200px;
+      max-width: rem(120px);
+
+      .search-label {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
 }
@@ -323,15 +325,15 @@
 
     &.btn-guests {
       padding-right: rem(22px);
+    }
 
-      .search-icon {
-        position: absolute;
-        right: rem(6px);
-        top: 50%;
-        transform: translateY(-50%);
-        width: rem(16px);
-        height: rem(16px);
-      }
+    .search-icon {
+      position: absolute;
+      right: rem(6px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: rem(16px);
+      height: rem(16px);
     }
   }
 }

@@ -125,14 +125,14 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
             {totalGuests > 0 ? `${totalGuests} guest${getPluralSuffix(totalGuests)}` : 'Add guests'}
           </span>
         </div>
-        <button
-          className={`search-icon ${isFocused ? 'expanded' : ''}`}
-          onClick={handleSearch}>
-          <MagnifyingGlassIcon />
-          <span className="search-label">Search</span>
-        </button>
       </button>
 
+      <button
+        className={`search-icon ${isFocused ? 'expanded' : ''}`}
+        onClick={handleSearch}>
+        <MagnifyingGlassIcon />
+        <span className="search-label">Search</span>
+      </button>
       {
         (activeSection === 'check-in' || activeSection === 'check-out') && (
           <Popover style={{ left: '50%', transform: 'translateX(-50%)', width: '100%' }}>
