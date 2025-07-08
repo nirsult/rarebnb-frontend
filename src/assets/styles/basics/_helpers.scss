@@ -66,6 +66,12 @@
   @include aspect-ratio(9, 16);
 }
 
+.media-cover{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 // Display
 .dis-none {
   display: none;

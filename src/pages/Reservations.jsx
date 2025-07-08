@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { getCmdAddOrder, loadOrders, updateOrder } from '../store/actions/order.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.service'
-import { formatDate } from "../services/util.service"
+import { formatDate, formatPrice, getPluralSuffix } from "../services/util.service"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
@@ -52,58 +52,70 @@ export function Reservations() {
 
   return (
     <section className="reservations">
-      <h2>Reservations</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Guest</th>
-            <th>Status</th>
-            <th>Check-in</th>
-            <th>Check-out</th>
-            <th>Booked</th>
-            <th>Listing</th>
-            <th>Total Payout</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => {
-            return (
-              <tr key={order._id}>
-                <td className="guest-info">
-                  <img src={order.guest.imgUrl} />
-                  <span>{order.guest.fullname}</span>
-                </td>
-                <td>{order.status}</td>
-                <td>{formatDate(order.startDate)}</td>
-                <td>{formatDate(order.endDate)}</td>
-                {/* <td>{order.createdAt}</td> */}
-                <td>Booked placeholder</td>
-                <td>{order.stay.name}</td>
-                <td>${order.totalPrice.toFixed(2)}</td>
-                {order.status === 'pending' ? (
-                  <td>
-                    <button
-                      onClick={() => updateStatus(order._id, 'approved')}
-                      className="btn-approve"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() => updateStatus(order._id, 'rejected')}
-                      className="btn-reject"
-                    >
-                      Reject
-                    </button>
-                  </td>
-                ) : (
-                  <td></td>
-                )}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-    </section>
+      <h2>Manage reservations</h2>
+
+      {!orders.length && <p className="no-reservations">No reservations to show.</p>}
+
+      {!!orders.length && orders.map((order, idx) => {
+        const { stay, status, startDate, endDate, guestCountMap, totalPrice, guest } = order
+        const { name, imgUrl, location } = stay
+        const guestTotal = orderService.getGuestTotal(guestCountMap)
+
+        return (
+          <article key={idx} className="reservation-card">
+            <div className="img-container">
+              <img src={imgUrl} className="media-cover" />
+            </div>
+
+            <div className="reservation-details">
+
+              <header>
+                <h3>{name}</h3>
+                <p className="location">{`${location.city}, ${location.country}`}</p>
+              </header>
+              <p className={`reservation-status ${status}`}>{status}</p>
+
+              <div className="guest-info">
+                <img src={guest.imgUrl} alt="" />
+                <h4>{guest.fullname}</h4>
+                <p>{`for ${guestTotal} guest${getPluralSuffix(guestTotal)}`}</p>
+              </div>
+
+              <div className="dates">
+                <p>
+                  <span className="label">Check-in</span>
+                  <span className="value">{formatDate(startDate)}</span>
+                </p>
+                <p>
+                  <span className="label">Check-out</span>
+                  <span className="value">{formatDate(endDate)}</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="actions">
+
+
+              <p className="price"><span className="label"> Total price</span> <span className="value"> ${formatPrice(totalPrice)}</span></p>
+
+              {status === 'pending' &&
+                <>
+                  <button
+                    className="btn-reset btn-action approve"
+                    onClick={() => updateStatus(order._id, 'approved')} >
+                    Approve
+                  </button>
+                  <button
+                    className="btn-reset btn-action reject"
+                    onClick={() => updateStatus(order._id, 'rejected')} >
+                    Reject
+                  </button>
+                </>
+              }
+            </div>
+          </article>
+        )
+      })}
+    </section >
   )
 }

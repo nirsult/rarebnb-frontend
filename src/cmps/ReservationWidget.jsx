@@ -5,14 +5,14 @@ import { useEffect, useRef } from "react"
 import { GlowBtn } from "./GlowBtn"
 import { orderService } from "../services/order"
 import { ReportFlag } from "./Icons"
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux" //! Unnecessary?
 import { formatPrice } from "../services/util.service"
 
 
 export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve }) {
   const { adults, children, infants, pets } = guests
   const guestTotal = adults + children + infants + pets
-  const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave)
+  // const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave) //! Unnecessary?
 
   const datePickerRef = useRef()
   const guestPickerRef = useRef()

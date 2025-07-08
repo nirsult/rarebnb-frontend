@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { logout } from "../store/actions/user.actions"
 import { showSuccessMsg } from "../services/event-bus.service"
 
 
 export function HamburgerMenu({ onClose, onLoginClick }) {
   const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+  const navigate = useNavigate()
 
   function handleLoginClick() {
     onClose()
@@ -13,6 +14,8 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
   }
 
   async function handleLogout() {
+    navigate('/')
+    showSuccessMsg('Logged out successfully.')
     onClose()
     try {
       await logout()

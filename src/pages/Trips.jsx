@@ -50,12 +50,14 @@ export function Trips() {
   }
 
   if (isLoading) return <h2>Loading...</h2>
-  if (!orders.length) return <p>No trips to show.</p>
 
   return (
     <section className="trips">
-      <h2>Your Trips</h2>
-      {orders.map((order, idx) => {
+      <h2>Your trips</h2>
+
+      {!orders.length && <p className="no-trips">No trips to show.</p>}
+
+      {!!orders.length && orders.map((order, idx) => {
         const { stay, status, startDate, endDate, guestCountMap, totalPrice } = order
         const { name, imgUrl, location } = stay
         const guestTotal = orderService.getGuestTotal(guestCountMap)
