@@ -19,28 +19,32 @@
 
 // Components
 @import "cmps/RootCmp.scss";
-@import "cmps/StayList";
-@import "cmps/StayPreview";
+
+@import "cmps/UserMsg";
+@import "cmps/Popover";
+@import "cmps/Modal";
+@import "cmps/GlowBtn";
+@import "cmps/SkeletonLoaders";
 
 @import "cmps/AppHeader";
-@import "cmps/UserMsg";
+@import "cmps/StayFilterExpanded";
+@import "cmps/StayFilterMinimized";
+@import "cmps/StayFilterMobile";
+
 @import "cmps/MainNav";
 @import "cmps/HamburgerMenu";
 @import "cmps/LoginSignup";
-@import "cmps/GlowBtn";
+
+@import "cmps/StayList";
+@import "cmps/StayPreview";
 
 @import "cmps/StayDetailsGallery";
 @import "cmps/StayDetailsSummary";
 @import "cmps/StayDetailsAmenitiesHighlights";
 @import "cmps/StayDetailsAmenities";
+
 @import "cmps/ReservationWidget";
-
-@import "cmps/CheckoutBookingDetails";
-
-@import "cmps/Popover";
-@import "cmps/Modal";
-@import "cmps/StayFilterExpanded";
-@import "cmps/StayFilterMinimized";
-@import "cmps/StayFilterMobile";
 @import "cmps/MyDatePicker";
 @import "cmps/GuestPicker";
+
+@import "cmps/CheckoutBookingDetails";

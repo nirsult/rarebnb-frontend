@@ -4,23 +4,24 @@ import { getCmdAddOrder, loadOrders, updateOrder } from '../store/actions/order.
 import { showErrorMsg } from '../services/event-bus.service'
 import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.service'
 import { formatDate, formatPrice, getPluralSuffix } from "../services/util.service"
+import { Loader } from "../cmps/Loader"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const orders = useSelector(storeState => storeState.orderModule.orders)
   const filterBy = { hostId: loggedInUser._id, sortField: '_id', sortDir: -1 }
-  const [isLoading, setIsLoading] = useState(true)
+  const [isPageLoading, setIsPageLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
     async function fetchOrders() {
-      setIsLoading(true)
+      setIsPageLoading(true)
       try {
         await loadOrders(filterBy)
       } catch (err) {
         console.log('Failed to load orders', err)
       } finally {
-        setIsLoading(false)
+        setIsPageLoading(false)
       }
     }
 
@@ -48,7 +49,7 @@ export function Reservations() {
     }
   }
 
-  if (isLoading) return <h2>Loading...</h2>
+  if (isPageLoading) return <Loader className="center" />
 
   return (
     <section className="reservations">

@@ -8,6 +8,7 @@ import { CheckoutBookingDetails } from "../cmps/CheckoutBookingDetails"
 import { GlowBtn } from "../cmps/GlowBtn"
 import { placeOrder } from "../store/actions/order.actions"
 import { showErrorMsg } from "../services/event-bus.service"
+import { Loader } from "../cmps/Loader"
 
 
 export function BookingCheckout() {
@@ -17,11 +18,7 @@ export function BookingCheckout() {
   const [stay, setStay] = useState(null)
   const [msgHost, setMsgHost] = useState('')
 
-  console.log('stay:', stay)
-
   const navigate = useNavigate()
-
-  // console.log('orderToSave:', orderToSave)
 
   useEffect(() => {
     if (!stayId) return
@@ -41,13 +38,15 @@ export function BookingCheckout() {
     navigate('/trips')
   }
 
-  if (!stay) return <h2>Loading...</h2>
+  if (!stay) return <Loader className="center" />
 
   if (!orderToSave) {
-    setTimeout(() => {
-      navigate('/')
-    }, 2500)
-    return < h2 className="center" > Couldn't find order details, redirecting...</h2>
+    return (
+      <section className="no-order-found center">
+        <h2 > Couldn't find order details...</h2>
+        <button className="btn-reset btn-back-home " onClick={() => navigate('/')}>Back home</button>
+      </section>
+    )
   }
 
   return (
@@ -84,8 +83,8 @@ export function BookingCheckout() {
           text='Request to book'
           onClick={loggedInUser
             ? onConfirmOrder
-            :()=>showErrorMsg('You must be logged in to make a reservation.')
-        }
+            : () => showErrorMsg('You must be logged in to make a reservation.')
+          }
         />
       </section>
 

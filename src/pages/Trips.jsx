@@ -5,23 +5,24 @@ import { SOCKET_EVENT_ORDER_UPDATED, socketService } from '../services/socket.se
 import { formatDate, formatPrice, getPluralSuffix } from "../services/util.service"
 import { orderService } from "../services/order"
 import { showErrorMsg } from "../services/event-bus.service"
+import { Loader } from "../cmps/Loader"
 
 export function Trips() {
   const orders = useSelector(storeState => storeState.orderModule.orders)
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const filterBy = { guestId: loggedInUser._id, sortField: '_id', sortDir: -1 }
-  const [isLoading, setIsLoading] = useState(true)
+  const [isPageLoading, setIsPageLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
     async function fetchOrders() {
-      setIsLoading(true)
+      setIsPageLoading(true)
       try {
         await loadOrders(filterBy)
       } catch (err) {
         console.log('Failed to load orders', err)
       } finally {
-        setIsLoading(false)
+        setIsPageLoading(false)
       }
     }
 
@@ -49,7 +50,7 @@ export function Trips() {
     }
   }
 
-  if (isLoading) return <h2>Loading...</h2>
+  if (isPageLoading) return <Loader className="center" />
 
   return (
     <section className="trips">

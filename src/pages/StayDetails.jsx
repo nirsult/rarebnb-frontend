@@ -10,6 +10,8 @@ import { Modal } from "../cmps/Modal"
 import { ReservationWidget } from "../cmps/ReservationWidget"
 import { orderService } from "../services/order"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
+import { useSelector } from "react-redux"
+import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
 
 
 export function StayDetails() {
@@ -23,6 +25,8 @@ export function StayDetails() {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const [isGuestPickerOpen, toggleIsGuestPickerOpen] = useToggle(false)
 
+  // const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
+  const [isPageLoading, setIsPageLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -50,11 +54,14 @@ export function StayDetails() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
+
       try {
         setEmptyOrderToSave(stay)
       } catch (err) {
         console.error('Error setting empty order:', err)
       }
+
+      setIsPageLoading(false)
 
     } catch (err) {
       console.error('Error fetching stay:', err)
@@ -99,62 +106,64 @@ export function StayDetails() {
   />
 
   return (
-    <section className="stay-details">
-      <h2>{name}</h2>
-      <StayDetailsGallery
-        imgUrls={imgUrls}
-        isGalleryExpanded={isGalleryExpanded}
-        setIsGalleryExpanded={setIsGalleryExpanded}
-      />
+    isPageLoading
+      ? (<SkeletonDetailsGallery />)
+      : (<section className="stay-details">
+        < h2 > {name}</h2 >
+        <StayDetailsGallery
+          imgUrls={imgUrls}
+          isGalleryExpanded={isGalleryExpanded}
+          setIsGalleryExpanded={setIsGalleryExpanded}
+        />
 
-      <section className="scroll-section">
-        <div className="main-column">
-          <StayDetailsSummary stay={stay} />
+        <section className="scroll-section">
+          <div className="main-column">
+            <StayDetailsSummary stay={stay} />
 
-          <section className="stay-details-amenities">
-            <StayDetailsAmenities
-              amenities={amenities}
-              isAmenitiesModalOpen={isAmenitiesModalOpen}
-              limit={10}
-            />
+            <section className="stay-details-amenities">
+              <StayDetailsAmenities
+                amenities={amenities}
+                isAmenitiesModalOpen={isAmenitiesModalOpen}
+                limit={10}
+              />
 
-            {amenities.length > 10 &&
-              <button
-                className="btn-secondary"
-                onClick={toggleIsAmenitiesModalOpen}
-              >
-                Show all {amenities.length} amenities
-              </button>
-            }
+              {amenities.length > 10 &&
+                <button
+                  className="btn-secondary"
+                  onClick={toggleIsAmenitiesModalOpen}
+                >
+                  Show all {amenities.length} amenities
+                </button>
+              }
 
-            {isAmenitiesModalOpen && (
-              <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
-                <StayDetailsAmenities
-                  amenities={amenities} />
-              </Modal>
-            )}
-          </section>
-        </div>
+              {isAmenitiesModalOpen && (
+                <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
+                  <StayDetailsAmenities
+                    amenities={amenities} />
+                </Modal>
+              )}
+            </section>
+          </div>
 
-        <div className="reservation-column">
-          <section className="reservation-widget">
-            <ReservationWidget
-              stay={stay}
-              checkIn={startDate}
-              checkOut={endDate}
-              guests={guestCountMap}
-              isDatePickerOpen={isDatePickerOpen}
-              setIsDatePickerOpen={setIsDatePickerOpen}
-              isGuestPickerOpen={isGuestPickerOpen}
-              onSetDates={onSetDates}
-              onSetGuests={onSetGuests}
-              toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
-              handleReserve={handleReserve}
-            />
-          </section>
-        </div>
+          <div className="reservation-column">
+            <section className="reservation-widget">
+              <ReservationWidget
+                stay={stay}
+                checkIn={startDate}
+                checkOut={endDate}
+                guests={guestCountMap}
+                isDatePickerOpen={isDatePickerOpen}
+                setIsDatePickerOpen={setIsDatePickerOpen}
+                isGuestPickerOpen={isGuestPickerOpen}
+                onSetDates={onSetDates}
+                onSetGuests={onSetGuests}
+                toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
+                handleReserve={handleReserve}
+              />
+            </section>
+          </div>
 
-      </section>
-    </section>
+        </section>
+      </section >)
   )
 }
