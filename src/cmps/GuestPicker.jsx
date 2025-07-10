@@ -27,8 +27,16 @@ export function GuestPicker({ guests, onSetGuests, className = '' }) {
           </div>
 
           <div className="guest-counter">
-            <button type="button" onClick={() => updateCount(key, -1)} disabled={guests[key] === 0}><MinusIcon /></button>
+            <button
+              type="button"
+              onClick={() => updateCount(key, -1)}
+              disabled={guests[key] === 0 || (key === 'adults' && guests[key] === 1)}
+            >
+              <MinusIcon />
+            </button>
+
             <span className="guest-count">{guests[key]}</span>
+
             <button type="button" onClick={() => updateCount(key, +1)}><PlusIcon /></button>
           </div>
 

@@ -21,8 +21,13 @@ export function MinusIcon({ className }) {
 export function LeftArrow({ size = "32px" }) {
   return (<svg fill="currentColor" width={size} height={size} viewBox="-78.5 0 512 512" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <path d="M257 64L291 98 128 262 291 426 257 460 61 262 257 64Z" /> </svg>)
 }
+
 export function FullLeftArrow({ size = "16px" }) {
   return (<svg fill="none" stroke="currentColor" strokeWidth="4" width={size} height={size} viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" > <title>left</title> <g fill="none"> <path d="M4 16h26M15 28 3.7 16.7a1 1 0 0 1 0-1.4L15 4" /> </g> </svg>)
+}
+
+export function UpArrow({ size = "16px", className }) {
+  return (<svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: size, width: size, stroke: 'currentColor', strokeWidth: 4, overflow: 'visible' }} > <path fill="none" d="M4 20 15.3 8.7a1 1 0 0 1 1.4 0L28 20" /> </svg>)
 }
 
 export function RightArrow() {

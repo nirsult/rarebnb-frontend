@@ -4,15 +4,13 @@ import { GuestPicker } from "./GuestPicker"
 import { useEffect, useRef } from "react"
 import { GlowBtn } from "./GlowBtn"
 import { orderService } from "../services/order"
-import { ReportFlag } from "./Icons"
-import { useSelector } from "react-redux" //! Unnecessary?
+import { ReportFlag, UpArrow } from "./Icons"
 import { formatPrice } from "../services/util.service"
 
 
 export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve }) {
   const { adults, children, infants, pets } = guests
   const guestTotal = adults + children + infants + pets
-  // const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave) //! Unnecessary?
 
   const datePickerRef = useRef()
   const guestPickerRef = useRef()
@@ -66,6 +64,7 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
           <div className="input-cell" ref={guestButtonRef} onClick={() => handleSectionClick('guest')}>
             <span className="label">Guests</span> {/* //TODO - in scss make sure to capitalize */}
             <span className="value">{`${guestTotal} guest${guestTotal !== 1 ? 's' : ''}`}</span>
+            <UpArrow className={isGuestPickerOpen ? '' : 'close'} />
           </div>
         </form >
 
@@ -96,7 +95,10 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
       {
         isDatePickerOpen &&
-        <Popover reference={datePickerRef}>
+        <Popover
+          reference={datePickerRef}
+          style={{ top: '10%', right: '0' }}
+        >
           <MyDatePicker
             onSetDates={onSetDates}
             markedDates={[checkIn, checkOut]}
@@ -106,7 +108,10 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
       {
         isGuestPickerOpen &&
-        <Popover reference={guestPickerRef}>
+        <Popover
+          reference={guestPickerRef}
+          style={{ top: '51%', right: '0' }}
+        >
           <GuestPicker
             guests={guests}
             onSetGuests={onSetGuests}

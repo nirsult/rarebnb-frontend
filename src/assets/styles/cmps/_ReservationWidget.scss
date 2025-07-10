@@ -44,7 +44,13 @@
 
         &:last-of-type {
           grid-area: c;
+          display: flex;
+          justify-content: space-between;
           border-block-start: 1px solid $gray-4;
+
+          svg.close {
+            transform: rotate(180deg);
+          }
         }
 
         .label {
@@ -80,5 +86,21 @@
       font-size: rem(14px);
       text-decoration: underline;
     }
+  }
+
+  .popover:has(.date-picker) {
+    width: 75vw;
+    max-width: 600px;
+    transform: unset;
+    top: 10%;
+    right: 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+    border-radius: 1rem;
+  }
+
+  .popover:has(.guest-picker) {
+    width: 100%;
+    min-width: 280px;
+    border-radius: rem(4px);
   }
 }
