@@ -5,6 +5,7 @@ import { GlowBtn } from "./GlowBtn"
 import { userService } from "../services/user"
 import { login, signup } from "../store/actions/user.actions"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { useSelector } from "react-redux"
 
 
 export function LoginSignup({ onClose, loginModalRef }) {
@@ -13,6 +14,10 @@ export function LoginSignup({ onClose, loginModalRef }) {
   const usernameRef = useRef()
   const passwordRef = useRef()
   const fullnameRef = useRef()
+
+  const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
+  const demoGuestCredentials = { username: 'ben', password: 'ben' }
+  const demoHostCredentials = { username: 'olivia', password: 'olivia' }
 
   useEffect(() => {
     document.body.classList.add('modal-open')
@@ -37,6 +42,21 @@ export function LoginSignup({ onClose, loginModalRef }) {
     try {
       const action = isSignup ? signup : login
       await action(credentials)
+      showSuccessMsg('Logged in successfully')
+      onClose()
+    } catch (err) {
+      showErrorMsg('Cannot login')
+    }
+  }
+
+  async function handleDemoLogin(ev, demoType) {
+    ev.preventDefault()
+    toggleIsSignup(false)
+
+    const demoCreds = demoType === 'guest' ? demoGuestCredentials : demoHostCredentials
+
+    try {
+      await login(demoCreds)
       showSuccessMsg('Logged in successfully')
       onClose()
     } catch (err) {
@@ -93,13 +113,18 @@ export function LoginSignup({ onClose, loginModalRef }) {
             <GlowBtn text={isSignup ? 'Signup' : 'Login'} type="submit" />
           </form>
 
+          {!loggedInUser &&
+            <section className="demo-login">
+              <button className="btn-reset demo-guest" onClick={(ev) => handleDemoLogin(ev, 'guest')}>Demo login as guest</button>
+              <button className="btn-reset demo-host" onClick={(ev) => handleDemoLogin(ev, 'host')}>Demo login as host</button>
+            </section>}
 
           <p>
             {isSignup ? 'Already' : 'Don\'t'} have an account?
             <button className="btn-toggle-signup btn-reset" onClick={toggleIsSignup}>{isSignup ? 'Login' : 'Signup'}</button>
           </p>
-        </div>
-      </section>
+        </div >
+      </section >
       <div className="login-backdrop" onClick={onClose}></div>
     </>
   )
