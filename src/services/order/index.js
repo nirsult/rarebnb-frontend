@@ -50,6 +50,7 @@ function calculateOrderFees(pricePerNight, numOfNights) {
 }
 
 function getNightCount(startDate, endDate) {
+  if (!startDate || !endDate) return
   return (endDate - startDate) / NIGHT
 }
 

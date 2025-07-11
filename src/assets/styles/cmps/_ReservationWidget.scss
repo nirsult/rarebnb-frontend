@@ -12,10 +12,27 @@
     padding: rem(24px);
 
     h3 {
-      font-size: rem(22px);
-      font-weight: 400;
-      line-height: rem(26px);
       margin-block-end: rem(24px);
+      font-size: rem(22px);
+      line-height: rem(26px);
+
+      &.price-per-night {
+        display: flex;
+        align-items: flex-end;
+        gap: rem(4px);
+        font-weight: 600;
+
+        .night {
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: rem(20px);
+        }
+      }
+
+      &.add-dates-note {
+        font-weight: 400;
+        line-height: rem(26px);
+      }
     }
 
     form {
@@ -69,7 +86,47 @@
     }
 
     .glow-btn {
-      border-radius: 200px;
+      border-radius: rem(8px);
+      margin-block-end: rem(20px);
+    }
+
+    .pricing {
+
+      >p {
+        font-size: rem(14px);
+        line-height: rem(18px);
+        text-align: center;
+        margin-block-end: rem(20px);
+      }
+
+      .price-breakdown {
+        display: grid;
+        row-gap: rem(10px);
+        font-size: 1rem;
+
+        .price-row {
+          display: flex;
+          justify-content: space-between;
+
+          &:nth-last-child(2) {
+            padding-block-end: rem(20px);
+            border-block-end: 1px solid $gray2;
+          }
+
+          &:last-child {
+            padding-block-start: rem(10px);
+            font-weight: 500;
+
+            .label {
+              text-decoration: none;
+            }
+          }
+
+          .label {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 

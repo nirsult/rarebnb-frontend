@@ -1,20 +1,34 @@
 import { Popover } from "./Popover"
 import { MyDatePicker } from "./MyDatePicker"
 import { GuestPicker } from "./GuestPicker"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { GlowBtn } from "./GlowBtn"
 import { orderService } from "../services/order"
 import { ReportFlag, UpArrow } from "./Icons"
-import { formatPrice } from "../services/util.service"
+import { formatPrice, getPluralSuffix } from "../services/util.service"
 
 
-export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve }) {
+export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve, }) {
   const { adults, children, infants, pets } = guests
   const guestTotal = adults + children + infants + pets
+
+  const [nightCount, setNightCount] = useState(orderService.getNightCount(checkIn, checkOut))
+  const [priceBreakdown, setPriceBreakdown] = useState(orderService.getPriceBreakdown(stay, nightCount))
 
   const datePickerRef = useRef()
   const guestPickerRef = useRef()
   const guestButtonRef = useRef()
+
+
+  useEffect(() => {
+    // if ((checkIn && !checkOut)) return
+
+    const newNightCount = orderService.getNightCount(checkIn, checkOut)
+    const newPriceBreakdown = orderService.getPriceBreakdown(stay, newNightCount)
+
+    setNightCount(newNightCount)
+    setPriceBreakdown(newPriceBreakdown)
+  }, [stay, checkIn, checkOut])
 
   useEffect(() => {
     function handleClickOutside(ev) {
@@ -42,12 +56,14 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
     }
   }
 
+  const { perNight, nightsTotal, serviceFee, cleaningFee, totalPrice } = priceBreakdown || {}
+
   return (
     <>
       <div className="card-content">
         {(checkIn && checkOut)
-          ? <p>${stay.price} night</p>
-          : <h3>Add dates for prices</h3>
+          ? <h3 className="price-per-night"><span className="amount">${stay.price}</span><span className="night">night</span></h3>
+          : <h3 className="add-dates-note">Add dates for prices</h3>
         }
 
         <form>
@@ -62,7 +78,7 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
           </div>
 
           <div className="input-cell" ref={guestButtonRef} onClick={() => handleSectionClick('guest')}>
-            <span className="label">Guests</span> {/* //TODO - in scss make sure to capitalize */}
+            <span className="label">Guests</span>
             <span className="value">{`${guestTotal} guest${guestTotal !== 1 ? 's' : ''}`}</span>
             <UpArrow className={isGuestPickerOpen ? '' : 'close'} />
           </div>
@@ -80,8 +96,20 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
             <div className="price-breakdown">
               <p className="price-row">
-                <span className="label">${formatPrice(stay.price)} x {orderService.getNightCount(checkIn, checkOut)} night</span>
-                <span className="amount"></span>
+                <span className="label">${formatPrice(perNight)} x {nightCount} night{getPluralSuffix(nightCount)}</span>
+                <span className="amount">${formatPrice(nightsTotal)}</span>
+              </p>
+              <p className="price-row">
+                <span className="label">Cleaning fee</span>
+                <span className="amount">${formatPrice(cleaningFee)}</span>
+              </p>
+              <p className="price-row">
+                <span className="label">Rarebnb service fee</span>
+                <span className="amount">${formatPrice(serviceFee)}</span>
+              </p>
+              <p className="price-row">
+                <span className="label">Total</span>
+                <span className="amount">${formatPrice(totalPrice)}</span>
               </p>
             </div>
           </section>

@@ -10,7 +10,6 @@ import { Modal } from "../cmps/Modal"
 import { ReservationWidget } from "../cmps/ReservationWidget"
 import { orderService } from "../services/order"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
-import { useSelector } from "react-redux"
 import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
 
 
@@ -25,7 +24,6 @@ export function StayDetails() {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const [isGuestPickerOpen, toggleIsGuestPickerOpen] = useToggle(false)
 
-  // const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
   const [isPageLoading, setIsPageLoading] = useState(true)
   const navigate = useNavigate()
 
