@@ -4,7 +4,7 @@ import { Popover } from "./Popover"
 import { MagnifyingGlassIcon } from "./Icons"
 import { MyDatePicker } from "./MyDatePicker"
 import { formatDate, getPluralSuffix } from "../services/util.service"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { orderService } from "../services/order"
 
 
@@ -13,7 +13,6 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
   const isFocused = !!activeSection
   const filterBarRef = useRef()
   const locationInputRef = useRef()
-  const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -69,7 +68,8 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
     const params = new URLSearchParams()
     for (const key in filterByToEdit) {
       const val = filterByToEdit[key]
-      if (val !== '' && val !== 0) {
+      if (val) {
+        console.log('val:', val)
         params.set(key, val)
       }
     }
