@@ -90,12 +90,20 @@ export function getFilterFromSearchParams(searchParams) {
     //   type: searchParams.get('sortType') || '',
     //   sortDir: +searchParams.get('sortDir') || 1,
     // },
+    checkIn: parseDate(searchParams.get('checkIn')),
+    checkOut: parseDate(searchParams.get('checkOut')),
     pageIdx: +searchParams.get('pageIdx') || 0,
     adults: +searchParams.get('adults') || 1,
     children: +searchParams.get('children') || 0,
     infants: +searchParams.get('infants') || 0,
     pets: +searchParams.get('pets') || 0,
   }
+}
+
+function parseDate(value) {
+  if (!value) return null
+  const date = new Date(value)
+  return isNaN(date) ? null : date
 }
 
 export function getOrderDetailsFromSearchParams(searchParams) {
