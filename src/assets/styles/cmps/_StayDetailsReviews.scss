@@ -1,0 +1,66 @@
+.stay-details-reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: rem(40px) rem(80px);
+
+  padding-block: rem(48px);
+
+  h3 {
+    grid-column: 1/-1;
+  }
+
+  .guest-favorite {
+    grid-column: 1/-1;
+    display: flex;
+    flex-direction: column;
+    margin-block-end: rem(20px);
+
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+
+      .avg-rating {
+        align-self: flex-start;
+        line-height: .85;
+        font-size: rem(100px);
+      }
+
+      img {
+        max-height: rem(132px);
+      }
+    }
+
+    .text-container {
+      text-align: center;
+
+      h4 {
+        margin-block-end: rem(8px);
+        font-size: rem(22px);
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: auto;
+        max-width: 250px;
+        color: $clr-text-secondary;
+        font-size: rem(14px);
+      }
+    }
+  }
+
+  .show-all {
+    justify-self: start;
+  }
+}
+
+.stay-details .modal-container:has(.stay-details-reviews) {
+  padding-block-start: rem(56px);
+
+  .stay-details-reviews {
+    grid-template-columns: 1fr;
+    row-gap: rem(32px);
+  }
+}

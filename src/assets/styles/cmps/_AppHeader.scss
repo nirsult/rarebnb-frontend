@@ -13,6 +13,12 @@ body:has(.stay-index) {
   }
 }
 
+body:has(.stay-details) {
+  .app-header {
+    position: absolute;
+  }
+}
+
 .app-header {
   grid-template-rows: 1fr 1fr;
   position: fixed;

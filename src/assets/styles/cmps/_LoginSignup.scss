@@ -2,6 +2,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  grid-column: unset;
   transform: translate(-50%, 35%);
   width: 50%;
   max-width: 568px;

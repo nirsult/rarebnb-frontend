@@ -11,6 +11,7 @@ import { ReservationWidget } from "../cmps/ReservationWidget"
 import { orderService } from "../services/order"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
+import { StayDetailsReviews } from "../cmps/StayDetailsReviews"
 
 
 export function StayDetails() {
@@ -23,6 +24,8 @@ export function StayDetails() {
   const [isAmenitiesModalOpen, toggleIsAmenitiesModalOpen] = useToggle(false)
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const [isGuestPickerOpen, toggleIsGuestPickerOpen] = useToggle(false)
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
+
 
   const [isPageLoading, setIsPageLoading] = useState(true)
   const navigate = useNavigate()
@@ -141,6 +144,7 @@ export function StayDetails() {
                 </Modal>
               )}
             </section>
+
           </div>
 
           <div className="reservation-column">
@@ -160,8 +164,24 @@ export function StayDetails() {
               />
             </section>
           </div>
-
         </section>
+
+        <StayDetailsReviews
+          stay={stay}
+          reviews={stay.reviews}
+          isModalOpen={isReviewModalOpen}
+          setIsReviewModalOpen={setIsReviewModalOpen}
+        />
+
+        {isReviewModalOpen && (
+          <Modal onClose={() => setIsReviewModalOpen(false)}>
+            <StayDetailsReviews
+              reviews={stay.reviews}
+              isModalOpen={isReviewModalOpen}
+            />
+          </Modal>
+        )}
+
       </section >)
   )
 }
