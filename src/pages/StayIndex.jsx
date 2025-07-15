@@ -14,12 +14,13 @@ export function StayIndex() {
     if (nextPage < 0) return
     searchParams.set('pageIdx', nextPage)
     setSearchParams(searchParams)
+    window.scrollTo({ top: 0 })
   }
 
   return (
     <section className="stay-index">
 
-      <section className="pagination-controls flex justify-end">
+      <section className="pagination-controls">
         <button
           onClick={() => handlePageChange(-1)}
           disabled={pageIdx === 0}
@@ -38,7 +39,7 @@ export function StayIndex() {
         <StayList stays={stays} />
       </div>
 
-      <section className="pagination-controls bottom flex justify-end">
+      <section className="pagination-controls bottom">
         <button
           onClick={() => handlePageChange(-1)}
           disabled={pageIdx === 0}

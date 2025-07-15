@@ -1,7 +1,11 @@
 .stay-index {
   .pagination-controls {
+    display: flex;
+    justify-content: end;
+    gap: rem(5px);
     margin-block-start: 1rem;
-    &.bottom{
+
+    &.bottom {
       justify-self: center;
       scale: 1.2;
     }
