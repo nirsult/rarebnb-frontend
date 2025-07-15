@@ -69,7 +69,6 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
     for (const key in filterByToEdit) {
       const val = filterByToEdit[key]
       if (val) {
-        console.log('val:', val)
         params.set(key, val)
       }
     }

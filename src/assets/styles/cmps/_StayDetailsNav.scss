@@ -1,0 +1,23 @@
+.stay-details-nav {
+  position: fixed;
+  top: 0;
+  display: flex;
+  gap: rem(24px);
+  align-items: center;
+
+  width: 100%;
+  height: rem(80px);
+  padding-inline: rem(40px);
+
+  background-color: $clr-bg;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
+  z-index: 1;
+
+  a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: rem(14px);
+    font-weight: 500;
+  }
+}

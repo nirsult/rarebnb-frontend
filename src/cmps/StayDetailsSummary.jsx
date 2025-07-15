@@ -6,7 +6,6 @@ import { StarIcon } from "./Icons"
 
 
 export function StayDetailsSummary({ stay }) {
-  // console.log('stay from summary:', stay)
 
   const { type, capacity, bedCount, labels, avgRating, host, amenities, reviews } = stay
   const { city, country } = stay.loc

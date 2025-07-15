@@ -8,7 +8,7 @@ export function StayDetailsMap({ location }) {
   const { country, city } = location
 
   return (
-    <section className="stay-details-map">
+    <section id="location" className="stay-details-map">
       <h3>Where you'll be</h3>
       <p>{`${city}, ${country}`}</p>
       <div className="map-container">

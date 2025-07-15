@@ -8,7 +8,7 @@ export function StayDetailsReviews({ stay, reviews, isModalOpen, setIsReviewModa
   const reviewsToDisplay = isModalOpen ? reviews : reviews.slice(0, REVIEWS_PREVIEW_COUNT)
 
   return (
-    <section className="stay-details-reviews">
+    <section id="reviews" className="stay-details-reviews">
 
       {isModalOpen
         ? <h3 className="reviews-modal">Reviews</h3>

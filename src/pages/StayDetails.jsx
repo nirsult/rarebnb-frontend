@@ -13,6 +13,7 @@ import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
 import { StayDetailsReviews } from "../cmps/StayDetailsReviews"
 import { StayDetailsMap } from "../cmps/StayDetailsMap"
+import { StayDetailsNav } from "../cmps/StayDetailsNav"
 
 
 export function StayDetails() {
@@ -26,7 +27,7 @@ export function StayDetails() {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const [isGuestPickerOpen, toggleIsGuestPickerOpen] = useToggle(false)
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
-
+  const [isNavVisible, setIsNavVisible] = useState(false)
 
   const [isPageLoading, setIsPageLoading] = useState(true)
   const navigate = useNavigate()
@@ -93,7 +94,6 @@ export function StayDetails() {
   }
 
   function handleReserve() {
-    console.log('Handling Reserve :)')
     navigate(`/stay/${stay._id}/checkout`)
   }
 
@@ -110,81 +110,87 @@ export function StayDetails() {
   return (
     isPageLoading
       ? (<SkeletonDetailsGallery />)
-      : (<section className="stay-details">
-        < h2 > {name}</h2 >
-        <StayDetailsGallery
-          imgUrls={imgUrls}
-          isGalleryExpanded={isGalleryExpanded}
-          setIsGalleryExpanded={setIsGalleryExpanded}
-        />
+      : (
+        <>
+          {isNavVisible && <StayDetailsNav />}
+          <section className="stay-details">
+            < h2 > {name}</h2 >
+            <StayDetailsGallery
+              imgUrls={imgUrls}
+              isGalleryExpanded={isGalleryExpanded}
+              setIsGalleryExpanded={setIsGalleryExpanded}
+              setIsNavVisible={setIsNavVisible}
+            />
 
-        <section className="scroll-section">
-          <div className="main-column">
-            <StayDetailsSummary stay={stay} />
+            <section className="scroll-section">
+              <div className="main-column">
+                <StayDetailsSummary stay={stay} />
 
-            <section className="stay-details-amenities">
-              <StayDetailsAmenities
-                amenities={amenities}
-                isAmenitiesModalOpen={isAmenitiesModalOpen}
-                limit={10}
-              />
-
-              {amenities.length > 10 &&
-                <button
-                  className="btn-secondary"
-                  onClick={toggleIsAmenitiesModalOpen}
-                >
-                  Show all {amenities.length} amenities
-                </button>
-              }
-
-              {isAmenitiesModalOpen && (
-                <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
+                <section id="amenities" className="stay-details-amenities">
                   <StayDetailsAmenities
-                    amenities={amenities} />
-                </Modal>
-              )}
+                    amenities={amenities}
+                    isAmenitiesModalOpen={isAmenitiesModalOpen}
+                    limit={10}
+                  />
+
+                  {amenities.length > 10 &&
+                    <button
+                      className="btn-secondary"
+                      onClick={toggleIsAmenitiesModalOpen}
+                    >
+                      Show all {amenities.length} amenities
+                    </button>
+                  }
+
+                  {isAmenitiesModalOpen && (
+                    <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
+                      <StayDetailsAmenities
+                        amenities={amenities} />
+                    </Modal>
+                  )}
+                </section>
+
+              </div>
+
+              <div id="reservation-widget" className="reservation-column">
+                <section className="reservation-widget">
+                  <ReservationWidget
+                    stay={stay}
+                    checkIn={startDate}
+                    checkOut={endDate}
+                    guests={guestCountMap}
+                    isDatePickerOpen={isDatePickerOpen}
+                    setIsDatePickerOpen={setIsDatePickerOpen}
+                    isGuestPickerOpen={isGuestPickerOpen}
+                    onSetDates={onSetDates}
+                    onSetGuests={onSetGuests}
+                    toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
+                    handleReserve={handleReserve}
+                  />
+                </section>
+              </div>
             </section>
 
-          </div>
-
-          <div className="reservation-column">
-            <section className="reservation-widget">
-              <ReservationWidget
-                stay={stay}
-                checkIn={startDate}
-                checkOut={endDate}
-                guests={guestCountMap}
-                isDatePickerOpen={isDatePickerOpen}
-                setIsDatePickerOpen={setIsDatePickerOpen}
-                isGuestPickerOpen={isGuestPickerOpen}
-                onSetDates={onSetDates}
-                onSetGuests={onSetGuests}
-                toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
-                handleReserve={handleReserve}
-              />
-            </section>
-          </div>
-        </section>
-
-        <StayDetailsReviews
-          stay={stay}
-          reviews={stay.reviews}
-          isModalOpen={isReviewModalOpen}
-          setIsReviewModalOpen={setIsReviewModalOpen}
-        />
-
-        {isReviewModalOpen && (
-          <Modal onClose={() => setIsReviewModalOpen(false)}>
             <StayDetailsReviews
+              stay={stay}
               reviews={stay.reviews}
               isModalOpen={isReviewModalOpen}
+              setIsReviewModalOpen={setIsReviewModalOpen}
             />
-          </Modal>
-        )}
 
-        <StayDetailsMap location={stay.loc} />
+            {isReviewModalOpen && (
+              <Modal onClose={() => setIsReviewModalOpen(false)}>
+                <StayDetailsReviews
+                  reviews={stay.reviews}
+                  isModalOpen={isReviewModalOpen}
+                />
+              </Modal>
+            )}
 
-      </section >)
+            <StayDetailsMap location={stay.loc} />
+
+          </section >
+        </>
+      )
   )
 }
