@@ -37,6 +37,21 @@ export function StayIndex() {
       <div className="stay-list main-content">
         <StayList stays={stays} />
       </div>
+
+      <section className="pagination-controls bottom flex justify-end">
+        <button
+          onClick={() => handlePageChange(-1)}
+          disabled={pageIdx === 0}
+        >
+          <LeftArrow />
+        </button>
+        <button
+          onClick={() => handlePageChange(1)}
+          disabled={pageIdx === totalPages - 1}
+        >
+          <RightArrow />
+        </button>
+      </section >
     </section >
   )
 }
