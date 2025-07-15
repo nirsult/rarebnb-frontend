@@ -12,6 +12,7 @@ import { orderService } from "../services/order"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
 import { StayDetailsReviews } from "../cmps/StayDetailsReviews"
+import { StayDetailsMap } from "../cmps/StayDetailsMap"
 
 
 export function StayDetails() {
@@ -181,6 +182,8 @@ export function StayDetails() {
             />
           </Modal>
         )}
+
+        <StayDetailsMap location={stay.loc} />
 
       </section >)
   )

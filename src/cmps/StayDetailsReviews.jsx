@@ -9,26 +9,24 @@ export function StayDetailsReviews({ stay, reviews, isModalOpen, setIsReviewModa
 
   return (
     <section className="stay-details-reviews">
-      {/* <h3>
-        {!isModalOpen && <span className="avg-rating"><StarIcon /> {formatRating(stay.avgRating)} </span>}
-        {`${reviews.length} review${getPluralSuffix(reviews.length)}`}
-      </h3> */}
 
-      {!isModalOpen && <section className="guest-favorite">
+      {isModalOpen
+        ? <h3 className="reviews-modal">Reviews</h3>
+        : <section className="guest-favorite">
+          <h3>
+            <img src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1752494284/leftLeavesBlack_y82y7d.avif" alt="" />
+            <div className="avg-rating">
+              {formatRating(stay.avgRating)}
+            </div>
+            <img src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1752494284/rightLeavesBlack_bcxt1x.avif" alt="" />
+          </h3>
 
-        <h3>
-          <img src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1752494284/leftLeavesBlack_y82y7d.avif" alt="" />
-          <div className="avg-rating">
-            {formatRating(stay.avgRating)}
+          <div className="text-container">
+            <h4>Guest favorite</h4>
+            <p>This home is a guest favorite based on ratings, reviews, and reliability</p>
           </div>
-          <img src="https://res.cloudinary.com/dbbj46yzt/image/upload/v1752494284/rightLeavesBlack_bcxt1x.avif" alt="" />
-        </h3>
-
-        <div className="text-container">
-          <h4>Guest favorite</h4>
-          <p>This home is a guest favorite based on ratings, reviews, and reliability</p>
-        </div>
-      </section>}
+        </section>
+      }
 
       {reviewsToDisplay.map((review, idx) => (
         <ReviewPreview

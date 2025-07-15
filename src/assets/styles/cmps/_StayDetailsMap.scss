@@ -1,0 +1,19 @@
+.stay-details-map {
+  padding-block: rem(48px);
+
+  h3,
+  p {
+    margin-block-end: rem(24px);
+  }
+
+  p{
+    font-size: 1rem;
+  }
+
+  .map-container {
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 480px;
+    width: 100%;
+  }
+}

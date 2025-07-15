@@ -4,9 +4,17 @@
   gap: rem(40px) rem(80px);
 
   padding-block: rem(48px);
+  border-block-end: 1px solid $gray2;
 
   h3 {
     grid-column: 1/-1;
+
+    &.reviews-modal {
+      position: absolute;
+      top: rem(14px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   .guest-favorite {
