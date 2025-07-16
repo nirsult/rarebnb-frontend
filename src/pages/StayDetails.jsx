@@ -27,7 +27,9 @@ export function StayDetails() {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   const [isGuestPickerOpen, toggleIsGuestPickerOpen] = useToggle(false)
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
+
   const [isNavVisible, setIsNavVisible] = useState(false)
+  const [isReserveButtonVisible, setIsReserveButtonVisible] = useState(false)
 
   const [isPageLoading, setIsPageLoading] = useState(true)
   const navigate = useNavigate()
@@ -112,7 +114,16 @@ export function StayDetails() {
       ? (<SkeletonDetailsGallery />)
       : (
         <>
-          {isNavVisible && <StayDetailsNav />}
+          {isNavVisible &&
+            <StayDetailsNav
+              stay={stay}
+              checkIn={startDate}
+              checkOut={endDate}
+              handleReserve={handleReserve}
+              setIsDatePickerOpen={setIsDatePickerOpen}
+              isReserveButtonVisible={isReserveButtonVisible}
+            />
+          }
           <section className="stay-details">
             < h2 > {name}</h2 >
             <StayDetailsGallery
@@ -166,6 +177,7 @@ export function StayDetails() {
                     onSetGuests={onSetGuests}
                     toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
                     handleReserve={handleReserve}
+                    setIsReserveButtonVisible={setIsReserveButtonVisible}
                   />
                 </section>
               </div>

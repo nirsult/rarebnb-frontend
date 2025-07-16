@@ -8,7 +8,7 @@ import { ReportFlag, UpArrow } from "./Icons"
 import { formatPrice, getPluralSuffix } from "../services/util.service"
 
 
-export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve, }) {
+export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve, setIsReserveButtonVisible }) {
   const { adults, children, infants, pets } = guests
   const guestTotal = adults + children + infants + pets
 
@@ -18,6 +18,20 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
   const datePickerRef = useRef()
   const guestPickerRef = useRef()
   const guestButtonRef = useRef()
+  const reserveButtonRef = useRef()
+
+  useEffect(() => {
+    if (!reserveButtonRef.current) return
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsReserveButtonVisible(entry.isIntersecting)
+    },
+      { rootMargin: '-80px 0px 0px 0px' })
+
+    observer.observe(reserveButtonRef.current)
+
+    return () => observer.disconnect()
+  }, [])
 
 
   useEffect(() => {
@@ -86,7 +100,9 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
         <GlowBtn
           text={checkIn && checkOut ? 'Reserve' : 'Check availability'}
-          onClick={checkIn && checkOut ? handleReserve : () => setIsDatePickerOpen(true)}
+          onClick={checkIn && checkOut ? handleReserve : () => setIsDatePickerOpen(true)
+          }
+          btnRef={reserveButtonRef}
         />
 
         {

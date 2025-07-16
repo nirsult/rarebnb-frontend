@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function GlowBtn({ text, onClick, type = "button" }) {
+export function GlowBtn({ text, onClick, type = "button", btnRef }) {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
 
   function handleMouseMove(ev) {
@@ -19,6 +19,7 @@ export function GlowBtn({ text, onClick, type = "button" }) {
         background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, #ff385c, #bd1e59)`
       }}
       onClick={onClick}
+      ref={btnRef}
     >
       {text}
     </button>

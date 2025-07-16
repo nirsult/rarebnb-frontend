@@ -20,4 +20,46 @@
     font-size: rem(14px);
     font-weight: 500;
   }
+
+  .reserve {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1rem;
+
+    margin-inline-start: auto;
+    font-size: rem(14px);
+
+    .amount {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .reviews-summary {
+      font-size: rem(12px);
+
+      .avg-rating {
+        svg {
+          height: rem(10px);
+          width: rem(10px);
+          margin-inline-end: rem(2px);
+        }
+
+        &::after {
+          content: ' · ';
+          margin-inline-start: 1px;
+          font-weight: 500;
+        }
+      }
+
+      .review-count {
+        color: $clr-text-secondary;
+      }
+    }
+
+    button {
+      grid-row: 1 / span 2;
+      grid-column: 2;
+      padding: rem(13px) rem(40px);
+    }
+  }
 }
