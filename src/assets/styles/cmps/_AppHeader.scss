@@ -15,7 +15,12 @@ body:has(.stay-index) {
 
 body:has(.stay-details) {
   .app-header {
-    position: absolute;
+    display: none;
+
+    @include for-normal-layout {
+      display: grid;
+      position: absolute;
+    }
   }
 }
 
@@ -29,18 +34,9 @@ body:has(.stay-details) {
   margin-inline: 0;
 
   background: linear-gradient(180deg, $clr-white 39.9%, $gray-3 100%);
-  border-block-end: 1px solid #ebebeb;
+  border-block-end: 1px solid $gray1;
   z-index: 1000;
   transition: height .2s;
-
-  @media(min-width: 744px) {
-    // padding-inline: rem(32px)
-  }
-
-  @media (min-width: 1440px) {
-    // padding-inline: rem(48px);
-    max-width: unset;
-  }
 
   &.header-small {
     height: rem(80px);
@@ -94,18 +90,18 @@ body:has(.stay-details) {
         cursor: default;
       }
 
-      @media (min-width: $mobile-breakpoint) and (max-width: $narrow-breakpoint) {
-        .logo-icon {
-          display: block;
-        }
-      }
-
       // Show full logo on wide screens
-      @media (min-width: 950px) {
+      @include for-wide-layout {
         .logo-full {
           display: block;
         }
       }
+
+      // @media (min-width: $normal-breakpoint) {
+      //   .logo-full {
+      //     display: block;
+      //   }
+      // }
     }
   }
 }
@@ -127,25 +123,7 @@ body:has(.stay-details) {
   }
 }
 
-
 body:has(main.stay-details) .app-header .header-content {
   max-width: 1120px;
   margin-inline: auto;
-}
-
-
-@media (max-width: 764px) {
-  .app-header {
-    height: 10%;
-  }
-
-  .search-wrapper-card {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  }
 }

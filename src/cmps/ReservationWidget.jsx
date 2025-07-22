@@ -8,7 +8,7 @@ import { ReportFlag, UpArrow } from "./Icons"
 import { formatPrice, getPluralSuffix } from "../services/util.service"
 
 
-export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve, setIsReserveButtonVisible }) {
+export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePickerOpen, setIsDatePickerOpen, isGuestPickerOpen, toggleIsGuestPickerOpen, onSetDates, onSetGuests, handleReserve, setIsReserveButtonVisible, isMobile }) {
   const { adults, children, infants, pets } = guests
   const guestTotal = adults + children + infants + pets
 
@@ -35,8 +35,6 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
 
 
   useEffect(() => {
-    // if ((checkIn && !checkOut)) return
-
     const newNightCount = orderService.getNightCount(checkIn, checkOut)
     const newPriceBreakdown = orderService.getPriceBreakdown(stay, newNightCount)
 
@@ -141,13 +139,14 @@ export function ReservationWidget({ stay, checkIn, checkOut, guests, isDatePicke
         isDatePickerOpen &&
         <Popover
           reference={datePickerRef}
-          style={{ top: '10%', right: '0' }}
+          style={isMobile ? { width: '100%' } : { top: '10%', right: '0' }}
         >
           <MyDatePicker
             onSetDates={onSetDates}
             markedDates={[checkIn, checkOut]}
+            monthsShown={isMobile ? 1 : 2}
           />
-        </Popover>
+        </Popover >
       }
 
       {

@@ -6,12 +6,38 @@
 
   header {
     padding-block-end: rem(32px);
+    text-align: center;
+    color: $clr-text-secondary;
+
+    @include for-normal-layout {
+      text-align: start;
+      color: $clr-text-primary;
+    }
+
+
+    h3 {
+      font-size: rem(14px);
+      line-height: rem(18px);
+      margin-block-end: rem(4px);
+      font-weight: 400;
+
+      @include for-normal-layout {
+        font-size: rem(22px);
+        line-height: rem(26px);
+        font-weight: 500;
+      }
+    }
 
     .summary-listing-facts {
-      margin: 0;
-      margin-block-end: rem(8px);
-      font-size: 1rem;
-      line-height: rem(20px);
+      margin: 0 0 rem(18px);
+      font-size: rem(14px);
+      line-height: rem(18px);
+
+      @include for-normal-layout {
+        margin: 0 0 rem(8px);
+        font-size: 1rem;
+        line-height: rem(20px);
+      }
 
       span:not(:last-of-type)::after {
         content: " · ";
@@ -19,12 +45,17 @@
     }
 
     .summary-reviews {
-      display: flex;
-      gap: rem(4px);
-      align-items: center;
-      font-size: rem(17px);
-      font-weight: 500;
-      line-height: rem(20px);
+      color: $clr-text-primary;
+      font-size: rem(12px);
+
+      @include for-normal-layout {
+        display: flex;
+        gap: rem(4px);
+        align-items: center;
+        font-size: rem(17px);
+        font-weight: 500;
+        line-height: rem(20px);
+      }
 
       .review-count {
         text-decoration: underline;

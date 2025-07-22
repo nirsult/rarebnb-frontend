@@ -1,6 +1,8 @@
 .popover {
   position: absolute;
   top: 100%;
-  z-index: 1000;
   margin-block-start: rem(12px);
+
+  overflow: hidden;
+  z-index: 1000;
 }

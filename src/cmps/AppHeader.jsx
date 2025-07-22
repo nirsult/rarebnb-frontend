@@ -17,7 +17,7 @@ import { useMediaQuery } from "../customHooks/useMediaQuery"
 
 export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
-  const isMobile = useMediaQuery('(max-width: 743px)')
+  const isMobile = useMediaQuery('(max-width: 744px)')
   const [isAtTop, setIsAtTop] = useState(true)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true)
   const [activeSection, setActiveSection] = useState('date')

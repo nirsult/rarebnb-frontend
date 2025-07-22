@@ -1,8 +1,15 @@
 .reservation-widget {
+  position: relative;
   padding-block-end: rem(48px);
   width: 100%;
-  max-width: 370px;
   min-width: 215px;
+
+  @include for-normal-layout {
+    position: sticky;
+    top: rem(112px);
+    max-width: 370px;
+    justify-self: end;
+  }
 
   .card-content {
     background-color: $clr-bg;
@@ -147,12 +154,15 @@
 
   .popover:has(.date-picker) {
     width: 75vw;
-    max-width: 600px;
     transform: unset;
     top: 10%;
     right: 0;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
     border-radius: 1rem;
+
+    @include for-normal-layout {
+      max-width: 600px;
+    }
   }
 
   .popover:has(.guest-picker) {

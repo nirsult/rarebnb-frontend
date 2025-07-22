@@ -1,10 +1,16 @@
 .stay-details-reviews {
   display: grid;
+  grid-row: 4;
   grid-template-columns: 1fr 1fr;
   gap: rem(40px) rem(80px);
 
-  padding-block: rem(48px);
-  border-block-end: 1px solid $gray2;
+  padding-block: rem(24px);
+
+  @include for-normal-layout {
+    padding-block: rem(48px);
+    grid-row: 2;
+    border-block-end: 1px solid $gray2;
+  }
 
   h3 {
     grid-column: 1/-1;

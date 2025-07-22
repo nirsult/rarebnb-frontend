@@ -1,12 +1,18 @@
 .stay-details-map {
-  padding-block: rem(48px);
+  padding-block: rem(24px);
+  border-block-end: 1px solid $gray2;
+
+  @include for-normal-layout {
+    padding-block: rem(48px);
+    border: none;
+  }
 
   h3,
   p {
     margin-block-end: rem(24px);
   }
 
-  p{
+  p {
     font-size: 1rem;
   }
 

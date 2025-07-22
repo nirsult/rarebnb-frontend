@@ -1,70 +1,26 @@
-.main-container {
-  display: grid;
-  grid-template-columns: rem(24px) 1fr rem(24px);
+body:has(.stay-details) .main-layout {
+  grid-template-columns: 24px 1fr 24px;
+  padding-block-start: 0;
 
-  >* {
-    grid-column: 2;
-
-    &.full {
-      grid-column: 1 / -1;
-    }
+  @include for-normal-layout {
+    grid-template-columns: minmax(48px, 1fr) minmax(auto, 1120px) minmax(48px, 1fr);
   }
 
-  // @include for-narrow-layout {
-  //   grid-template-columns:
-  //     minmax(24px, 1fr) minmax(auto, $mobile-breakpoint) minmax(24px, 1fr);
-  // }
 
-  // @include for-normal-layout {
-  //   grid-template-columns:
-  //     minmax(24px, 1fr) minmax(auto, $narrow-breakpoint) minmax(24px, 1fr);
-  // }
-
-  // @include for-wide-layout {
-  //   grid-template-columns:
-  //     minmax(40px, 1fr) minmax(auto, $normal-breakpoint) minmax(40px, 1fr);
-  // }
-}
-
-// .main-layout {
-//   max-width: 2360px;
-//   padding-inline: rem(24px);
-
-//   &.home-padding {
-//     padding-block-start: 80px;
-//   }
-
-//   @media (min-width: 744px) {
-//     padding-inline: rem(40px);
-
-//     &.home-padding {
-//       padding: 200px;
-//     }
-//   }
-
-//   @media (min-width: 1440px) {
-//     padding-inline: rem(48px);
-//   }
-
-//   @media (min-width: 1920px) {
-//     padding-inline: rem(48px);
-//     margin-inline: rem(40px);
-//     max-width: unset;
-//   }
-
-//   &.default-padding {
-//     padding-block-start: 80px;
-//   }
-// }
-
-body:has(.stay-details) .main-layout {
-  grid-template-columns: minmax(48px, 1fr) minmax(auto, 1120px) minmax(48px, 1fr);
-
+  @include for-normal-layout {
+    &.default-padding {
+      padding-block: rem(80px);
+    }
+  }
 }
 
 .main-layout {
   display: grid;
-  grid-template-columns: minmax(48px, 1fr) minmax(auto, 1824px) minmax(48px, 1fr);
+  grid-template-columns: minmax(20px, 1fr) minmax(auto, 1824px) minmax(20px, 1fr);
+
+  @include for-normal-layout {
+    grid-template-columns: minmax(48px, 1fr) minmax(auto, 1824px) minmax(48px, 1fr)
+  }
 
   >* {
     grid-column: 2;
@@ -75,37 +31,18 @@ body:has(.stay-details) .main-layout {
   }
 
   max-width: 2360px;
-  // padding-inline: rem(24px);
 
   &.home-padding {
     padding-block-start: 80px;
   }
 
   @media (min-width: 744px) {
-    // padding-inline: rem(40px);
-
     &.home-padding {
       padding-block: rem(200px) rem(80px);
     }
   }
 
-  // @media (min-width: 1440px) {
-  //   padding-inline: rem(48px);
-  // }
-
-  // @media (min-width: 1920px) {
-  //   padding-inline: rem(48px);
-  //   margin-inline: rem(40px);
-  //   max-width: unset;
-  // }
-
   &.default-padding {
-    padding-block: 80px;
+    padding-block: rem(80px);
   }
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 20px;
 }

@@ -20,7 +20,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     width: 100%;
-    max-width: 100%;
     background-color: $clr-bg;
     font-size: rem(13px);
 
@@ -50,6 +49,7 @@
         color: transparent;
         /* Hide default arrow */
         border: none;
+        border-radius: 50%;
       }
 
       &--next {
@@ -58,12 +58,18 @@
         color: transparent;
         /* Hide default arrow */
         border: none;
+        border-radius: 50%;
       }
     }
 
     &__month-container {
-      width: 43%;
+      width: 100%;
       text-align: center;
+
+      @include for-normal-layout {
+        width: 43%;
+      }
+
 
       .react-datepicker__header {
         background-color: $clr-bg;

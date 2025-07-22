@@ -1,5 +1,9 @@
 .stay-details-amenities {
-  padding-block: rem(48px);
+  padding-block: rem(24px);
+
+  @include for-normal-layout {
+    padding-block: rem(48px);
+  }
 
   h3 {
     margin-block-end: rem(24px);

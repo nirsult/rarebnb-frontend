@@ -1,0 +1,12 @@
+.stay-details-gallery-mobile {
+  grid-row: 1;
+
+  .swiper {
+    height: 100%;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
