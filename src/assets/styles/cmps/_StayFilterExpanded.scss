@@ -44,7 +44,7 @@
 
   button {
     position: relative;
-    padding: rem(12px) rem(24px);
+    padding: rem(12px) rem(10px);
     margin: 0;
     height: 100%;
 
@@ -59,6 +59,10 @@
     text-align: left;
     line-height: 16px;
     cursor: pointer;
+
+    @include for-wide-layout {
+      padding: rem(12px) rem(24px);
+    }
 
     &.btn-location {
       padding-inline: rem(30px);

@@ -3,6 +3,8 @@
   grid-row: 4;
   grid-template-columns: 1fr 1fr;
   gap: rem(40px) rem(80px);
+  scroll-margin-block-start: rem(80px);
+
 
   padding-block: rem(24px);
 

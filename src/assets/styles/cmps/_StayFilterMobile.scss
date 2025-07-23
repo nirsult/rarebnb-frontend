@@ -7,7 +7,7 @@
     gap: 6px;
 
     width: 90%;
-    padding: rem(18px);
+    padding: rem(10px);
     margin: auto;
 
     background-color: $clr-bg;
@@ -15,6 +15,10 @@
     font-size: rem(14px);
     font-weight: 500;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+
+    @include for-narrow-layout {
+      padding: rem(18px);
+    }
   }
 
   .accordion-filter {

@@ -1,6 +1,5 @@
 .trips {
   width: 100%;
-  max-width: 1020px;
   margin-inline: auto;
   padding-block-start: 1rem;
 
@@ -23,7 +22,12 @@
     border-radius: 1rem;
     overflow: hidden;
 
+    @include for-normal-layout {
+      grid-template-rows: minmax(auto, 175px);
+    }
+
     img {
+      width: 100%;
       align-self: stretch;
       object-fit: cover;
     }

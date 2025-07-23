@@ -1,7 +1,8 @@
 .booking-checkout {
   display: grid;
+  grid-template-columns: minmax(auto, 390px);
   grid-auto-rows: min-content;
-  column-gap: rem(80px);
+  // column-gap: rem(80px); //!remove?
   row-gap: rem(24px);
 
   position: relative;
@@ -9,8 +10,8 @@
   margin-inline: auto;
   padding: rem(32px) rem(65px) rem(64px);
 
-  @include for-normal-layout {
-    grid-template-columns: minmax(386px, 1fr) minmax(332px, 372px);
+  @include for-wide-layout {
+    grid-template-columns: minmax(386px, 1fr) minmax(16px, 1fr) minmax(332px, 372px);
   }
 
   h2 {
@@ -117,7 +118,8 @@
   .confirm-trip-details {
     grid-row: 2;
 
-    @include for-normal-layout {
+    @include for-wide-layout {
+      grid-column: 3;
       grid-row: unset;
     }
   }

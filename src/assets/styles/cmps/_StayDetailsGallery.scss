@@ -4,6 +4,7 @@ body:has(.gallery-full-container) header {
 
 .stay-details-gallery {
   margin-block-end: rem(32px);
+  scroll-margin-block-start: rem(10px);
 
   img {
     transition: filter .2s;

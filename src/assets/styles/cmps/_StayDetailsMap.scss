@@ -1,6 +1,7 @@
 .stay-details-map {
   padding-block: rem(24px);
   border-block-end: 1px solid $gray2;
+  scroll-margin-block-start: rem(80px);
 
   @include for-normal-layout {
     padding-block: rem(48px);

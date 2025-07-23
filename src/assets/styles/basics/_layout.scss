@@ -14,6 +14,14 @@ body:has(.stay-details) .main-layout {
   }
 }
 
+body:has(.reservations) .main-layout {
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 800px) minmax(48px, 1fr);
+}
+
+body:has(.trips) .main-layout {
+  grid-template-columns: minmax(48px, 1fr) minmax(auto, 1020px) minmax(48px, 1fr);
+}
+
 .main-layout {
   display: grid;
   grid-template-columns: minmax(20px, 1fr) minmax(auto, 1824px) minmax(20px, 1fr);

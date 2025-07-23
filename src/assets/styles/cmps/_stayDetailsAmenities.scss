@@ -1,5 +1,6 @@
 .stay-details-amenities {
   padding-block: rem(24px);
+  scroll-margin-block-start: rem(80px);
 
   @include for-normal-layout {
     padding-block: rem(48px);

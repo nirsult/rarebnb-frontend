@@ -18,15 +18,23 @@
 
   .reservation-card {
     display: grid;
-    grid-template-columns: minmax(80px, 200px) 1fr;
-    grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
+    max-width: 550px;
+    margin: auto;
 
     margin-block-end: 1rem;
     padding: 1rem;
     border: 1px solid $gray2;
     border-radius: 1rem;
     overflow: hidden;
+
+    @include for-normal-layout {
+      grid-template-columns: minmax(80px, 200px) 1fr;
+      grid-template-rows: 3fr 1fr;
+      // max-width: 800px;
+      max-width: unset;
+    }
 
     .img-container {
       border-radius: 1rem;
@@ -35,8 +43,13 @@
 
     .reservation-details {
       display: grid;
-      grid-template-columns: minmax(max-content, 1fr) minmax(auto, 175px);
+      grid-template-columns: 1fr min-content;
       gap: rem(8px);
+
+      @include for-normal-layout {
+        grid-template-columns: minmax(max-content, 1fr) minmax(auto, 175px);
+
+      }
 
       header {
         h3 {
@@ -109,7 +122,12 @@
       }
 
       .dates {
+        grid-column: 1/-1;
         font-size: rem(14px);
+
+        @include for-normal-layout {
+          grid-column: auto;
+        }
 
         p {
           display: flex;
