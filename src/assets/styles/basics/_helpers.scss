@@ -66,7 +66,7 @@
   @include aspect-ratio(9, 16);
 }
 
-.media-cover{
+.media-cover {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -81,6 +81,28 @@
 .btn-reset {
   border: none;
   background-color: transparent;
+}
+
+.btn-back {
+  position: absolute;
+  left: rem(5px);
+  @include circle-button(rem(44px));
+  background-color: $gray0;
+  margin-top: rem(30px);
+}
+
+body:has(.booking-checkout) {
+  .btn-back {
+    left: rem(4px);
+
+    @include for-narrow-layout {
+      left: rem(20px);
+    }
+
+    @include for-normal-layout {
+      left: rem(48px);
+    }
+  }
 }
 
 .btn-secondary {

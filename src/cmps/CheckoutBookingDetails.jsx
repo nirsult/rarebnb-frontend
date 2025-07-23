@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { StarIcon } from "./Icons"
-import { getDateTxt, getPluralSuffix } from "../services/util.service"
+import { formatPrice, getDateTxt, getPluralSuffix } from "../services/util.service"
 import { orderService } from "../services/order"
 
 
@@ -40,11 +40,11 @@ export function CheckoutBookingDetails({ stay, order }) {
         <span className="amount">${cleaningFee.toFixed(2)}</span>
 
         <span className="label">Rarebnb service fee</span>
-        <span className="amount">${`${serviceFee}`}</span>
+        <span className="amount">${`${formatPrice(serviceFee)}`}</span>
 
         <div className="price-total">
           <span className="label">Total USD</span>
-          <span className="amount">${`${totalPrice}`}</span>
+          <span className="amount">${`${formatPrice(totalPrice)}`}</span>
         </div>
       </section>
 

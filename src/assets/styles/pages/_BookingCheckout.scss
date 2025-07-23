@@ -1,32 +1,38 @@
 .booking-checkout {
   display: grid;
-  grid-template-columns: minmax(auto, 390px);
+  // grid-template-columns: auto;
   grid-auto-rows: min-content;
-  // column-gap: rem(80px); //!remove?
   row-gap: rem(24px);
 
   position: relative;
   max-width: 976px;
   margin-inline: auto;
-  padding: rem(32px) rem(65px) rem(64px);
+  // padding: rem(32px) rem(34px) 0;
+  padding-block-start: rem(32px);
+
+  @include for-narrow-layout {
+    // grid-template-columns: minmax(auto, 390px);
+    padding: rem(32px) rem(48px);
+
+  }
 
   @include for-wide-layout {
     grid-template-columns: minmax(386px, 1fr) minmax(16px, 1fr) minmax(332px, 372px);
+    padding-inline: rem(65px);
   }
 
   h2 {
     grid-column: 1/-1;
+    padding-inline-start: rem(5px);
+
+    text-align: center;
     font-size: rem(31px);
     line-height: rem(34px);
     font-weight: 600;
-  }
 
-  .btn-back {
-    position: absolute;
-    left: rem(5px);
-    @include circle-button(rem(44px));
-    background-color: $gray0;
-    margin-top: rem(30px);
+    @include for-narrow-layout {
+      text-align: start;
+    }
   }
 
   >.confirm-actions-panel>section {
