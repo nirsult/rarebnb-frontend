@@ -4,8 +4,9 @@
   left: 50%;
   grid-column: unset;
   transform: translate(-50%, 35%);
-  width: 50%;
+  width: 90vw;
   max-width: 568px;
+  min-width: 200px;
 
   border-radius: 1rem;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
@@ -13,6 +14,10 @@
   text-align: center;
   background-color: $clr-bg;
   z-index: 1000;
+
+  @include for-normal-layout {
+    width: 50%;
+  }
 
   header {
     border-block-end: 1px solid $gray2;
@@ -68,6 +73,7 @@
     .demo-login {
       display: flex;
       justify-content: space-evenly;
+      gap: rem(12px);
 
       button {
         padding: 1rem rem(12px);

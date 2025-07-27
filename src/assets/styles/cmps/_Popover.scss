@@ -9,4 +9,9 @@
   &:has(.guest-picker) {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
+
+  &:has(.hamburger-menu) {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+    border-radius: rem(12px);
+  }
 }

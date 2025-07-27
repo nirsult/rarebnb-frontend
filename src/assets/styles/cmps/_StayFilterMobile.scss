@@ -33,6 +33,7 @@
     padding-inline: rem(12px);
     padding-block: rem(80px);
 
+    overflow-y: auto;
     background-color: $gray0;
     z-index: 1;
 
@@ -105,6 +106,8 @@
 
       width: 100%;
       padding: rem(12px) rem(24px);
+      background-color: $clr-bg;
+      border-block-start: 1px solid $gray2;
 
 
       button {
