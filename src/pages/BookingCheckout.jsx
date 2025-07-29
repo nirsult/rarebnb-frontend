@@ -11,6 +11,7 @@ import { showErrorMsg } from "../services/event-bus.service"
 import { Loader } from "../cmps/Loader"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { orderService } from "../services/order"
+import { setLoginModal } from "../store/actions/system.actions"
 
 
 export function BookingCheckout() {
@@ -87,7 +88,10 @@ export function BookingCheckout() {
             text='Request to book'
             onClick={loggedInUser
               ? onConfirmOrder
-              : () => showErrorMsg('You must be logged in to make a reservation.')
+              : () => {
+                showErrorMsg('You must be logged in to make a reservation.')
+                setLoginModal(true)
+              }
             }
           />
         </section>

@@ -14,6 +14,8 @@ import { Popover } from "./Popover"
 import { LoginSignup } from "./LoginSignup"
 import { StayFilterMobile } from "./StayFilterMobile"
 import { useMediaQuery } from "../customHooks/useMediaQuery"
+import { setLoginModal } from "../store/actions/system.actions"
+import { AnimatePresence } from "framer-motion"
 
 export function AppHeader() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
@@ -24,7 +26,7 @@ export function AppHeader() {
 
   const [isMenuOpen, toggleMenu] = useToggle(false)
   const menuRef = useRef()
-  const [isLoginModalOpen, toggleLoginModal] = useToggle(false)
+  const isLoginModalOpen = useSelector(storeState => storeState.systemModule.isLoginModalOpen)
   const loginModalRef = useRef()
 
   const topRef = useRef()
@@ -97,7 +99,7 @@ export function AppHeader() {
   useEffect(() => {
     function handleClickOutside(ev) {
       if (loginModalRef.current && !loginModalRef.current.contains(ev.target)) {
-        toggleLoginModal(false)
+        setLoginModal(false)
       }
     }
 
@@ -156,18 +158,24 @@ export function AppHeader() {
               <Popover style={{ right: 0 }} reference={menuRef}>
                 <HamburgerMenu
                   onClose={() => toggleMenu(false)}
-                  onLoginClick={() => toggleLoginModal(true)}
+                  onLoginClick={() => {
+                    setLoginModal(true)
+                  }}
                 />
               </Popover>
             }
           </div>
         </section>
 
-        {isLoginModalOpen &&
-          <LoginSignup
-            onClose={() => toggleLoginModal(false)}
-            loginModalRef={loginModalRef}
-          />}
+        <AnimatePresence>
+          {isLoginModalOpen &&
+            <LoginSignup
+              onClose={() => {
+                setLoginModal(false)
+              }}
+              loginModalRef={loginModalRef}
+            />}
+        </AnimatePresence>
 
 
         {!isHeaderExpanded && (

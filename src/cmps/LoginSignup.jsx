@@ -6,6 +6,7 @@ import { userService } from "../services/user"
 import { login, signup } from "../store/actions/user.actions"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { useSelector } from "react-redux"
+import { motion } from 'framer-motion'
 
 
 export function LoginSignup({ onClose, loginModalRef }) {
@@ -45,7 +46,7 @@ export function LoginSignup({ onClose, loginModalRef }) {
       showSuccessMsg('Logged in successfully')
       onClose()
     } catch (err) {
-      showErrorMsg('Cannot login')
+      showErrorMsg('Wrong username or password')
     }
   }
 
@@ -60,71 +61,77 @@ export function LoginSignup({ onClose, loginModalRef }) {
       showSuccessMsg('Logged in successfully')
       onClose()
     } catch (err) {
-      showErrorMsg('Cannot login')
+      showErrorMsg('Error! Could not login')
     }
   }
 
   return (
     <>
-      <section className="login-signup" ref={loginModalRef}>
-        <header>
-          <button className="btn-close btn-reset" onClick={onClose}><XIcon /></button>
-          <h2>Log in or sign up</h2>
-        </header>
+      <motion.div
+        initial={{ opacity: 0, y: 200 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -200 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}>
+        <section className="login-signup" ref={loginModalRef}>
+          <header>
+            <button className="btn-close btn-reset" onClick={onClose}><XIcon /></button>
+            <h2>Log in or sign up</h2>
+          </header>
 
-        <div className="modal-body">
-          <h3>Welcome to Rarebnb</h3>
+          <div className="modal-body">
+            <h3>Welcome to Rarebnb</h3>
 
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              id="username"
-              placeholder="Username"
-              name="username"
-              value={credentials.username}
-              onChange={handleChange}
-              ref={usernameRef}
-              onClick={() => handleClick(usernameRef)}
-            />
-
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              ref={passwordRef}
-              onClick={() => handleClick(passwordRef)}
-            />
-
-            {isSignup &&
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                id="fullname"
-                placeholder="Full name"
-                name="fullname"
-                value={credentials.fullname}
+                id="username"
+                placeholder="Username"
+                name="username"
+                value={credentials.username}
                 onChange={handleChange}
-                ref={fullnameRef}
-                onClick={() => handleClick(fullnameRef)}
+                ref={usernameRef}
+                onClick={() => handleClick(usernameRef)}
               />
-            }
-            <GlowBtn text={isSignup ? 'Signup' : 'Login'} type="submit" />
-          </form>
 
-          {!loggedInUser &&
-            <section className="demo-login">
-              <button className="btn-reset demo-guest" onClick={(ev) => handleDemoLogin(ev, 'guest')}>Demo login as guest</button>
-              <button className="btn-reset demo-host" onClick={(ev) => handleDemoLogin(ev, 'host')}>Demo login as host</button>
-            </section>}
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                ref={passwordRef}
+                onClick={() => handleClick(passwordRef)}
+              />
 
-          <p>
-            {isSignup ? 'Already' : 'Don\'t'} have an account?
-            <button className="btn-toggle-signup btn-reset" onClick={toggleIsSignup}>{isSignup ? 'Login' : 'Signup'}</button>
-          </p>
-        </div >
-      </section >
+              {isSignup &&
+                <input
+                  type="text"
+                  id="fullname"
+                  placeholder="Full name"
+                  name="fullname"
+                  value={credentials.fullname}
+                  onChange={handleChange}
+                  ref={fullnameRef}
+                  onClick={() => handleClick(fullnameRef)}
+                />
+              }
+              <GlowBtn text={isSignup ? 'Signup' : 'Login'} type="submit" />
+            </form>
+
+            {!loggedInUser &&
+              <section className="demo-login">
+                <button className="btn-reset demo-guest" onClick={(ev) => handleDemoLogin(ev, 'guest')}>Demo login as guest</button>
+                <button className="btn-reset demo-host" onClick={(ev) => handleDemoLogin(ev, 'host')}>Demo login as host</button>
+              </section>}
+
+            <p>
+              {isSignup ? 'Already' : 'Don\'t'} have an account?
+              <button className="btn-toggle-signup btn-reset" onClick={toggleIsSignup}>{isSignup ? 'Login' : 'Signup'}</button>
+            </p>
+          </div >
+        </section >
+      </motion.div>
       <div className="login-backdrop" onClick={onClose}></div>
     </>
   )
