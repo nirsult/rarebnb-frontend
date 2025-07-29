@@ -3,20 +3,24 @@ import { FullLeftArrow, VISAicon } from "../cmps/Icons"
 import { useNavigate, useParams } from "react-router"
 import { useEffect, useState } from "react"
 import { stayService } from "../services/stay"
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import { CheckoutBookingDetails } from "../cmps/CheckoutBookingDetails"
 import { GlowBtn } from "../cmps/GlowBtn"
 import { placeOrder } from "../store/actions/order.actions"
 import { showErrorMsg } from "../services/event-bus.service"
 import { Loader } from "../cmps/Loader"
+import { getOrderDetailsFromSearchParams } from "../services/util.service"
+import { orderService } from "../services/order"
 
 
 export function BookingCheckout() {
-  const orderToSave = useSelector(storeState => storeState.orderModule.orderToSave)
-  const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
-  const { stayId } = useParams()
   const [stay, setStay] = useState(null)
+  const { stayId } = useParams()
+  const loggedInUser = useSelector(storeState => storeState.userModule.loggedInUser)
+  const [searchParams] = useSearchParams()
+  const { startDate, endDate, guestCountMap } = getOrderDetailsFromSearchParams(searchParams)
   const [msgHost, setMsgHost] = useState('')
+  const numOfNights = orderService.getNightCount(startDate, endDate)
 
   const navigate = useNavigate()
 
@@ -40,13 +44,13 @@ export function BookingCheckout() {
 
   if (!stay) return <Loader className="center" />
 
-  if (!orderToSave) {
-    return (
-      <section className="no-order-found center">
-        <h2 > Couldn't find order details...</h2>
-        <button className="btn-reset btn-back-home " onClick={() => navigate('/')}>Back home</button>
-      </section>
-    )
+  const orderToSave = {
+    stayId,
+    startDate,
+    endDate,
+    guestCountMap,
+    numOfNights,
+    ...orderService.calculateOrderFees(stay.price, numOfNights)
   }
 
   return (
@@ -70,7 +74,6 @@ export function BookingCheckout() {
               value={msgHost}
               placeholder={`Hi ${stay.host.fullname}, I'll be visiting...`}
             ></textarea>
-            {/* <button>Next</button> */}
           </section>
 
           <section className="review-request">
@@ -92,7 +95,10 @@ export function BookingCheckout() {
         <section className="confirm-trip-details">
           <CheckoutBookingDetails
             stay={stay}
-            order={orderToSave}
+            startDate={startDate}
+            endDate={endDate}
+            guestCountMap={guestCountMap}
+            numOfNights={numOfNights}
           />
         </section>
 

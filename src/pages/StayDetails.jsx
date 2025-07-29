@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { setEmptyOrderToSave, updateOrderToSave } from "../store/actions/order.actions"
 import { stayService } from "../services/stay"
 import { StayDetailsGallery } from "../cmps/StayDetailsGallery"
 import { StayDetailsSummary } from "../cmps/StayDetailsSummary"
@@ -8,7 +7,6 @@ import { StayDetailsAmenities } from "../cmps/StayDetailsAmenities"
 import { useToggle } from "../customHooks/useToggle"
 import { Modal } from "../cmps/Modal"
 import { ReservationWidget } from "../cmps/ReservationWidget"
-import { orderService } from "../services/order"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { SkeletonDetailsGallery } from "../cmps/SkeletonLoaders"
 import { StayDetailsReviews } from "../cmps/StayDetailsReviews"
@@ -43,38 +41,14 @@ export function StayDetails() {
     if (stayId) loadStay()
   }, [stayId])
 
-  useEffect(() => {
-    if (!stay) return
-
-    const { startDate, endDate, guestCountMap } = getOrderDetailsFromSearchParams(searchParams)
-    const numOfNights = orderService.getNightCount(startDate, endDate)
-    if (!stay?.price || numOfNights <= 0) return
-
-    const orderFees = orderService.calculateOrderFees(stay.price, numOfNights)
-    updateOrderToSave({
-      startDate,
-      endDate,
-      guestCountMap,
-      numOfNights,
-      ...orderFees
-    })
-  }, [searchParams, stay])
-
   async function loadStay() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
-
-      try {
-        setEmptyOrderToSave(stay)
-      } catch (err) {
-        console.error('Error setting empty order:', err)
-      }
-
-      setIsPageLoading(false)
-
     } catch (err) {
       console.error('Error fetching stay:', err)
+    } finally {
+      setIsPageLoading(false)
     }
   }
 
@@ -101,10 +75,14 @@ export function StayDetails() {
   }
 
   function handleReserve() {
-    navigate(`/stay/${stay._id}/checkout`)
+    navigate({
+      pathname: `/stay/${stay._id}/checkout`,
+      search: `${searchParams.toString()}`
+    })
   }
 
-  if (!stay) return
+  if (isPageLoading) return <SkeletonDetailsGallery />
+  if (!stay) return <div>Stay not found.</div>
 
   const { name, imgUrls, amenities } = stay
 
@@ -115,125 +93,121 @@ export function StayDetails() {
   />
 
   return (
-    isPageLoading
-      ? (<SkeletonDetailsGallery />)
-      : (
-        <>
-          {isNavVisible &&
-            <StayDetailsNav
-              stay={stay}
-              checkIn={startDate}
-              checkOut={endDate}
-              handleReserve={handleReserve}
-              setIsDatePickerOpen={setIsDatePickerOpen}
-              isReserveButtonVisible={isReserveButtonVisible}
-            />
-          }
-          <section className={`stay-details ${isMobile ? 'full main-layout' : ''}`}>
-            <button
-              onClick={() => navigate(-1)}
-              className="btn-back"
-            >
-              <FullLeftArrow />
-            </button>
-            {!isMobile && <h2>{name}</h2>}
+    <>
+      {isNavVisible &&
+        <StayDetailsNav
+          stay={stay}
+          checkIn={startDate}
+          checkOut={endDate}
+          handleReserve={handleReserve}
+          setIsDatePickerOpen={setIsDatePickerOpen}
+          isReserveButtonVisible={isReserveButtonVisible}
+        />
+      }
+      <section className={`stay-details ${isMobile ? 'full main-layout' : ''}`}>
+        <button
+          onClick={() => navigate(-1)}
+          className="btn-back"
+        >
+          <FullLeftArrow />
+        </button>
+        {!isMobile && <h2>{name}</h2>}
 
 
-            {isMobile
-              ? <StayDetailsGalleryMobile imgUrls={imgUrls} />
-              : <StayDetailsGallery
-                imgUrls={imgUrls}
-                isGalleryExpanded={isGalleryExpanded}
-                setIsGalleryExpanded={setIsGalleryExpanded}
-                setIsNavVisible={setIsNavVisible}
-              />}
+        {isMobile
+          ? <StayDetailsGalleryMobile imgUrls={imgUrls} />
+          : <StayDetailsGallery
+            imgUrls={imgUrls}
+            isGalleryExpanded={isGalleryExpanded}
+            setIsGalleryExpanded={setIsGalleryExpanded}
+            setIsNavVisible={setIsNavVisible}
+          />}
 
-            <div className="details-page-content">
-              {isMobile && <h2>{name}</h2>}
-              <section className="scroll-section">
-                <div className="main-column">
-                  <StayDetailsSummary stay={stay} />
+        <div className="details-page-content">
+          {isMobile && <h2>{name}</h2>}
+          <section className="scroll-section">
+            <div className="main-column">
+              <StayDetailsSummary stay={stay} />
 
-                  <section id="amenities" className="stay-details-amenities">
+              <section id="amenities" className="stay-details-amenities">
+                <StayDetailsAmenities
+                  amenities={amenities}
+                  isAmenitiesModalOpen={isAmenitiesModalOpen}
+                  limit={10}
+                />
+
+                {amenities.length > 10 &&
+                  <button
+                    className="btn-secondary"
+                    onClick={toggleIsAmenitiesModalOpen}
+                  >
+                    Show all {amenities.length} amenities
+                  </button>
+                }
+
+                {isAmenitiesModalOpen && (
+                  <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
                     <StayDetailsAmenities
-                      amenities={amenities}
-                      isAmenitiesModalOpen={isAmenitiesModalOpen}
-                      limit={10}
-                    />
-
-                    {amenities.length > 10 &&
-                      <button
-                        className="btn-secondary"
-                        onClick={toggleIsAmenitiesModalOpen}
-                      >
-                        Show all {amenities.length} amenities
-                      </button>
-                    }
-
-                    {isAmenitiesModalOpen && (
-                      <Modal onClose={() => toggleIsAmenitiesModalOpen(false)}>
-                        <StayDetailsAmenities
-                          amenities={amenities} />
-                      </Modal>
-                    )}
-                  </section>
-
-                </div>
-
-                <div id="reservation-widget" className="reservation-column">
-                  <section className="reservation-widget">
-                    <ReservationWidget
-                      stay={stay}
-                      checkIn={startDate}
-                      checkOut={endDate}
-                      guests={guestCountMap}
-                      isDatePickerOpen={isDatePickerOpen}
-                      setIsDatePickerOpen={setIsDatePickerOpen}
-                      isGuestPickerOpen={isGuestPickerOpen}
-                      onSetDates={onSetDates}
-                      onSetGuests={onSetGuests}
-                      toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
-                      handleReserve={handleReserve}
-                      setIsReserveButtonVisible={setIsReserveButtonVisible}
-                      isMobile={isMobile}
-                    />
-                  </section>
-                </div>
+                      amenities={amenities} />
+                  </Modal>
+                )}
               </section>
 
+            </div>
+
+            <div id="reservation-widget" className="reservation-column">
+              <section className="reservation-widget">
+                <ReservationWidget
+                  stay={stay}
+                  checkIn={startDate}
+                  checkOut={endDate}
+                  guests={guestCountMap}
+                  isDatePickerOpen={isDatePickerOpen}
+                  setIsDatePickerOpen={setIsDatePickerOpen}
+                  isGuestPickerOpen={isGuestPickerOpen}
+                  onSetDates={onSetDates}
+                  onSetGuests={onSetGuests}
+                  toggleIsGuestPickerOpen={toggleIsGuestPickerOpen}
+                  handleReserve={handleReserve}
+                  setIsReserveButtonVisible={setIsReserveButtonVisible}
+                  isMobile={isMobile}
+                />
+              </section>
+            </div>
+          </section>
 
 
+
+          <StayDetailsReviews
+            stay={stay}
+            reviews={stay.reviews}
+            isModalOpen={isReviewModalOpen}
+            setIsReviewModalOpen={setIsReviewModalOpen}
+          />
+
+          {isReviewModalOpen && (
+            <Modal onClose={() => setIsReviewModalOpen(false)}>
               <StayDetailsReviews
-                stay={stay}
                 reviews={stay.reviews}
                 isModalOpen={isReviewModalOpen}
-                setIsReviewModalOpen={setIsReviewModalOpen}
               />
+            </Modal>
+          )}
 
-              {isReviewModalOpen && (
-                <Modal onClose={() => setIsReviewModalOpen(false)}>
-                  <StayDetailsReviews
-                    reviews={stay.reviews}
-                    isModalOpen={isReviewModalOpen}
-                  />
-                </Modal>
-              )}
+          <StayDetailsMap location={stay.loc} />
 
-              <StayDetailsMap location={stay.loc} />
+        </div >
 
-            </div >
+        {isMobile &&
+          <StayDetailsFooterMobile
+            stay={stay}
+            checkIn={startDate}
+            checkOut={endDate}
+            handleReserve={handleReserve}
+          />
+        }
+      </section >
 
-            {isMobile &&
-              <StayDetailsFooterMobile
-                stay={stay}
-                checkIn={startDate}
-                checkOut={endDate}
-                handleReserve={handleReserve}
-              />
-            }
-          </section >
-
-        </>
-      )
+    </>
   )
 }
