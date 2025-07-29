@@ -42,8 +42,8 @@ export function HamburgerIcon() {
   return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: 3, overflow: 'visible' }} > <g fill="none"> <path d="M2 16h28" /> <path d="M2 24h28" /> <path d="M2 8h28" /> </g> </svg>)
 }
 
-export function XIcon() {
-  return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentColor', strokeWidth: 3, overflow: 'visible', }} > <path d="M6 6 L26 26" /> <path d="M26 6 L6 26" /> </svg>)
+export function XIcon({ size = "16px" }) {
+  return (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: 'block', fill: 'none', height: size, width: size, stroke: 'currentColor', strokeWidth: 3, overflow: 'visible', }} > <path d="M6 6 L26 26" /> <path d="M26 6 L6 26" /> </svg>)
 }
 
 export function DotsGrid() {

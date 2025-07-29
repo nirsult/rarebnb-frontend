@@ -40,6 +40,10 @@
     &+button::before {
       display: none;
     }
+
+    .btn-clear {
+      display: block;
+    }
   }
 
   button {
@@ -116,7 +120,13 @@
       }
     }
 
-
+    .btn-clear {
+      display: none;
+      position: absolute;
+      right: rem(10px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
     input[type='text'] {
       background-color: transparent;

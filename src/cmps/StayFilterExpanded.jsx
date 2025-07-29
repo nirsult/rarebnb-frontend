@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { GuestPicker } from "./GuestPicker"
 import { Popover } from "./Popover"
-import { MagnifyingGlassIcon } from "./Icons"
+import { MagnifyingGlassIcon, XIcon } from "./Icons"
 import { MyDatePicker } from "./MyDatePicker"
 import { formatDate, getPluralSuffix } from "../services/util.service"
 import { useNavigate } from "react-router-dom"
@@ -56,6 +56,14 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
     }))
   }
 
+  function handleClearDate() {
+    setFilterByToEdit(prev => ({
+      ...prev,
+      checkIn: null,
+      checkOut: null
+    }))
+  }
+
   function onSetGuests(guests) {
     const total = orderService.getGuestTotal(guests)
     setFilterByToEdit(prev => ({ ...prev, ...guests, guestTotal: total }))
@@ -106,6 +114,14 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
           <span className="btn-label">Check in</span>
           <span className="btn-value">{checkIn ? formatDate(checkIn) : 'Add dates'}</span>
         </div>
+        {checkIn &&
+          <div
+            className="btn-clear"
+            onClick={handleClearDate}
+          >
+            <XIcon size="12px" />
+          </div>
+        }
       </button>
 
       <button
@@ -116,6 +132,14 @@ export function StayFilterExpanded({ filterBy, activeSection, setActiveSection }
           <span className="btn-label">Check out</span>
           <span className="btn-value">{checkOut ? formatDate(checkOut) : 'Add dates'}</span>
         </div>
+        {checkOut &&
+          <div
+            className="btn-clear"
+            onClick={handleClearDate}
+          >
+            <XIcon size="12px" />
+          </div>
+        }
       </button>
 
       <button className={`btn-filter btn-guests ${activeSection === 'guests' ? 'active' : ''}`} onClick={() => setActiveSection('guests')}>
