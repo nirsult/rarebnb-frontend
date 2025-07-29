@@ -54,6 +54,12 @@
       header {
         h3 {
           font-size: rem(22px);
+          transition: text-decoration .2s ease;
+          font-weight: 500;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         h3,

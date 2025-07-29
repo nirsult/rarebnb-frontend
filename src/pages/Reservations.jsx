@@ -5,6 +5,7 @@ import { showErrorMsg } from '../services/event-bus.service'
 import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.service'
 import { formatDate, formatPrice, getPluralSuffix } from "../services/util.service"
 import { Loader } from "../cmps/Loader"
+import { Link } from "react-router-dom"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
@@ -71,7 +72,9 @@ export function Reservations() {
             <div className="reservation-details">
 
               <header>
-                <h3>{name}</h3>
+                <Link to={`/stay/${stay._id}`}>
+                  <h3>{name}</h3>
+                </Link>
                 <p className="location">{`${location.city}, ${location.country}`}</p>
               </header>
               <p className={`reservation-status ${status}`}>{status}</p>

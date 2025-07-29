@@ -6,6 +6,7 @@ import { formatDate, formatPrice, getPluralSuffix } from "../services/util.servi
 import { orderService } from "../services/order"
 import { showErrorMsg } from "../services/event-bus.service"
 import { Loader } from "../cmps/Loader"
+import { Link } from "react-router-dom"
 
 export function Trips() {
   const orders = useSelector(storeState => storeState.orderModule.orders)
@@ -69,7 +70,9 @@ export function Trips() {
 
             <div className="card-content">
               <header>
-                <h3>{name}</h3>
+                <Link to={`/stay/${stay._id}`}>
+                  <h3>{name}</h3>
+                </Link>
                 <p className="location">{`${location.city}, ${location.country}`}</p>
               </header>
               <p className={`trip-status ${status}`}>{status}</p>
