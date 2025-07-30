@@ -85,11 +85,6 @@ export function loadFromStorage(key) {
 export function getFilterFromSearchParams(searchParams) {
   return {
     country: searchParams.get('country') || '',
-    // labels: searchParams.getAll('labels') || [],
-    // sortBy: {
-    //   type: searchParams.get('sortType') || '',
-    //   sortDir: +searchParams.get('sortDir') || 1,
-    // },
     checkIn: parseDate(searchParams.get('checkIn')),
     checkOut: parseDate(searchParams.get('checkOut')),
     pageIdx: +searchParams.get('pageIdx') || 0,
@@ -116,12 +111,6 @@ export function getOrderDetailsFromSearchParams(searchParams) {
       infants: +searchParams.get('infants') || 0,
       pets: +searchParams.get('pets') || 0,
     },
-    // pricePerNight: +searchParams.get('pricePerNight') || 0,
-    // subTotal: +searchParams.get('subTotal') || 0,
-    // serviceFee: +searchParams.get('serviceFee') || 0,
-    // cleaningFee: +searchParams.get('cleaningFee') || 0,
-    // totalPrice: +searchParams.get('totalPrice') || 0,
-    // numOfNights: +searchParams.get('numOfNights') || 0,
   }
 }
 

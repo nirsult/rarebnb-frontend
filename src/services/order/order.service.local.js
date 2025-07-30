@@ -14,34 +14,6 @@ export const orderService = {
 }
 
 const gOrders = [
-  // {
-  //   _id: 's101',
-  //   name: 'Ribeira Charming Duplex',
-  //   type: 'House',
-  //   avgRating: 4.82,
-  //   bedCount: 2,
-  //   imgUrls: ['https://picsum.photos/300/200'],
-  //   price: 80.0,
-  //   summary: 'Fantastic duplex apartment with river view.',
-  //   capacity: 8,
-  //   amenities: ['TV', 'Wifi', 'Kitchen'],
-  //   labels: ['Trending', 'Top of the world'],
-  //   host: {
-  //     _id: 'u101',
-  //     fullname: 'Davit Pok',
-  //     imgUrl: 'https://a0.muscache.com/im/pictures/fab79f25.jpg',
-  //   },
-  //   loc: {
-  //     country: 'Portugal',
-  //     countryCode: 'PT',
-  //     city: 'Lisbon',
-  //     address: '17 Kombo st',
-  //     lat: 41.1413,
-  //     lng: -8.61308,
-  //   },
-  //   reviews: [],
-  //   likedByUsers: [],
-  // },
   {
     _id: 's101',
     name: 'Ribeira Charming Duplex',

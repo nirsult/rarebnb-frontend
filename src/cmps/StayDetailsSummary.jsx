@@ -17,9 +17,6 @@ export function StayDetailsSummary({ stay }) {
         <p className="summary-listing-facts">
           <span>{`${capacity} guest${getPluralSuffix(capacity)}`}</span>
           <span>{` ${bedCount} bed${getPluralSuffix(bedCount)}`}</span>
-          {/* //TODO - add labels to the data */}
-          {/* <span>{labels[0] && ` ${labels[0]}`}</span>
-          <span> {labels[1] && ` ${labels[1]}`}</span> */}
         </p>
         <p className="summary-reviews">
           <StarIcon />

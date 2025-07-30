@@ -1,19 +1,15 @@
 .booking-checkout {
   display: grid;
-  // grid-template-columns: auto;
   grid-auto-rows: min-content;
   row-gap: rem(24px);
 
   position: relative;
   max-width: 976px;
   margin-inline: auto;
-  // padding: rem(32px) rem(34px) 0;
   padding-block-start: rem(32px);
 
   @include for-narrow-layout {
-    // grid-template-columns: minmax(auto, 390px);
     padding: rem(32px) rem(48px);
-
   }
 
   @include for-wide-layout {

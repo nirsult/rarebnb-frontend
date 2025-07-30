@@ -1,8 +1,26 @@
-# React + Vite
+# Rarebnb
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Rarebnb** is an Airbnb-inspired web app that connects property owners looking to host guests with travelers looking for unique places to stay.
 
-Currently, two official plugins are available:
+This is my final project for the *Coding Academy Fullstack Bootcamp*.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
+
+Check out the live version of **Rarebnb** here: [https://rarebnb-hduf.onrender.com](https://rarebnb-hduf.onrender.com)
+
+## Features
+
+- ✅ User Authentication: Sign up, log in, and log out securely.
+- ✅ Search & Filter: Guests can search for stays based on location, dates, and other filters.
+- ✅ Booking & Reservations: Guests can book stays and hosts can manage incoming reservations.
+- ✅ Responsive Design: Works well on both desktop and mobile devices.
+
+## Tech Stack
+
+- **Frontend**: React, Vite.
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Real-time Communication:**: WebSockets
+- **API Testing:**: Postman
+- **Version Control:**: Git, GitHub
+- **Other**: RESTful APIs

@@ -6,7 +6,6 @@ import { orderService } from "../services/order"
 
 export function CheckoutBookingDetails({ stay, startDate, endDate, guestCountMap, numOfNights }) {
   const { name, avgRating, imgUrls, reviews } = stay
-  // const { startDate, endDate, guestCountMap, numOfNights } = order
 
   const totalGuests = orderService.getGuestTotal(guestCountMap)
   const { perNight, nightsTotal, cleaningFee, serviceFee, totalPrice } = orderService.getPriceBreakdown(stay, numOfNights)

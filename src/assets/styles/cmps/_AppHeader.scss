@@ -91,18 +91,11 @@ body:has(.stay-details) {
         cursor: default;
       }
 
-      // Show full logo on wide screens
       @include for-wide-layout {
         .logo-full {
           display: block;
         }
       }
-
-      // @media (min-width: $normal-breakpoint) {
-      //   .logo-full {
-      //     display: block;
-      //   }
-      // }
     }
   }
 }

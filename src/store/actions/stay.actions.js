@@ -3,11 +3,6 @@ import { store } from "../store"
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG, SET_PAGINATION } from "../reducers/stay.reducer"
 import { LOADING_START, LOADING_DONE } from "../reducers/system.reducer"
 
-// export async function loadStays(filterBy) {
-//   const stays = await stayService.query(filterBy)
-//   store.dispatch({ type: SET_STAYS, stays })
-// }
-
 export async function loadStays(filterBy) {
   store.dispatch({ type: LOADING_START })
   try {
@@ -20,16 +15,6 @@ export async function loadStays(filterBy) {
     store.dispatch({ type: LOADING_DONE })
   }
 }
-
-// export async function loadStays(filterBy) {
-//   try {
-//     const stays = await stayService.query(filterBy)
-//     store.dispatch(getCmdSetStays(stays))
-//   } catch (err) {
-//     console.log('Cannot load stays', err)
-//     throw err
-//   }
-// }
 
 export async function loadStay(stayId) {
   try {

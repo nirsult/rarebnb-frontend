@@ -87,14 +87,6 @@ export function updateOrderToSave(updatedOrder) {
   }
 }
 
-// export function updateOrderToSave(field, value) {
-//   try {
-//     store.dispatch(getCmdUpdateOrderToSave({ field, value }))
-//   } catch (err) {
-//     console.log('Cannot save order', err)
-//     throw err
-//   }
-// }
 
 export function clearOrderToSave() {
   try {
@@ -118,13 +110,7 @@ function getCmdUpdateOrderToSave(updatedOrder) {
     updatedOrder
   }
 }
-// function getCmdUpdateOrderToSave({ field, value }) {
-//   return {
-//     type: UPDATE_ORDER_TO_SAVE,
-//     field,
-//     value
-//   }
-// }
+
 function getCmdClearOrderToSave() {
   return {
     type: CLEAR_ORDER_TO_SAVE,

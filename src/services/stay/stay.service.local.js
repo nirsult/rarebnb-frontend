@@ -1219,32 +1219,6 @@ async function query(filterBy = {}) {
   }
 }
 
-// async function query(filterBy = { country: "" }) {
-// console.log(filterBy)
-//   var stays = await storageService.query(STORAGE_KEY)
-
-//   if (filterBy.country) {
-//     const regex = new RegExp(filterBy.country, "i")
-//     stays = stays.filter(
-//       (stay) => regex.test(stay.loc?.country) || regex.test(stay.loc?.city)
-//     )
-//   }
-//   // if (minPrice) {
-//   //   stays = stays.filter(stay => stay.price >= minPrice)
-//   // }
-//   // if (sortField === 'name') {
-//   //   stays.sort((stay1, stay2) =>
-//   //     stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
-//   // }
-//   // if (sortField === 'price') {
-//   //   stays.sort((stay1, stay2) =>
-//   //     (stay1[sortField] - stay2[sortField]) * +sortDir)
-//   // }
-
-//   // stays = stays.map(({ _id, name, price, host, imgUrls }) => ({ _id, name, price, host, imgUrls }))
-//   return stays
-// }
-
 function getById(stayId) {
   return storageService.get(STORAGE_KEY, stayId)
 }
