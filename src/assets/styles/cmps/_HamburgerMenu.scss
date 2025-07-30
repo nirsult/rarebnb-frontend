@@ -24,8 +24,15 @@
       }
 
       a {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        gap: rem(10px);
         width: 100%;
+
+        svg {
+          color: $clr-white;
+          stroke: $clr-text-primary;
+        }
       }
     }
   }

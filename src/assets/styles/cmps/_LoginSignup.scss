@@ -81,6 +81,13 @@
         border-radius: rem(8px);
         font-weight: 500;
         font-size: rem(14px);
+        transition: .35s;
+
+        &:hover {
+          background-color: $clr-brand-main;
+          color: $clr-white;
+          scale: 1.05;
+        }
       }
     }
 

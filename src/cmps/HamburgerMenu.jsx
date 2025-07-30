@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom"
 import { logout } from "../store/actions/user.actions"
 import { showSuccessMsg } from "../services/event-bus.service"
+import { AirbnbTripsIcon, CalendarIcon, GraphIcon, HeartIcon } from "./Icons"
 
 
 export function HamburgerMenu({ onClose, onLoginClick }) {
@@ -30,10 +31,10 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
       {loggedInUser
         ? <>
           <ul>
-            <li><NavLink onClick={onClose} to="/whishlist" >Whishlists</NavLink></li>
-            <li><NavLink onClick={onClose} to="/trips" >Trips</NavLink></li>
-            <li><NavLink onClick={onClose} to="/dashboard" >Dashboard</NavLink></li>
-            <li><NavLink onClick={onClose} to="/reservations" >Reservations</NavLink></li>
+            <li><NavLink onClick={onClose} to="/whishlist" ><HeartIcon width="1rem" height="1rem" />Wishlists</NavLink></li>
+            <li><NavLink onClick={onClose} to="/trips" ><AirbnbTripsIcon /> Trips</NavLink></li>
+            <li><NavLink onClick={onClose} to="/dashboard" ><GraphIcon />Dashboard</NavLink></li>
+            <li><NavLink onClick={onClose} to="/reservations" ><CalendarIcon /> Reservations</NavLink></li>
           </ul>
           <button className="btn-menu-auth logout" onClick={handleLogout}>Log out</button>
         </>
