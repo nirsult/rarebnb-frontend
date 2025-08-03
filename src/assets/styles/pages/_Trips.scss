@@ -2,6 +2,7 @@
   width: 100%;
   margin-inline: auto;
   padding-block-start: 1rem;
+  font-size: rem(16px);
 
   form {
     display: flex;
@@ -18,8 +19,14 @@
       margin: 0;
     }
 
+    section {
+      display: flex;
+      gap: rem(8px);
+    }
+
     @include for-narrow-layout {
       flex-direction: row;
+      align-items: center;
     }
 
     select {
@@ -38,6 +45,7 @@
   }
 
   .no-trips {
+    margin-block-start: 2rem;
     text-align: center;
   }
 

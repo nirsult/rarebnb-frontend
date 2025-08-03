@@ -20,8 +20,14 @@
       margin: 0;
     }
 
-    @include for-narrow-layout {
+    section {
+      display: flex;
+      gap: rem(8px);
+    }
+
+    @include for-normal-layout {
       flex-direction: row;
+      align-items: center;
     }
 
     select {
@@ -40,6 +46,7 @@
   }
 
   .no-reservations {
+    margin-block-start: 2rem;
     text-align: center;
   }
 

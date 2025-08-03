@@ -83,20 +83,26 @@ export function Reservations() {
       <h2>Manage reservations</h2>
 
       <form>
-        <select name="status" id="status" value={filterBy.status} onChange={handleFilterChange}>
-          <option value="all">Status</option>
-          <option value="approved">approved</option>
-          <option value="rejected">rejected</option>
-          <option value="pending">pending</option>
-          <option value="cancelled">cancelled</option>
-        </select>
+        <section className="status">
+          <label htmlFor="status">Status:</label>
+          <select name="status" id="status" value={filterBy.status} onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="approved">approved</option>
+            <option value="rejected">rejected</option>
+            <option value="pending">pending</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+        </section>
 
-        <select value={`${filterBy.sortField}: ${filterBy.sortDir}`} onChange={handleSortChange}>
-          <option value="startDate: -1">Check-in: Later first</option>
-          <option value="startDate: 1">Check-in: Earlier first</option>
-          <option value="_id: -1">Date placed: Newest first</option>
-          <option value="_id: 1">Date placed: Oldest first</option>
-        </select>
+        <section className="sort">
+          <label htmlFor="sort">Sort:</label>
+          <select name="sort" id="sort" value={`${filterBy.sortField}: ${filterBy.sortDir}`} onChange={handleSortChange}>
+            <option value="startDate: -1">Check-in: Later first</option>
+            <option value="startDate: 1">Check-in: Earlier first</option>
+            <option value="_id: -1">Date placed: Newest first</option>
+            <option value="_id: 1">Date placed: Oldest first</option>
+          </select>
+        </section>
 
         <label>
           <input type="checkbox" checked={filterBy.includePast} onChange={handleCheckboxChange} />
