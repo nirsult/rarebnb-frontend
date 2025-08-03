@@ -6,6 +6,7 @@ import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.serv
 import { formatDate, formatPrice, getDefaultOrderFilter, getPluralSuffix } from "../services/util.service"
 import { Loader } from "../cmps/Loader"
 import { Link } from "react-router-dom"
+import { orderService } from "../services/order"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
