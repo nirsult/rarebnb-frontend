@@ -7,7 +7,7 @@ import { Link, useSearchParams } from "react-router-dom"
 import { CheckoutBookingDetails } from "../cmps/CheckoutBookingDetails"
 import { GlowBtn } from "../cmps/GlowBtn"
 import { placeOrder } from "../store/actions/order.actions"
-import { showErrorMsg } from "../services/event-bus.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { Loader } from "../cmps/Loader"
 import { getOrderDetailsFromSearchParams } from "../services/util.service"
 import { orderService } from "../services/order"
@@ -38,8 +38,13 @@ export function BookingCheckout() {
     loadStay()
   }, [stayId])
 
-  function onConfirmOrder() {
-    placeOrder(orderToSave)
+  async function onConfirmOrder() {
+    try {
+      await placeOrder(orderToSave)
+      showSuccessMsg('Order placed successfully')
+    } catch {
+      showErrorMsg('Could not place order')
+    }
     navigate('/trips')
   }
 
