@@ -3,14 +3,17 @@ import { useEffect, useState } from 'react'
 import { getCmdAddOrder, loadOrders, updateOrder } from '../store/actions/order.actions'
 import { showErrorMsg } from '../services/event-bus.service'
 import { SOCKET_EVENT_ORDER_ADDED, socketService } from '../services/socket.service'
-import { formatDate, formatPrice, getPluralSuffix } from "../services/util.service"
+import { formatDate, formatPrice, getDefaultOrderFilter, getPluralSuffix } from "../services/util.service"
 import { Loader } from "../cmps/Loader"
 import { Link } from "react-router-dom"
 
 export function Reservations() {
   const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
   const orders = useSelector(storeState => storeState.orderModule.orders)
-  const filterBy = { hostId: loggedInUser._id, sortField: '_id', sortDir: -1 }
+  const [filterBy, setFilterBy] = useState({
+    hostId: loggedInUser._id,
+    ...getDefaultOrderFilter()
+  })
   const [isPageLoading, setIsPageLoading] = useState(true)
   const dispatch = useDispatch()
 
@@ -35,7 +38,7 @@ export function Reservations() {
     return () => {
       socketService.off(SOCKET_EVENT_ORDER_ADDED)
     }
-  }, [loggedInUser])
+  }, [loggedInUser, filterBy])
 
   async function updateStatus(orderId, newStatus) {
     const orderToUpdate = orders.find((order) => order._id === orderId)
@@ -50,11 +53,55 @@ export function Reservations() {
     }
   }
 
+  function handleFilterChange(ev) {
+    const { name, value } = ev.target
+    setFilterBy(prev => ({ ...prev, [name]: value }))
+  }
+
+  function handleSortChange(ev) {
+    const { value } = ev.target
+    const [sortField, sortDir] = value.split(':')
+    setFilterBy(prev => ({
+      ...prev,
+      sortField,
+      sortDir: +sortDir
+    }))
+  }
+
+  function handleCheckboxChange(ev) {
+    setFilterBy(prev => ({
+      ...prev,
+      includePast: ev.target.checked
+    }))
+  }
+
   if (isPageLoading) return <Loader className="center" />
 
   return (
     <section className="reservations">
       <h2>Manage reservations</h2>
+
+      <form>
+        <select name="status" id="status" value={filterBy.status} onChange={handleFilterChange}>
+          <option value="all">Status</option>
+          <option value="approved">approved</option>
+          <option value="rejected">rejected</option>
+          <option value="pending">pending</option>
+          <option value="cancelled">cancelled</option>
+        </select>
+
+        <select value={`${filterBy.sortField}: ${filterBy.sortDir}`} onChange={handleSortChange}>
+          <option value="startDate: -1">Check-in: Later first</option>
+          <option value="startDate: 1">Check-in: Earlier first</option>
+          <option value="_id: -1">Date placed: Newest first</option>
+          <option value="_id: 1">Date placed: Oldest first</option>
+        </select>
+
+        <label>
+          <input type="checkbox" checked={filterBy.includePast} onChange={handleCheckboxChange} />
+          Include past trips
+        </label>
+      </form>
 
       {!orders.length && <p className="no-reservations">No reservations to show.</p>}
 

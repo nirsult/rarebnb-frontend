@@ -130,3 +130,12 @@ export function formatPrice(price) {
     maximumFractionDigits: 2
   })
 }
+
+export function getDefaultOrderFilter() {
+  return {
+    sortField: '_id',
+    sortDir: -1,
+    status: 'all',
+    includePast: false
+  }
+}
