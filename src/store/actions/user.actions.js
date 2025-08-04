@@ -85,3 +85,17 @@ export async function loadUser(userId) {
     console.log("Cannot load user", err)
   }
 }
+
+export async function toggleWishlist(stayId) {
+  try {
+    const updatedUser = await userService.toggleWishlist(stayId)
+
+    store.dispatch({ type: SET_USER, user: updatedUser })
+    sessionStorage.setItem('loggedInUser', JSON.stringify(updatedUser))
+
+    return updatedUser
+  } catch (err) {
+    console.log('UserActions: err in toggleWishlist', err)
+    throw err
+  }
+}

@@ -86,6 +86,10 @@
       svg.icon-like {
         color: $clr-btn-like;
         stroke: $clr-white;
+
+        &.liked {
+          color: $clr-brand-main;
+        }
       }
 
       &:active {

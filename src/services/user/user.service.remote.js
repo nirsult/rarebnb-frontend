@@ -12,6 +12,7 @@ export const userService = {
   update,
   getLoggedInUser,
   saveLoggedInUser,
+  toggleWishlist,
 }
 
 function getUsers() {
@@ -65,8 +66,13 @@ function saveLoggedInUser(user) {
     fullname: user.fullname,
     imgUrl: user.imgUrl,
     score: user.score,
-    isAdmin: user.isAdmin
+    isAdmin: user.isAdmin,
+    wishlist: user.wishlist
   }
   sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
   return user
 }
+
+async function toggleWishlist(stayId) {
+  return await httpService.put('user/:id/wishlist', { stayId })
+} 
