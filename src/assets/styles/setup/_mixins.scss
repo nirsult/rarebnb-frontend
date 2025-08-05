@@ -82,3 +82,19 @@
   padding: rem(16px);
   border-radius: 50%;
 }
+
+@mixin btn-like-base {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  z-index: 100;
+  border: none;
+
+  .liked {
+    color: $clr-brand-main;
+  }
+
+  &:active {
+    scale: 0.92;
+  }
+}

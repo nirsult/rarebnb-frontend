@@ -7,40 +7,12 @@ import { Navigation, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { useSelector } from "react-redux"
-import { toggleWishlist } from "../store/actions/user.actions"
-import { useEffect, useState } from "react"
-import { showErrorMsg } from "../services/event-bus.service"
+import { useWishlist } from "../customHooks/useWishlist"
 
 
 export function StayPreview({ stay }) {
   const [searchParams, setSearchParams] = useSearchParams()
-  const loggedInUser = useSelector((storeState) => storeState.userModule.loggedInUser)
-  const [isLiked, setIsLiked] = useState(false)
-
-  useEffect(() => {
-    if (loggedInUser?.wishlist.includes(stay._id)) {
-      setIsLiked(true)
-    } else {
-      setIsLiked(false)
-    }
-  }, [loggedInUser, stay._id])
-
-  async function handleWishlistClick(ev, stayId) {
-    ev.preventDefault()
-    ev.stopPropagation()
-    if (!loggedInUser) return
-
-    setIsLiked(prev => !prev)
-
-    try {
-      await toggleWishlist(stayId)
-    } catch (err) {
-      console.log('HERE')
-      setIsLiked(prev => !prev)
-      showErrorMsg('Failed to update wishlist')
-    }
-  }
+  const { isLiked, handleWishlistClick } = useWishlist(stay._id)
 
   return (
     <article className="stay-preview">
@@ -65,7 +37,7 @@ export function StayPreview({ stay }) {
           </Swiper>
         </section>
 
-        <button className='btn-like' onClick={(ev) => handleWishlistClick(ev, stay._id)}>
+        <button className='btn-like' onClick={handleWishlistClick}>
           <HeartIcon className={`icon-like ${isLiked ? 'liked' : ''}`} />
         </button>
 

@@ -1,6 +1,6 @@
 import { stayService } from "../../services/stay"
 import { store } from "../store"
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG, SET_PAGINATION } from "../reducers/stay.reducer"
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG, SET_PAGINATION, SET_WISHLISTS_STAYS } from "../reducers/stay.reducer"
 import { LOADING_START, LOADING_DONE } from "../reducers/system.reducer"
 
 export async function loadStays(filterBy) {
@@ -9,6 +9,19 @@ export async function loadStays(filterBy) {
     const res = await stayService.query(filterBy)
     store.dispatch(getCmdSetStays(res.stays))
     store.dispatch(getCmdSetPagination(res.pageIdx, res.totalPages))
+  } catch (err) {
+    console.error("Cannot load stays", err)
+  } finally {
+    store.dispatch({ type: LOADING_DONE })
+  }
+}
+
+export async function loadWishlistsStays(filterBy) {
+  store.dispatch({ type: LOADING_START })
+  try {
+    const res = await stayService.query(filterBy)
+    store.dispatch(getCmdSetWishlistStays(res.stays))
+    // store.dispatch(getCmdSetPagination(res.pageIdx, res.totalPages))
   } catch (err) {
     console.error("Cannot load stays", err)
   } finally {
@@ -81,6 +94,9 @@ function getCmdSetStay(stay) {
     type: SET_STAY,
     stay,
   }
+}
+function getCmdSetWishlistStays(stays) {
+  return { type: SET_WISHLISTS_STAYS, stays }
 }
 function getCmdSetPagination(pageIdx, totalPages) {
   return {

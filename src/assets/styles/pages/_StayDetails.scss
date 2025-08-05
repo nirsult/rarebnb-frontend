@@ -8,12 +8,54 @@
     z-index: 10;
   }
 
+  .btn-like {
+    @include btn-like-base;
+    position: absolute;
+    right: rem(24px);
+    top: rem(24px);
+
+    svg.icon-like {
+
+      color: $clr-btn-like;
+      stroke: $clr-white;
+
+      &.liked {
+        color: $clr-brand-main;
+      }
+    }
+
+    @include for-normal-layout {
+      position: static;
+      display: flex;
+      gap: rem(6px);
+      font-size: rem(14px);
+      margin-block-end: rem(24px);
+
+      svg.icon-like {
+        color: $clr-white;
+        stroke: $clr-black;
+
+        &.liked {
+          color: $clr-brand-main;
+          stroke: $clr-brand-main;
+        }
+      }
+    }
+  }
+
+
   &.main-layout {
     grid-template-columns: 24px 1fr 24px;
   }
 
   @include for-normal-layout {
     padding-block: rem(24px) 0;
+
+    >header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
   }
 
   h2 {

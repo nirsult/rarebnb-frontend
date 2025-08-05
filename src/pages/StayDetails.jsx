@@ -15,7 +15,8 @@ import { StayDetailsNav } from "../cmps/StayDetailsNav"
 import { useMediaQuery } from "../customHooks/useMediaQuery"
 import { StayDetailsGalleryMobile } from "../cmps/StayDetailsGalleryMobile"
 import { StayDetailsFooterMobile } from "../cmps/StayDetailsFooterMobile"
-import { FullLeftArrow } from "../cmps/Icons"
+import { FullLeftArrow, HeartIcon } from "../cmps/Icons"
+import { useWishlist } from "../customHooks/useWishlist"
 
 
 export function StayDetails() {
@@ -24,6 +25,7 @@ export function StayDetails() {
   const [searchParams, setSearchParams] = useSearchParams()
   const { startDate, endDate, guestCountMap } = getOrderDetailsFromSearchParams(searchParams)
   const isMobile = useMediaQuery('(max-width: 744px)')
+  const { isLiked, handleWishlistClick } = useWishlist(stayId)
 
   const [isGalleryExpanded, setIsGalleryExpanded] = useState(false)
   const [isAmenitiesModalOpen, toggleIsAmenitiesModalOpen] = useToggle(false)
@@ -105,17 +107,37 @@ export function StayDetails() {
         />
       }
       <section className={`stay-details ${isMobile ? 'full main-layout' : ''}`}>
-        <button
-          onClick={() => navigate(-1)}
-          className="btn-back"
-        >
-          <FullLeftArrow />
-        </button>
-        {!isMobile && <h2>{name}</h2>}
+
+        {!isMobile &&
+          <header>
+            <h2>{name}</h2>
+            <button className='btn-like' onClick={handleWishlistClick}>
+              <HeartIcon
+                height="16px"
+                width="16px"
+                className={`icon-like ${isLiked ? 'liked' : ''}`}
+              />
+              Save{isLiked ? 'd' : ''}
+            </button>
+          </header>
+        }
 
 
         {isMobile
-          ? <StayDetailsGalleryMobile imgUrls={imgUrls} />
+          ? <>
+            <button
+              onClick={() => navigate(-1)}
+              className="btn-back"
+            >
+              <FullLeftArrow />
+            </button>
+            <button className='btn-like' onClick={handleWishlistClick}>
+              <HeartIcon
+                className={`icon-like ${isLiked ? 'liked' : ''}`}
+              />
+            </button>
+            <StayDetailsGalleryMobile imgUrls={imgUrls} />
+          </>
           : <StayDetailsGallery
             imgUrls={imgUrls}
             isGalleryExpanded={isGalleryExpanded}

@@ -31,7 +31,7 @@ export function HamburgerMenu({ onClose, onLoginClick }) {
       {loggedInUser
         ? <>
           <ul>
-            <li><NavLink onClick={onClose} to="/whishlist" ><HeartIcon width="1rem" height="1rem" />Wishlists</NavLink></li>
+            <li><NavLink onClick={onClose} to="/wishlists" ><HeartIcon width="1rem" height="1rem" />Wishlists</NavLink></li>
             <li><NavLink onClick={onClose} to="/trips" ><AirbnbTripsIcon /> Trips</NavLink></li>
             <li><NavLink onClick={onClose} to="/dashboard" ><GraphIcon />Dashboard</NavLink></li>
             <li><NavLink onClick={onClose} to="/reservations" ><CalendarIcon /> Reservations</NavLink></li>

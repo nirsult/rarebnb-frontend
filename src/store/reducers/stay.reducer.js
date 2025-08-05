@@ -5,10 +5,12 @@ export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const ADD_STAY_MSG = 'ADD_STAY_MSG'
 export const SET_PAGINATION = 'SET_PAGINATION'
+export const SET_WISHLISTS_STAYS = 'SET_WISHLISTS_STAYS'
 
 const initialState = {
   isLoading: false,
   stays: [],
+  wishlistsStays: [],
   stay: null,
   pageIdx: 0,
   totalPages: 1
@@ -31,6 +33,9 @@ export function stayReducer(state = initialState, action) {
   switch (action.type) {
     case SET_STAYS:
       newState = { ...state, stays: action.stays }
+      break
+    case SET_WISHLISTS_STAYS:
+      newState = { ...state, wishlistsStays: action.stays }
       break
     case SET_STAY:
       newState = { ...state, stay: action.stay }

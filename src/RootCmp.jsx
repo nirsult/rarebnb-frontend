@@ -10,6 +10,7 @@ import { StayDetails } from "./pages/StayDetails.jsx"
 import { BookingCheckout } from "./pages/BookingCheckout.jsx"
 import { Reservations } from "./pages/Reservations.jsx"
 import { Trips } from "./pages/Trips.jsx"
+import { Wishlists } from "./pages/Wishlists.jsx"
 
 
 export function RootCmp() {
@@ -45,6 +46,7 @@ export function RootCmp() {
           <Route path="/stay/:stayId/checkout" element={<BookingCheckout />} />
           <Route path="/trips" element={<Trips />} />
           <Route path="/reservations" element={<Reservations />} />
+          <Route path="/wishlists" element={<Wishlists />} />
         </Routes>
       </main>
     </>

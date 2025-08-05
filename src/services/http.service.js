@@ -1,11 +1,17 @@
 import Axios from 'axios'
+import qs from 'qs'
+
 
 const BASE_URL = process.env.NODE_ENV === 'production'
   ? '/api/'
   : '//localhost:3030/api/'
 
 
-const axios = Axios.create({ baseURL: BASE_URL, withCredentials: true })
+const axios = Axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+  paramsSerializer: params => qs.stringify(params, { arrayFormat: 'repeat' })
+})
 
 export const httpService = {
   get(endpoint, data) {
